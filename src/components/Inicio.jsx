@@ -36,9 +36,7 @@ export default function HomePage() {
         <Calculadora />
       </main>
 
-      <footer className="text-center mt-10 text-gray-500">
-        <p>&copy; {new Date().getFullYear()} Tu Marca. Todos los derechos reservados.</p>
-      </footer>
+      
     </div>
   );
 }

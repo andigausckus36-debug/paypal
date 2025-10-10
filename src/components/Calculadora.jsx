@@ -27,9 +27,14 @@ Reemplaza el fetchDolarBlue() por la llamada real a tu API (ej.: DolarAPI o Blue
 MOCK / Replace with real API call
 ----------------------- */
 const fetchDolarBlue = async () => {
-// EJEMPLO: reemplazar por fetch('https://dolarapi.com/v1/dolares/blue') ...
-// MOCK: valores de ejemplo
-return { compra: 1455, venta: 1475 }; // compra: quien vende- compra us; venta: quien compra- venta us
+  try {
+    const res = await fetch("https://dolarapi.com/v1/dolares/blue");
+    const data = await res.json();
+    return { compra: parseFloat(data.compra), venta: parseFloat(data.venta) };
+  } catch (error) {
+    console.error(error);
+    return { compra: 0, venta: 0 };
+  }
 };
 
 /* -----------------------
