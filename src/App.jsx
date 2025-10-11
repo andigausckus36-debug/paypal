@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar"; // <-- importamos Navbar
+import Navbar from "./components/Navbar";
 import Inicio from "./components/Inicio";
 import BotonWhatsApp from "./components/BotonWhatsApp";
 import Footer from "./components/Footer";
@@ -10,14 +10,14 @@ import FAQ from "./pages/FAQ";
 import "./index.css";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("inicio"); // estado global de página
+  const [currentPage, setCurrentPage] = useState("inicio");
 
-  // scroll hacia arriba al cambiar de página
+  // Scroll hacia arriba al cambiar de página
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
-  // función para cambiar página (la pasaremos al Footer o a cualquier menú)
+  // Función para cambiar página
   const goToPage = (page) => setCurrentPage(page);
 
   return (

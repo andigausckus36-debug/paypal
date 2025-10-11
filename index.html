@@ -1,13 +1,65 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>paypal-app</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Título y descripción SEO -->
+    <title>Saldo PayPal - Compra y venta de saldo rápido y seguro</title>
+    <meta name="description" content="Compra y vende saldo PayPal en Argentina de forma rápida, segura y con las mejores cotizaciones actualizadas en tiempo real. Pagos en ARS.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Saldo PayPal - Compra y venta de saldo rápido y seguro">
+    <meta property="og:description" content="Compra y vende saldo PayPal con las mejores cotizaciones en Argentina. Rápido, simple y seguro.">
+    <meta property="og:image" content="https://i.postimg.cc/CK5R5vjk/1000014500.png">
+    <meta property="og:url" content="https://www.saldopaypal.com.ar">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Saldo PayPal - Compra y venta de saldo rápido y seguro">
+    <meta name="twitter:description" content="Compra y vende saldo PayPal con las mejores cotizaciones. Operaciones seguras en Argentina.">
+    <meta name="twitter:image" content="https://i.postimg.cc/CK5R5vjk/1000014500.png">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/CK5R5vjk/1000014500.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/CK5R5vjk/1000014500.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/CK5R5vjk/1000014500.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.saldopaypal.com.ar/" />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://www.saldopaypal.com.ar/sitemap.xml" />
+
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Saldo PayPal",
+      "url": "https://www.saldopaypal.com.ar",
+      "logo": "https://i.postimg.cc/CK5R5vjk/1000014500.png",
+      "sameAs": [
+        "https://www.instagram.com/saldopaypal",
+        "https://www.facebook.com/saldopaypal",
+        "https://wa.me/5491123456789"
+      ],
+      "description": "Compra y vende saldo PayPal con las mejores cotizaciones, rápido y seguro.",
+      "founder": {
+        "@type": "Person",
+        "name": "Saldo PayPal Team"
+      }
+    }
+    </script>
   </head>
+
   <body>
+    <!-- Donde se monta la app React -->
     <div id="root"></div>
+
+    <!-- Script de entrada -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
