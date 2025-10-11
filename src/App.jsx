@@ -32,7 +32,10 @@ export default function App() {
       {currentPage === "garantia" && <GarantiaCompradores />}
       {currentPage === "faq" && <FAQ />}
 
+      {/* Botón flotante de WhatsApp */}
       <BotonWhatsApp />
+
+      {/* Footer */}
       <Footer goToPage={goToPage} />
     </>
   );

@@ -4,7 +4,7 @@ export default function Navbar({ goToPage }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="w-full bg-white py-7 px-6 relative">
+    <nav className="w-full bg-white py-5 px-6 relative">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
 
         {/* Menú hamburguesa izquierda */}
@@ -21,7 +21,7 @@ export default function Navbar({ goToPage }) {
             <img
               src="https://i.postimg.cc/CK5R5vjk/1000014500.png"
               alt="SaldoPayPal Logo"
-              className="h-32 w-auto" // tamaño más grande sin aumentar navbar
+              className="h-24 w-auto" // tamaño más grande sin aumentar navbar
             />
           </button>
         </div>
