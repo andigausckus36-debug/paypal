@@ -231,9 +231,7 @@ export default function Calculadora() {
   return (
     <>
       <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
-        <h2 className="text-2xl md:text-3xl font-medium italic text-gray-700 text-left mb-6">
-          Realiza tu cotización
-        </h2>
+        
 
         <div className="grid grid-cols-2 gap-4 mb-6">
           <button
@@ -270,7 +268,7 @@ export default function Calculadora() {
                 step="0.01"
                 value={usd}
                 onChange={onChangeUsd}
-                className="w-full p-4 pl-14 text-2xl font-bold border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
+                className="w-full p-4 pl-14 text-3xl font-medium border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
                 placeholder="30"
               />
               <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
@@ -301,18 +299,14 @@ export default function Calculadora() {
                 inputMode="decimal"
                 value={ars ? ars : ""}
                 onChange={onChangeArs}
-                className="w-full p-4 text-2xl font-bold bg-gray-50 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
+                className="w-full p-4 text-3xl font-medium bg-gray-50 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
                 placeholder="0.00"
               />
-              <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
+              <span className="absolute inset-y-0 right-4 flex items-center text-md text-gray-500">
                 ARS
               </span>
             </div>
-            <p className="mt-3 text-center text-gray-800 bg-gray-100 border border-gray-200 rounded-lg py-1 px-4 font-normal italic text-sm shadow-sm">
-              {operation === "vender"
-                ? <>Te enviamos los pesos en 10 a 30 minutos <span className="text-2xl">⚡</span></>
-                : <>Cargamos tu cuenta en 10 a 30 minutos <span className="text-2xl">⚡</span></>}
-            </p>
+            
           </div>
         </div>
 

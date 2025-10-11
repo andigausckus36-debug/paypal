@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-        mono: ['Roboto Mono', 'monospace'],
+        sans: ['Montserrat', 'sans-serif'], // ← Fuente principal del sitio
+        mono: ['Roboto Mono', 'monospace'], // ← Para números o código
       },
       colors: {
-        primary: '#2563eb', // azul PayPal
+        primary: '#2563eb',   // azul PayPal
         secondary: '#0ea5e9', // celeste
-        accent: '#facc15', // amarillo para acentos
+        accent: '#facc15',    // amarillo para acentos
       },
     },
   },

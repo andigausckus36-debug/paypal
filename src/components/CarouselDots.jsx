@@ -42,11 +42,11 @@ export default function CarouselDots({ images = [], interval = 5000 }) {
   if (!images || images.length === 0) return null;
 
   return (
-    <div className="w-full max-w-4xl mx-auto mb-12">
+    <div className="w-full max-w-4xl mx-auto mb-12 bg-white">
       {/* Título y subtítulo */}
       <div className="mb-4 text-left">
-        <h2 className="text-2xl font-medium italic text-gray-700">
-          Intercambios recientes
+        <h2 className="text-2xl font-medium italic text-gray">
+          Últimos intercambios
         </h2>
         <p className="text-sm italic text-gray-500">
           Hace clic en la imagen para agrandarla
@@ -63,7 +63,7 @@ export default function CarouselDots({ images = [], interval = 5000 }) {
         <img
           src={images[currentIndex]}
           alt={`Slide ${currentIndex + 1}`}
-          className="w-full h-64 md:h-80 object-contain cursor-pointer transition-transform duration-300"
+          className="w-full h-96 md:h-80 object-cover cursor-pointer transition-transform duration-300"
           onClick={() => handleImageClick(images[currentIndex])}
         />
       </div>
