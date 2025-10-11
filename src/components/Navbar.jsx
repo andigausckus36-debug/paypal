@@ -38,7 +38,7 @@ export default function Navbar({ goToPage }) {
             onClick={() => goToPage("garantia")}
             className="text-gray-800 hover:text-blue-600 font-normal text-left"
           >
-            Garantía para compradores
+            Garantía compradores
           </button>
           <button
             onClick={() => goToPage("faq")}
@@ -72,7 +72,7 @@ export default function Navbar({ goToPage }) {
             onClick={() => { goToPage("garantia"); setMenuOpen(false); }}
             className="text-gray-800 hover:text-blue-600 font-normal text-left"
           >
-            Garantía para compradores
+            Garantía compradores
           </button>
           <button
             onClick={() => { goToPage("faq"); setMenuOpen(false); }}

@@ -45,7 +45,7 @@ export default function CarouselDots({ images = [], interval = 5000 }) {
     <div className="w-full max-w-4xl mx-auto mb-12">
       {/* Título y subtítulo */}
       <div className="mb-4 text-left">
-        <h2 className="text-3xl font-medium italic text-gray-700">
+        <h2 className="text-2xl font-medium italic text-gray-700">
           Intercambios recientes
         </h2>
         <p className="text-sm italic text-gray-500">

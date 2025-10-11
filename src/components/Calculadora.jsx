@@ -196,7 +196,7 @@ export default function Calculadora() {
 
     Mis Datos
 
-    Nombre y Apellido
+    Nombre y apellido
     ${formData.fullName}
 
     Email de PayPal
@@ -235,7 +235,7 @@ export default function Calculadora() {
   return (
     <>
       <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
-        <h2 className="text-3xl md:text-3xl font-medium italic text-gray-700 text-center mb-6">
+        <h2 className="text-2xl md:text-3xl font-medium italic text-gray-700 text-left mb-6">
           Realiza tu cotización
         </h2>
 
