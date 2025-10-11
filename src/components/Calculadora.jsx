@@ -63,7 +63,6 @@ export default function Calculadora() {
     fullName: "",
     paypalEmail: "",
     whatsapp: "",
-    dni: "",
     cbu: "",
     bankOrWallet: "",
   });
@@ -169,8 +168,8 @@ export default function Calculadora() {
     e.preventDefault();
 
     // Validación de campos obligatorios
-    const { fullName, paypalEmail, whatsapp, dni, cbu, bankOrWallet } = formData;
-    if (!fullName || !paypalEmail || !whatsapp || !dni || !cbu || !bankOrWallet) {
+    const { fullName, paypalEmail, whatsapp, cbu, bankOrWallet } = formData;
+    if (!fullName || !paypalEmail || !whatsapp || !cbu || !bankOrWallet) {
       alert("Completa todos los campos obligatorios.");
       return;
     }
@@ -204,9 +203,6 @@ export default function Calculadora() {
 
     WhatsApp
     ${formData.whatsapp}
-
-    DNI
-    ${formData.dni}
 
     CBU / CVU
     ${formData.cbu}
@@ -415,22 +411,7 @@ export default function Calculadora() {
                 />
               </div>
 
-              {/* DNI */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Número de DNI
-                </label>
-                <input
-                  type="number"
-                  name="dni"
-                  onChange={handleFormChange}
-                  required
-                  inputMode="numeric"
-                  pattern="\d*"
-                  placeholder="Ej: 12345678"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
+              
 
               {/* CBU / CVU */}
               <div>

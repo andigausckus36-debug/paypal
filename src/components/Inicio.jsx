@@ -33,7 +33,7 @@ export default function Inicio() {
             <div className="text-2xl font-bold text-primary mb-2">2</div>
             <h3 className="font-semibold">Completá tus datos</h3>
             <p className="text-sm text-gray-500 mt-1">
-              Ingresá tu nombre, email de PayPal, WhatsApp y enlace a tu perfil.
+              Ingresá tu nombre y apellido, email de PayPal, WhatsApp, CBU / CVU y Banco o billetera.
             </p>
           </div>
           <div className="text-center p-3">
