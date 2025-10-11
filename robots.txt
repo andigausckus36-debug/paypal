@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
 
 Sitemap: https://www.saldopaypal.com.ar/sitemap.xml
