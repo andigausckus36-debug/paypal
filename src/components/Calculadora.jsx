@@ -77,8 +77,8 @@ Ajusta los valores a gusto.
 ----------------------- */
 
 
-const SPREAD_COMPRAR = 0.06; // 3% debajo del blue.venta
-const SPREAD_VENDER = 0.12;  // 12% debajo del blue.compra
+const SPREAD_COMPRAR = 0.08;
+const SPREAD_VENDER = 0.13;
 
 export default function Calculadora() {
 
@@ -329,7 +329,7 @@ return (
         <p className="mt-3 text-center text-gray-800 bg-gray-100 border border-gray-200 rounded-lg py-1 px-4 font-semibold text-sm shadow-sm">
           {operation === "vender"
             ? <>Te enviamos los pesos en 10 a 30 minutos <span className="text-2xl">⚡</span></>
-            : <>Cargamos tu cuenta en 5 10 30 minutos <span className="text-2xl">⚡</span></>}
+            : <>Cargamos tu cuenta en 10 a 30 minutos <span className="text-2xl">⚡</span></>}
         </p>  
       </div>  
     </div>  
@@ -367,55 +367,103 @@ return (
   </div>  
 
   {/* FORM Modal */}  
-  {showForm && (  
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">  
-      <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg relative">  
-        <button onClick={() => setShowForm(false)} className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>  
-        <h3 className="text-xl font-bold mb-4 text-gray-800">Completa tus datos para continuar</h3>  
-        <form onSubmit={handleFormSubmit} className="space-y-4">  
-          <div>  
-            <label className="block text-sm font-medium text-gray-700">Nombre y apellido</label>  
-            <input type="text" name="fullName" onChange={handleFormChange} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>  
-          </div>  
+{showForm && (  
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">  
+    <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg relative">  
+      <button onClick={() => setShowForm(false)} className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl">&times;</button>  
+      <h3 className="text-xl font-bold mb-4 text-gray-800">Completa tus datos para continuar</h3>  
+      <form onSubmit={handleFormSubmit} className="space-y-4">  
 
-          <div>  
-            <label className="block text-sm font-medium text-gray-700">E-mail de PayPal</label>  
-            <input type="email" name="paypalEmail" onChange={handleFormChange} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>  
-            <p className="text-xs text-gray-500 mt-1">El titular de la cuenta de PayPal debe ser el mismo que realiza la operación.</p>  
-          </div>  
+        {/* Nombre y Apellido */}  
+        <div>  
+          <label className="block text-sm font-medium text-gray-700">Nombre y apellido</label>  
+          <input 
+            type="text" 
+            name="fullName" 
+            onChange={handleFormChange} 
+            required 
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
+          />  
+        </div>  
 
-            <div>  
-              <label className="block text-sm font-medium text-gray-700">WhatsApp</label>  
-              <input   
-                type="tel"   
-                name="whatsapp"   
-                onChange={handleFormChange}   
-                required   
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"  
-              />  
-            </div>  
+        {/* Email de PayPal */}  
+        <div>  
+          <label className="block text-sm font-medium text-gray-700">E-mail de PayPal</label>  
+          <input 
+            type="email" 
+            name="paypalEmail" 
+            onChange={handleFormChange} 
+            required 
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
+          />  
+          <p className="text-xs text-gray-500 mt-1">El titular de la cuenta de PayPal debe ser el mismo que realiza la operación.</p>  
+        </div>  
 
-            <div>  
-              <label className="block text-sm font-medium text-gray-700">Red social (Instagram o Facebook)</label>  
-              <input   
-                type="text"   
-                name="socialProfile"   
-                onChange={handleFormChange}   
-                placeholder="@usuario o enlace"  
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"  
-              />  
-            </div>  
+        {/* WhatsApp */}  
+        <div>  
+          <label className="block text-sm font-medium text-gray-700">Número de WhatsApp</label>  
+          <input   
+            type="tel"   
+            name="whatsapp"   
+            onChange={handleFormChange}   
+            required   
+            pattern="[0-9]+"  
+            title="Ingrese solo números"  
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"  
+          />  
+        </div>  
 
-            <button   
-              type="submit"   
-              className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"  
-            >  
-              Enviar pedido  
-            </button>  
-            </form>  
-            </div>  
-            </div>  
-            )}  
+        {/* DNI */}  
+        <div>  
+          <label className="block text-sm font-medium text-gray-700">Número de DNI</label>  
+          <input   
+            type="number"   
+            name="dni"   
+            onChange={handleFormChange}   
+            required   
+            inputMode="numeric"  
+            pattern="\d*"  
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"  
+          />  
+        </div>  
+
+        {/* CBU / CVU */}  
+        <div>  
+          <label className="block text-sm font-medium text-gray-700">CBU / CVU</label>  
+          <input   
+            type="text"   
+            name="cbu"   
+            onChange={handleFormChange}   
+            required   
+            pattern="[0-9]+"  
+            title="Ingrese solo números"  
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"  
+          />  
+        </div>  
+
+        {/* Banco o Billetera virtual */}  
+        <div>  
+          <label className="block text-sm font-medium text-gray-700">Banco o Billetera virtual</label>  
+          <input   
+            type="text"   
+            name="bankOrWallet"   
+            onChange={handleFormChange}   
+            required   
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"  
+          />  
+        </div>  
+
+        <button   
+          type="submit"   
+          className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors"  
+        >  
+          Enviar pedido  
+        </button>  
+
+      </form>  
+    </div>  
+  </div>  
+)}  
             </>  
             );  
             }
