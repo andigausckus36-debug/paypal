@@ -29,7 +29,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="w-full max-w-md bg-white p-6 mb-12 rounded shadow-md mt-12">
+    <section className="w-full max-w-md bg-white p-6 rounded shadow-md mt-12">
       <h2 className="text-2xl italic font-medium mb-4 text-left text-gray-700">¿Dudas? Contactanos</h2>
 
       <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
