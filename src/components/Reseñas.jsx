@@ -39,7 +39,7 @@ export default function Reseñas() {
     <section id="reseñas" className="py-8 bg-white">
       <div className="text-left mb-10">
         <h2 className="text-2xl font-medium text-gray-700 italic mb-4">Opiniones de nuestros clientes</h2>
-        <p className="text-gray-600">Leé las reseñas reales de quienes ya operaron con nosotros</p>
+        
       </div>
 
       <div className="max-w-3xl mx-auto space-y-6">
