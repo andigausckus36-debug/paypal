@@ -3,8 +3,8 @@ import { Star } from "lucide-react";
 
 export default function Reseñas() {
   const [reseñas, setReseñas] = useState([
-    { nombre: "Juan P.", estrellas: 5, mensaje: "Excelente servicio, todo rápido y seguro", fecha: "13/10/2025", hora: "14:05" },
-    { nombre: "María G.", estrellas: 4, mensaje: "Muy buena atención por WhatsApp, volvería a usar", fecha: "12/10/2025", hora: "16:40" },
+    { nombre: "Juan Diaz", estrellas: 5, mensaje: "Excelente servicio, todo bien, la operación fue rápida y segura. Buen servicio!", fecha: "13/10/2025", hora: "14:05" },
+    { nombre: "Mica", estrellas: 5, mensaje: "Muy buena atención por WhatsApp. El intercambio fue todo un éxito. En el tiempo que dicen ya tenia los dolares en mi cuenta 😁", fecha: "12/10/2025", hora: "16:40" },
   ]);
 
   const [nombre, setNombre] = useState("");
@@ -36,18 +36,18 @@ export default function Reseñas() {
   };
 
   return (
-    <section id="reseñas" className="py-16 bg-gray-50">
-      <div className="text-center mb-10">
-        <h2 className="text-2xl font-medium text-gray-700 italic mb-4">Opiniones de nuestros usuarios</h2>
-        <p className="text-gray-600">Leé las experiencias reales de quienes ya operaron con nosotros</p>
+    <section id="reseñas" className="py-8 bg-white">
+      <div className="text-left mb-10">
+        <h2 className="text-2xl font-medium text-gray-700 italic mb-4">Opiniones de nuestros clientes</h2>
+        <p className="text-gray-600">Leé las reseñas reales de quienes ya operaron con nosotros</p>
       </div>
 
       <div className="max-w-3xl mx-auto space-y-6">
         {reseñas.map((r, i) => (
-          <div key={i} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-left">
+          <div key={i} className="bg-white p-6 shadow-md rounded-xl border border-gray-100 text-left">
             <div className="flex items-center mb-2">
               {[...Array(r.estrellas)].map((_, j) => (
-                <Star key={j} size={20} className="text-yellow-400 fill-yellow-400" />
+                <Star key={j} size={20} className="text-yellow-500 fill-yellow-400" />
               ))}
             </div>
             <p className="text-gray-800 italic mb-3">“{r.mensaje}”</p>
