@@ -67,7 +67,7 @@ export default function Reseñas() {
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
               placeholder="Tu nombre"
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400"
             />
 
             <textarea
@@ -75,11 +75,11 @@ export default function Reseñas() {
               onChange={(e) => setMensaje(e.target.value)}
               placeholder="Tu mensaje..."
               rows="3"
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-400"
             />
 
             <div className="flex items-center gap-2">
-              <span className="text-gray-700">Puntuación:</span>
+              <span className="text-gray-700">Puntuación</span>
               {[1, 2, 3, 4, 5].map((num) => (
                 <Star
                   key={num}
