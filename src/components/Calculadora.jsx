@@ -52,6 +52,11 @@ export default function Calculadora() {
   const [operation, setOperation] = useState("vender"); // 'vender' | 'comprar'
   const [dolarBlue, setDolarBlue] = useState({ compra: 0, venta: 0 });
 
+  const [prevDolarBlue, setPrevDolarBlue] = useState(null);
+const [variacion, setVariacion] = useState(null);
+
+  const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
+
   // Dual inputs
   const [usd, setUsd] = useState(20);
   const [ars, setArs] = useState("");
@@ -77,7 +82,29 @@ export default function Calculadora() {
     const getBlue = async () => {
       try {
         const data = await fetchDolarBlue();
+
+        // Calcular variación solo si ya había un valor previo
+        if (prevDolarBlue) {
+          const cambio = ((data.venta - prevDolarBlue.venta) / prevDolarBlue.venta) * 100;
+          setVariacion(cambio.toFixed(2));
+        }
+
+        setPrevDolarBlue(data);
         setDolarBlue(data);
+
+        const ahora = new Date();
+const fechaFormateada = ahora.toLocaleDateString("es-AR", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+});
+const horaFormateada = ahora.toLocaleTimeString("es-AR", {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
+setUltimaActualizacion(`${fechaFormateada} · ${horaFormateada} hs`);
+        
       } catch (err) {
         console.error("Error al traer cotización:", err);
       }
@@ -85,7 +112,7 @@ export default function Calculadora() {
     getBlue();
     const interval = setInterval(getBlue, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [prevDolarBlue]);
 
   /* -----------------------
   Tipo aplicado según operación
@@ -310,9 +337,29 @@ export default function Calculadora() {
           </div>
         </div>
 
-        <div className="text-center mt-6 text-sm text-gray-500">
-          <p>Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}</p>
-          <p className="mt-2">Tipo cambio aplicado ${tipoAplicado ? tipoAplicado.toFixed(2) : "—"} ARS</p>
+        <div className="text-center mt-6 text-sm text-gray-600">
+          <p>
+            Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
+            {variacion && (
+              <span
+                className={`ml-2 font-semibold ${
+                  variacion > 0 ? "text-green-600" : variacion < 0 ? "text-red-600" : "text-gray-500"
+                }`}
+              >
+                {variacion > 0 ? "▲" : variacion < 0 ? "▼" : "●"} {Math.abs(variacion)}%
+              </span>
+            )}
+          </p>
+
+          <p className="mt-1 mb-2">
+            Tipo cambio aplicado ${tipoAplicado ? tipoAplicado.toFixed(2) : "—"} ARS
+          </p>
+
+          {ultimaActualizacion && (
+            <p className="mt-1 text-xs text-gray-500 italic">
+              Última actualización: {ultimaActualizacion}
+            </p>
+          )}
         </div>
 
         {minMessage && (
@@ -351,7 +398,7 @@ export default function Calculadora() {
             >
               &times;
             </button>
-            <h3 className="text-xl font-medium mb-4 text-gray-800">
+            <h3 className="text-xl font-bold mb-4 text-gray-800">
               Completa tus datos para continuar
             </h3>
 
@@ -384,7 +431,7 @@ export default function Calculadora() {
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 italic mt-1">
                   La cuenta PayPal debe ser del mismo titular que realiza la operación.
                 </p>
               </div>
