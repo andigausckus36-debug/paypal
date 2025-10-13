@@ -6,11 +6,13 @@ export default function Reseñas() {
     { nombre: "Juan P.", estrellas: 5, mensaje: "Excelente servicio, todo rápido y seguro", fecha: "13/10/2025", hora: "14:05" },
     { nombre: "María G.", estrellas: 4, mensaje: "Muy buena atención por WhatsApp, volvería a usar", fecha: "12/10/2025", hora: "16:40" },
   ]);
+
   const [nombre, setNombre] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [puntuacion, setPuntuacion] = useState(0);
 
-  const mostrarFormulario = new URLSearchParams(window.location.search).get("auth") === "ok";
+  // Mostrar formulario solo si ?auth=ok en el hash
+  const mostrarFormulario = new URLSearchParams(window.location.hash.split('?')[1]).get("auth") === "ok";
 
   const enviarReseña = (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ export default function Reseñas() {
       estrellas: puntuacion,
       mensaje,
       fecha: new Date().toLocaleDateString("es-AR"),
-      hora: new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" }),
+      hora: new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit", hour12: false }),
     };
 
     setReseñas([nuevaReseña, ...reseñas]);
@@ -35,14 +37,14 @@ export default function Reseñas() {
 
   return (
     <section id="reseñas" className="py-16 bg-gray-50">
-      <div className="max-w-3xl mx-auto text-center mb-10">
-        <h2 className="text-2xl text-center font-medium text-gray-700 italic mb-4">Opiniones de nuestros usuarios</h2>
+      <div className="text-center mb-10">
+        <h2 className="text-2xl font-medium text-gray-700 italic mb-4">Opiniones de nuestros usuarios</h2>
         <p className="text-gray-600">Leé las experiencias reales de quienes ya operaron con nosotros</p>
       </div>
 
       <div className="max-w-3xl mx-auto space-y-6">
         {reseñas.map((r, i) => (
-          <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-left">
+          <div key={i} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 text-left">
             <div className="flex items-center mb-2">
               {[...Array(r.estrellas)].map((_, j) => (
                 <Star key={j} size={20} className="text-yellow-400 fill-yellow-400" />
@@ -50,14 +52,15 @@ export default function Reseñas() {
             </div>
             <p className="text-gray-800 italic mb-3">“{r.mensaje}”</p>
             <p className="text-sm text-gray-500">
-              — {r.nombre} · {r.fecha} · {r.hora} hs
+              {r.nombre} <br />
+              {r.fecha} · {r.hora} hs
             </p>
           </div>
         ))}
 
         {mostrarFormulario && (
-          <form onSubmit={enviarReseña} className="bg-white p-6 rounded-xl shadow-md space-y-4 border-t-4 border-blue-500">
-            <h3 className="font-semibold text-lg text-gray-800">📝 Dejá tu reseña</h3>
+          <form onSubmit={enviarReseña} className="mt-10 bg-white p-6 rounded-xl shadow-md space-y-4 border-t-4 border-blue-500 max-w-lg mx-auto">
+            <h3 className="font-semibold text-lg text-gray-800">📝 Compartí tu opinión con los demás</h3>
 
             <input
               type="text"
