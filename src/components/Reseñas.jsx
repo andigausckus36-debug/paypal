@@ -60,7 +60,7 @@ export default function Reseñas() {
 
         {mostrarFormulario && (
           <form onSubmit={enviarReseña} className="mt-10 bg-white p-6 rounded-xl shadow-md space-y-4 border-t-4 border-blue-500 max-w-lg mx-auto">
-            <h3 className="font-semibold text-lg text-gray-800">📝 Compartí tu opinión con los demás</h3>
+            <h3 className="font-semibold text-lg text-gray-800">Compartí tu experiencia 🥳</h3>
 
             <input
               type="text"
@@ -86,7 +86,7 @@ export default function Reseñas() {
                   size={28}
                   onClick={() => setPuntuacion(num)}
                   className={`cursor-pointer transition ${
-                    num <= puntuacion ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+                    num <= puntuacion ? "text-yellow-400 fill-yellow-400" : "text-gray-300 mb-4"
                   }`}
                 />
               ))}
@@ -94,9 +94,9 @@ export default function Reseñas() {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+              className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition"
             >
-              Enviar reseña
+              Enviar mi reseña
             </button>
           </form>
         )}
