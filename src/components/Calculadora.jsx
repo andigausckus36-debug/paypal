@@ -280,7 +280,7 @@ setUltimaActualizacion(`${fechaFormateada} · ${horaFormateada} hs`);
           {/* USD input */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              {operation === "vender" ? "Tú envías (USD)" : "Tú recibes (USD)"}
+              {operation === "vender" ? "Tú envías (USD)" : "Tú compras (USD)"}
             </label>
             <div className="relative">
               <img
