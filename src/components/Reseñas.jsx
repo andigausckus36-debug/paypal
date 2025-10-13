@@ -1,0 +1,103 @@
+import React, { useState } from "react";
+import { Star } from "lucide-react";
+
+export default function Reseñas() {
+  const [reseñas, setReseñas] = useState([
+    { nombre: "Juan P.", estrellas: 5, mensaje: "Excelente servicio, todo rápido y seguro", fecha: "13/10/2025", hora: "14:05" },
+    { nombre: "María G.", estrellas: 4, mensaje: "Muy buena atención por WhatsApp, volvería a usar", fecha: "12/10/2025", hora: "16:40" },
+  ]);
+  const [nombre, setNombre] = useState("");
+  const [mensaje, setMensaje] = useState("");
+  const [puntuacion, setPuntuacion] = useState(0);
+
+  const mostrarFormulario = new URLSearchParams(window.location.search).get("auth") === "ok";
+
+  const enviarReseña = (e) => {
+    e.preventDefault();
+    if (!nombre || !mensaje || puntuacion === 0) {
+      alert("Por favor completá todos los campos y seleccioná las estrellas ⭐");
+      return;
+    }
+
+    const nuevaReseña = {
+      nombre,
+      estrellas: puntuacion,
+      mensaje,
+      fecha: new Date().toLocaleDateString("es-AR"),
+      hora: new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" }),
+    };
+
+    setReseñas([nuevaReseña, ...reseñas]);
+    setNombre("");
+    setMensaje("");
+    setPuntuacion(0);
+  };
+
+  return (
+    <section id="reseñas" className="py-16 bg-gray-50">
+      <div className="max-w-3xl mx-auto text-center mb-10">
+        <h2 className="text-2xl text-center font-medium text-gray-700 italic mb-4">Opiniones de nuestros usuarios</h2>
+        <p className="text-gray-600">Leé las experiencias reales de quienes ya operaron con nosotros</p>
+      </div>
+
+      <div className="max-w-3xl mx-auto space-y-6">
+        {reseñas.map((r, i) => (
+          <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-left">
+            <div className="flex items-center mb-2">
+              {[...Array(r.estrellas)].map((_, j) => (
+                <Star key={j} size={20} className="text-yellow-400 fill-yellow-400" />
+              ))}
+            </div>
+            <p className="text-gray-800 italic mb-3">“{r.mensaje}”</p>
+            <p className="text-sm text-gray-500">
+              — {r.nombre} · {r.fecha} · {r.hora} hs
+            </p>
+          </div>
+        ))}
+
+        {mostrarFormulario && (
+          <form onSubmit={enviarReseña} className="bg-white p-6 rounded-xl shadow-md space-y-4 border-t-4 border-blue-500">
+            <h3 className="font-semibold text-lg text-gray-800">📝 Dejá tu reseña</h3>
+
+            <input
+              type="text"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              placeholder="Tu nombre"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+
+            <textarea
+              value={mensaje}
+              onChange={(e) => setMensaje(e.target.value)}
+              placeholder="Tu mensaje..."
+              rows="3"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+
+            <div className="flex items-center gap-2">
+              <span className="text-gray-700">Puntuación:</span>
+              {[1, 2, 3, 4, 5].map((num) => (
+                <Star
+                  key={num}
+                  size={28}
+                  onClick={() => setPuntuacion(num)}
+                  className={`cursor-pointer transition ${
+                    num <= puntuacion ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+            >
+              Enviar reseña
+            </button>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
