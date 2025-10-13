@@ -35,7 +35,7 @@ export default function GarantiaCompradores() {
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-blue-700 mb-2">4. Justificación de la transacción</h2>
         <p>
-          Para PayPal, quien envía saldo está “comorando algo”. Por ello, enviamos al comprador un
+          Para PayPal, quien envía saldo está “comprando algo”. Por ello, enviamos al comprador un
           correo con <strong>material digital</strong> (por ejemplo, ebooks o libros) que suman el
           total de la operación, junto con el <strong>comprobante de la “compra”</strong>. Esto
           sirve como evidencia en caso de que se intente abrir una disputa.

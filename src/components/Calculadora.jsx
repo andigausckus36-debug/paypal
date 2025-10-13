@@ -45,15 +45,15 @@ const applyPayPalFee = (grossUSD) => {
 /* -----------------------
 Spreads
 ----------------------- */
-const SPREAD_COMPRAR = 0.08;
-const SPREAD_VENDER = 0.13;
+const SPREAD_COMPRAR = 0.09;
+const SPREAD_VENDER = 0.12;
 
 export default function Calculadora() {
   const [operation, setOperation] = useState("vender"); // 'vender' | 'comprar'
   const [dolarBlue, setDolarBlue] = useState({ compra: 0, venta: 0 });
 
   // Dual inputs
-  const [usd, setUsd] = useState(30);
+  const [usd, setUsd] = useState(20);
   const [ars, setArs] = useState("");
   const [lastEdited, setLastEdited] = useState("usd");
 
@@ -119,8 +119,8 @@ export default function Calculadora() {
         ? Number(usd)
         : Number((parseFloat(ars) || 0) / tipoAplicado);
 
-    if (isNaN(currUsd) || currUsd < 30) {
-      setMinMessage("Ingresa un mínimo de 30 USD");
+    if (isNaN(currUsd) || currUsd < 20) {
+      setMinMessage("Ingresa un mínimo de 20 USD");
     } else {
       setMinMessage("");
     }
@@ -174,8 +174,8 @@ export default function Calculadora() {
       return;
     }
 
-    if (Number(usd) < 30) {
-      alert("Ingresa un mínimo de 30 USD");
+    if (Number(usd) < 20) {
+      alert("Ingresa un mínimo de 20 USD");
       return;
     }
 
@@ -269,7 +269,7 @@ export default function Calculadora() {
                 value={usd}
                 onChange={onChangeUsd}
                 className="w-full p-4 pl-14 text-3xl font-medium border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
-                placeholder="30"
+                placeholder="20"
               />
               <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
                 USD
@@ -351,7 +351,7 @@ export default function Calculadora() {
             >
               &times;
             </button>
-            <h3 className="text-xl font-bold mb-4 text-gray-800">
+            <h3 className="text-xl font-medium mb-4 text-gray-800">
               Completa tus datos para continuar
             </h3>
 
@@ -384,6 +384,9 @@ export default function Calculadora() {
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
+                <p className="text-xs text-gray-500 mt-1">
+                  La cuenta PayPal debe ser del mismo titular que realiza la operación.
+                </p>
               </div>
 
               {/* WhatsApp */}
