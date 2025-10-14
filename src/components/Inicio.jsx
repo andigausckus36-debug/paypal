@@ -63,6 +63,9 @@ export default function Inicio() {
         <Calculadora />
       </main>
 
+      {/* Reseñas de usuarios */}
+      <Reseñas /> {/* <-- Aquí reemplazamos el carrusel */}
+
       {/* Cómo funciona */}
       <section className="w-full bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 p-6 md:p-10 rounded-xl shadow-lg max-w-4xl mx-auto mb-16">
         <div className="grid md:grid-cols-3 gap-6 text-center">
@@ -94,8 +97,6 @@ export default function Inicio() {
         </div>
       </section>
 
-      {/* Reseñas de usuarios */}
-      <Reseñas /> {/* <-- Aquí reemplazamos el carrusel */}
 
       {/* Formulario de contacto */}
       <section id="contacto" className="w-full max-w-md mb-12">
