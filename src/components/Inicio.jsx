@@ -1,7 +1,7 @@
 import React from 'react';
 import Calculadora from '../components/Calculadora';
 import ContactForm from '../components/ContactForm';
-import ReseñasFB from '../components/ReseñasFB'; // <-- Importamos el componente de reseñas
+import ReseñasFB from '../components/Reseñas'; // <-- Importamos el componente de reseñas
 
 export default function Inicio() {
   const imagenes = [

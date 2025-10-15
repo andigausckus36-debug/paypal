@@ -30,7 +30,7 @@ export default function ContactForm() {
 
   return (
     <section className="w-full max-w-md bg-white p-6 rounded shadow-md mt-12">
-      <h2 className="text-2xl italic font-medium mb-4 text-left text-gray-700">¿Dudas? Contactanos</h2>
+      <h2 className="text-2xl italic font-bold mb-4 text-center text-gray-700">¿Dudas? Contactanos</h2>
 
       <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
         {/* Nombre */}
