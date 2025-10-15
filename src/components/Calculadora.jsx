@@ -79,40 +79,55 @@ const [variacion, setVariacion] = useState(null);
   Obtener cotización
   ----------------------- */
   useEffect(() => {
-    const getBlue = async () => {
-      try {
-        const data = await fetchDolarBlue();
+  const getBlue = async () => {
+    try {
+      const data = await fetchDolarBlue();
 
-        // Calcular variación solo si ya había un valor previo
-        if (prevDolarBlue) {
-          const cambio = ((data.venta - prevDolarBlue.venta) / prevDolarBlue.venta) * 100;
+      // 📦 Intentamos obtener la última cotización guardada
+      const lastSaved = localStorage.getItem("ultimoDolarBlue");
+      const parsedLast = lastSaved ? JSON.parse(lastSaved) : null;
+
+      if (parsedLast) {
+        const cambio =
+          ((data.venta - parsedLast.venta) / parsedLast.venta) * 100;
+
+        // Solo actualizamos si hubo un cambio real
+        if (cambio !== 0) {
           setVariacion(cambio.toFixed(2));
+          localStorage.setItem("variacionDolarBlue", cambio.toFixed(2));
+        } else {
+          // Mantener el valor anterior
+          const lastVar = localStorage.getItem("variacionDolarBlue");
+          if (lastVar) setVariacion(lastVar);
         }
-
-        setPrevDolarBlue(data);
-        setDolarBlue(data);
-
-        const ahora = new Date();
-const fechaFormateada = ahora.toLocaleDateString("es-AR", {
-  day: "2-digit",
-  month: "2-digit",
-  year: "numeric",
-});
-const horaFormateada = ahora.toLocaleTimeString("es-AR", {
-  hour: "2-digit",
-  minute: "2-digit",
-  hour12: false,
-});
-setUltimaActualizacion(`${fechaFormateada} · ${horaFormateada} hs`);
-        
-      } catch (err) {
-        console.error("Error al traer cotización:", err);
       }
-    };
-    getBlue();
-    const interval = setInterval(getBlue, 30000);
-    return () => clearInterval(interval);
-  }, [prevDolarBlue]);
+
+      // Guardamos la nueva cotización para futuras comparaciones
+      localStorage.setItem("ultimoDolarBlue", JSON.stringify(data));
+      setDolarBlue(data);
+
+      // Actualizamos hora
+      const ahora = new Date();
+      const fechaFormateada = ahora.toLocaleDateString("es-AR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+      const horaFormateada = ahora.toLocaleTimeString("es-AR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
+      setUltimaActualizacion(`${fechaFormateada} · ${horaFormateada} hs`);
+    } catch (err) {
+      console.error("Error al traer cotización:", err);
+    }
+  };
+
+  getBlue();
+  const interval = setInterval(getBlue, 30000);
+  return () => clearInterval(interval);
+}, []);
 
   /* -----------------------
   Tipo aplicado según operación

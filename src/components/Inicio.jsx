@@ -1,7 +1,7 @@
 import React from 'react';
 import Calculadora from '../components/Calculadora';
 import ContactForm from '../components/ContactForm';
-import Reseñas from '../components/Reseñas'; // <-- Importamos el componente de reseñas
+import ReseñasFB from '../components/ReseñasFB'; // <-- Importamos el componente de reseñas
 
 export default function Inicio() {
   const imagenes = [
@@ -63,8 +63,9 @@ export default function Inicio() {
         <Calculadora />
       </main>
 
-      {/* Reseñas de usuarios */}
-      <Reseñas /> {/* <-- Aquí reemplazamos el carrusel */}
+      {/* Reseñas de Facebook justo debajo de la calculadora */}
+<ReseñasFB />
+
 
       {/* Cómo funciona */}
       <section className="w-full bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 p-6 md:p-10 rounded-xl shadow-lg max-w-4xl mx-auto mb-16">
