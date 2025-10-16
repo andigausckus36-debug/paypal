@@ -20,7 +20,7 @@ export default function Inicio() {
         </p>
 
         {/* Ilustración debajo del título */}
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-6 mb-6">
           <img
             src="https://i.postimg.cc/3NDy21s5/6617.jpg"
             alt="Ilustración intercambio"
@@ -28,8 +28,13 @@ export default function Inicio() {
           />
         </div>
 
+        {/* Calculadora */}
+      <main className="w-full max-w-md mb-12">
+        <Calculadora />
+      </main>
+
         {/* Ventajas principales con fondo destacado */}
-        <div className="mt-8 w-full bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 p-6 md:p-10 rounded-xl shadow-lg flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto text-left">
+        <div className="mt-8 w-full bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 p-6 md:p-10 rounded-xl shadow-lg flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto text-left mb-6">
 
           <div className="flex items-start gap-3 bg-white rounded-lg p-4 shadow-sm flex-1">
             <span className="text-3xl">⚡</span>
@@ -58,17 +63,13 @@ export default function Inicio() {
         </div>
       </header>
 
-      {/* Calculadora */}
-      <main className="w-full max-w-md mb-12">
-        <Calculadora />
-      </main>
-
+      
       {/* Reseñas de Facebook justo debajo de la calculadora */}
 <ReseñasFB />
 
 
       {/* Cómo funciona */}
-      <section className="w-full bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 p-6 md:p-10 rounded-xl shadow-lg max-w-4xl mx-auto mb-16">
+      <section className="w-full bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 p-6 md:p-10 rounded-xl shadow-lg max-w-4xl mx-auto">
         <div className="grid md:grid-cols-3 gap-6 text-center">
 
           <div className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center">

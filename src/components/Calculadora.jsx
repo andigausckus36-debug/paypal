@@ -46,7 +46,7 @@ const applyPayPalFee = (grossUSD) => {
 Spreads
 ----------------------- */
 const SPREAD_COMPRAR = 0.10;
-const SPREAD_VENDER = 0.12;
+const SPREAD_VENDER = 0.14;
 
 export default function Calculadora() {
   const [operation, setOperation] = useState("vender"); // 'vender' | 'comprar'
@@ -58,7 +58,7 @@ const [variacion, setVariacion] = useState(null);
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
 
   // Dual inputs
-  const [usd, setUsd] = useState(20);
+  const [usd, setUsd] = useState(10);
   const [ars, setArs] = useState("");
   const [lastEdited, setLastEdited] = useState("usd");
 
@@ -161,7 +161,7 @@ const [variacion, setVariacion] = useState(null);
         ? Number(usd)
         : Number((parseFloat(ars) || 0) / tipoAplicado);
 
-    if (isNaN(currUsd) || currUsd < 20) {
+    if (isNaN(currUsd) || currUsd < 10) {
       setMinMessage("Ingresa un mínimo de 20 USD");
     } else {
       setMinMessage("");
@@ -216,8 +216,8 @@ const [variacion, setVariacion] = useState(null);
       return;
     }
 
-    if (Number(usd) < 20) {
-      alert("Ingresa un mínimo de 20 USD");
+    if (Number(usd) < 10) {
+      alert("Ingresa un mínimo de 10 USD");
       return;
     }
 
@@ -294,8 +294,8 @@ const [variacion, setVariacion] = useState(null);
         <div className="space-y-10">
           {/* USD input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              {operation === "vender" ? "Tú envías (USD)" : "Tú compras (USD)"}
+            <label className="block text-sm font-medium text-left text-gray-700 mb-1">
+              {operation === "vender" ? "Tú envías" : "Tú compras"}
             </label>
             <div className="relative">
               <img
@@ -311,7 +311,7 @@ const [variacion, setVariacion] = useState(null);
                 value={usd}
                 onChange={onChangeUsd}
                 className="w-full p-4 pl-14 text-3xl font-medium border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
-                placeholder="20"
+                placeholder="10"
               />
               <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
                 USD
@@ -323,32 +323,42 @@ const [variacion, setVariacion] = useState(null);
           <div>
             <div className="flex justify-between items-center mb-1">
               <label className="block text-sm font-medium text-gray-700">
-                {operation === "vender" ? "Tú recibes (ARS)" : "Tú pagas (ARS)"}
+                {operation === "vender" ? "Tú recibes" : "Tú pagas"}
               </label>
               {operation === "vender" ? (
                 <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                  -{SPREAD_VENDER * 100}% Blue
+                  -{(SPREAD_VENDER * 100).toFixed(0)}% Blue
                 </span>
               ) : (
                 <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                  -{SPREAD_COMPRAR * 100}% Blue
+                  -{(SPREAD_COMPRAR * 100).toFixed(0)}% Blue
                 </span>
               )}
             </div>
+
             <div className="relative">
+              {/* Icono bandera a la izquierda */}
+              <img
+                src="https://i.postimg.cc/0yxDfVFF/Flag-of-Argentina-svg.png"
+                alt="ARS"
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-xl h-8 w-12"
+              />
+
+              {/* Campo principal */}
               <input
                 type="text"
                 inputMode="decimal"
                 value={ars ? ars : ""}
                 onChange={onChangeArs}
-                className="w-full p-4 text-3xl font-medium bg-gray-50 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
+                className="w-full p-4 pl-10 text-3xl font-medium bg-gray-50 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
                 placeholder="0.00"
               />
+
+              {/* Etiqueta ARS a la derecha */}
               <span className="absolute inset-y-0 right-4 flex items-center text-md text-gray-500">
                 ARS
               </span>
             </div>
-            
           </div>
         </div>
 
@@ -413,14 +423,14 @@ const [variacion, setVariacion] = useState(null);
             >
               &times;
             </button>
-            <h3 className="text-xl font-bold mb-4 text-gray-800">
+            <h3 className="text-xl font-bold mb-4 text-gray-800 text-left">
               Completa tus datos para continuar
             </h3>
 
             <form onSubmit={handleFormSubmit} className="space-y-4">
               {/* Nombre y Apellido */}
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-left text-gray-700">
                   Nombre y apellido
                 </label>
                 <input
@@ -435,7 +445,7 @@ const [variacion, setVariacion] = useState(null);
 
               {/* Email de PayPal */}
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-left text-gray-700">
                   E-mail de PayPal
                 </label>
                 <input
@@ -446,14 +456,14 @@ const [variacion, setVariacion] = useState(null);
                   required
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
-                <p className="text-xs text-gray-500 italic mt-1">
+                <p className="text-xs text-gray-500 text-left italic mt-1">
                   La cuenta PayPal debe ser del mismo titular que realiza la operación.
                 </p>
               </div>
 
               {/* WhatsApp */}
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-left text-gray-700">
                   Número de WhatsApp
                 </label>
                 <input
@@ -474,7 +484,7 @@ const [variacion, setVariacion] = useState(null);
 
               {/* CBU / CVU */}
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-left text-gray-700">
                   CBU / CVU
                 </label>
                 <input
@@ -495,7 +505,7 @@ const [variacion, setVariacion] = useState(null);
 
               {/* Banco o Billetera virtual */}
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-left text-gray-700">
                   Banco o Billetera virtual
                 </label>
                 <input
