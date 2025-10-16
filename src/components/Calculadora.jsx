@@ -82,6 +82,9 @@ const [variacion, setVariacion] = useState(null);
   // Mensaje mínimo
   const [minMessage, setMinMessage] = useState("");
 
+  // Al inicio del componente Calculadora
+const isAdmin = window.location.hostname === "www.saldopaypal.com.ar"; 
+
   /* -----------------------
   Obtener cotización
   ----------------------- */
@@ -291,44 +294,46 @@ const [variacion, setVariacion] = useState(null);
   return (
     <>
 
-      {/* Panel para editar spreads */}
-<div className="max-w-md mx-auto bg-gray-50 p-4 mb-4 rounded-xl border border-gray-200 shadow-sm">
-  <h2 className="text-sm font-semibold text-gray-700 mb-3 text-left">
-    Ajustes rápidos (solo visibles para vos)
-  </h2>
+      {/* Panel para editar spreads SOLO si es admin */}
+    {isAdmin && (
+      <div className="max-w-md mx-auto bg-gray-50 p-4 mb-4 rounded-xl border border-gray-200 shadow-sm">
+        <h2 className="text-sm font-semibold text-gray-700 mb-3 text-left">
+          Ajustes rápidos (solo visibles para vos)
+        </h2>
 
-  <div className="flex justify-between gap-4">
-    {/* Spread Venta primero */}
-    <div className="flex flex-col items-center">
-      <label className="text-xs text-gray-600 mb-1">Spread Venta (%)</label>
-      <input
-        type="number"
-        step="1"
-        min="0"
-        value={Math.round(spreadVender * 100)}
-        onChange={(e) => setSpreadVender(e.target.value / 100)}
-        className="w-24 p-2 border border-gray-300 rounded-lg text-center text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-      />
-    </div>
+        <div className="flex justify-between gap-4">
+          {/* Spread Venta primero */}
+          <div className="flex flex-col items-center">
+            <label className="text-xs text-gray-600 mb-1">Spread Venta (%)</label>
+            <input
+              type="number"
+              step="1"
+              min="0"
+              value={Math.round(spreadVender * 100)}
+              onChange={(e) => setSpreadVender(e.target.value / 100)}
+              className="w-24 p-2 border border-gray-300 rounded-lg text-center text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
 
-    {/* Spread Compra */}
-    <div className="flex flex-col items-center">
-      <label className="text-xs text-gray-600 mb-1">Spread Compra (%)</label>
-      <input
-        type="number"
-        step="1"
-        min="0"
-        value={Math.round(spreadComprar * 100)}
-        onChange={(e) => setSpreadComprar(e.target.value / 100)}
-        className="w-24 p-2 border border-gray-300 rounded-lg text-center text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-      />
-    </div>
-  </div>
+          {/* Spread Compra */}
+          <div className="flex flex-col items-center">
+            <label className="text-xs text-gray-600 mb-1">Spread Compra (%)</label>
+            <input
+              type="number"
+              step="1"
+              min="0"
+              value={Math.round(spreadComprar * 100)}
+              onChange={(e) => setSpreadComprar(e.target.value / 100)}
+              className="w-24 p-2 border border-gray-300 rounded-lg text-center text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+          </div>
+        </div>
 
-  <p className="text-[11px] text-gray-500 mt-2 italic text-left">
-    Cambios guardados automáticamente (solo en este navegador).
-  </p>
-</div>
+        <p className="text-[11px] text-gray-500 mt-2 italic text-left">
+          Cambios guardados automáticamente (solo en este navegador).
+        </p>
+      </div>
+    )}
       
       <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
         
