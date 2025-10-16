@@ -173,7 +173,7 @@ const [variacion, setVariacion] = useState(null);
         : Number((parseFloat(ars) || 0) / tipoAplicado);
 
     if (isNaN(currUsd) || currUsd < 10) {
-      setMinMessage("Ingresa un mínimo de 20 USD");
+      setMinMessage("Ingresa un mínimo de 10 USD");
     } else {
       setMinMessage("");
     }
@@ -366,7 +366,7 @@ const [variacion, setVariacion] = useState(null);
               />
 
               {/* Etiqueta ARS a la derecha */}
-              <span className="absolute inset-y-0 right-4 flex items-center text-md text-gray-500">
+              <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
                 ARS
               </span>
             </div>
@@ -393,7 +393,7 @@ const [variacion, setVariacion] = useState(null);
 
           {ultimaActualizacion && (
             <p className="mt-1 text-xs text-gray-500 italic">
-              Última actualización: {ultimaActualizacion}
+              Última actualización {ultimaActualizacion}
             </p>
           )}
         </div>
