@@ -19,18 +19,12 @@ Helpers de formato
 ----------------------- */
 const formatARS = (number) => {
   if (number === "" || isNaN(number)) return "";
-  return new Intl.NumberFormat("es-AR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(Number(number));
+  return Math.round(Number(number));
 };
 
 const formatUSD = (number) => {
   if (number === "" || isNaN(number)) return "";
-  return new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(Number(number));
+  return Math.round(Number(number));
 };
 
 /* -----------------------
@@ -45,10 +39,23 @@ const applyPayPalFee = (grossUSD) => {
 /* -----------------------
 Spreads
 ----------------------- */
-const SPREAD_COMPRAR = 0.08;
-const SPREAD_VENDER = 0.12;
 
 export default function Calculadora() {
+
+  // Spreads configurables (guardados en localStorage)
+const [spreadComprar, setSpreadComprar] = useState(() => {
+  return parseFloat(localStorage.getItem("spreadComprar")) || 0.08;
+});
+const [spreadVender, setSpreadVender] = useState(() => {
+  return parseFloat(localStorage.getItem("spreadVender")) || 0.12;
+});
+
+// Guardar automáticamente cuando cambian
+useEffect(() => {
+  localStorage.setItem("spreadComprar", spreadComprar);
+  localStorage.setItem("spreadVender", spreadVender);
+}, [spreadComprar, spreadVender]);
+  
   const [operation, setOperation] = useState("vender"); // 'vender' | 'comprar'
   const [dolarBlue, setDolarBlue] = useState({ compra: 0, venta: 0 });
 
@@ -144,12 +151,12 @@ const [variacion, setVariacion] = useState(null);
   Tipo aplicado según operación
   ----------------------- */
   const tipoAplicado = useMemo(() => {
-    if (operation === "comprar") {
-      return dolarBlue.venta * (1 - SPREAD_COMPRAR);
-    } else {
-      return dolarBlue.compra * (1 - SPREAD_VENDER);
-    }
-  }, [operation, dolarBlue]);
+  if (operation === "comprar") {
+    return dolarBlue.venta * (1 - spreadComprar);
+  } else {
+    return dolarBlue.compra * (1 - spreadVender);
+  }
+}, [operation, dolarBlue, spreadComprar, spreadVender]);
 
   /* -----------------------
   Sincronización USD <-> ARS
@@ -283,6 +290,46 @@ const [variacion, setVariacion] = useState(null);
 
   return (
     <>
+
+      {/* Panel para editar spreads */}
+<div className="max-w-md mx-auto bg-gray-50 p-4 mb-4 rounded-xl border border-gray-200 shadow-sm">
+  <h2 className="text-sm font-semibold text-gray-700 mb-3 text-left">
+    Ajustes rápidos (solo visibles para vos)
+  </h2>
+
+  <div className="flex justify-between gap-4">
+    {/* Spread Venta primero */}
+    <div className="flex flex-col items-center">
+      <label className="text-xs text-gray-600 mb-1">Spread Venta (%)</label>
+      <input
+        type="number"
+        step="1"
+        min="0"
+        value={Math.round(spreadVender * 100)}
+        onChange={(e) => setSpreadVender(e.target.value / 100)}
+        className="w-24 p-2 border border-gray-300 rounded-lg text-center text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+    </div>
+
+    {/* Spread Compra */}
+    <div className="flex flex-col items-center">
+      <label className="text-xs text-gray-600 mb-1">Spread Compra (%)</label>
+      <input
+        type="number"
+        step="1"
+        min="0"
+        value={Math.round(spreadComprar * 100)}
+        onChange={(e) => setSpreadComprar(e.target.value / 100)}
+        className="w-24 p-2 border border-gray-300 rounded-lg text-center text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+    </div>
+  </div>
+
+  <p className="text-[11px] text-gray-500 mt-2 italic text-left">
+    Cambios guardados automáticamente (solo en este navegador).
+  </p>
+</div>
+      
       <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
         
 
@@ -330,22 +377,23 @@ const [variacion, setVariacion] = useState(null);
             </div>
           </div>
 
-          {/* ARS input */}
-          <div>
-            <div className="flex justify-between items-center mb-1">
-              <label className="block text-sm font-medium text-gray-700">
-                {operation === "vender" ? "Tú recibes" : "Tú pagas"}
-              </label>
-              {operation === "vender" ? (
-                <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                  -{(SPREAD_VENDER * 100).toFixed(0)}% Blue
-                </span>
-              ) : (
-                <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                  -{(SPREAD_COMPRAR * 100).toFixed(0)}% Blue
-                </span>
-              )}
-            </div>
+            {/* ARS input */}
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="block text-sm font-medium text-gray-700">
+                  {operation === "vender" ? "Tú recibes" : "Tú pagas"}
+                </label>
+
+                {operation === "vender" ? (
+                  <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
+                    -{(spreadVender * 100).toFixed(0)}% Blue
+                  </span>
+                ) : (
+                  <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
+                    -{(spreadComprar * 100).toFixed(0)}% Blue
+                  </span>
+                )}
+              </div>
 
             <div className="relative">
               {/* Icono bandera a la izquierda */}
@@ -405,9 +453,9 @@ const [variacion, setVariacion] = useState(null);
         {operation === "comprar" && (
           <div className="mt-4 p-3 bg-yellow-50 rounded-md border border-yellow-200 text-sm">
             <strong>USD netos a recibir en tu cuenta PayPal</strong>
-            <div className="text-xl font-bold mt-1">{formatUSD(usdNetForBuyer)} USD</div>
+            <div className="text-xl font-bold mt-1">{usdNetForBuyer.toFixed(2)} USD</div>
             <div className="text-xs text-gray-600 mt-1">
-              Si compras {formatUSD(usdGrossForBuyer)} USD, PayPal retendrá {(usdGrossForBuyer * 0.054 + 0.3).toFixed(2)} USD en comisiones (5.4% + 0.30 USD)
+              Si compras {usdGrossForBuyer.toFixed(2)} USD, PayPal retendrá {(usdGrossForBuyer * 0.054 + 0.3).toFixed(2)} USD en comisiones (5.4% + 0.30 USD)
             </div>
           </div>
         )}
