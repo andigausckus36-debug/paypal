@@ -81,30 +81,40 @@ const [variacion, setVariacion] = useState(null);
   useEffect(() => {
   const getBlue = async () => {
     try {
+      // 🔹 Limpiar localStorage solo la primera vez
+      if (!localStorage.getItem("limpiezaHecha")) {
+        localStorage.clear();
+        localStorage.setItem("limpiezaHecha", "true");
+      }
+
       const data = await fetchDolarBlue();
 
       // 📦 Intentamos obtener la última cotización guardada
       const lastSaved = localStorage.getItem("ultimoDolarBlue");
       const parsedLast = lastSaved ? JSON.parse(lastSaved) : null;
 
-      if (parsedLast) {
-        const cambio =
-          ((data.venta - parsedLast.venta) / parsedLast.venta) * 100;
+      // Solo calculamos variación si tenemos un valor previo válido
+      if (parsedLast && parsedLast.venta > 0 && isFinite(parsedLast.venta)) {
+        const cambio = ((data.venta - parsedLast.venta) / parsedLast.venta) * 100;
 
-        // Solo actualizamos si hubo un cambio real
-        if (cambio !== 0) {
+        if (isFinite(cambio) && cambio !== 0) {
           setVariacion(cambio.toFixed(2));
           localStorage.setItem("variacionDolarBlue", cambio.toFixed(2));
         } else {
-          // Mantener el valor anterior
+          // Mantener último valor conocido
           const lastVar = localStorage.getItem("variacionDolarBlue");
           if (lastVar) setVariacion(lastVar);
         }
+      } else {
+        // Primera carga o datos inválidos
+        setVariacion(null);
       }
 
-      // Guardamos la nueva cotización para futuras comparaciones
-      localStorage.setItem("ultimoDolarBlue", JSON.stringify(data));
-      setDolarBlue(data);
+      // Guardamos la nueva cotización solo si es válida
+      if (data.venta > 0 && isFinite(data.venta)) {
+        localStorage.setItem("ultimoDolarBlue", JSON.stringify(data));
+        setDolarBlue(data);
+      }
 
       // Actualizamos hora
       const ahora = new Date();
@@ -121,11 +131,12 @@ const [variacion, setVariacion] = useState(null);
       setUltimaActualizacion(`${fechaFormateada} · ${horaFormateada} hs`);
     } catch (err) {
       console.error("Error al traer cotización:", err);
+      setVariacion(null); // aseguramos no mostrar Infinity si hay error
     }
   };
 
   getBlue();
-  const interval = setInterval(getBlue, 30000);
+  const interval = setInterval(getBlue, 30000); // actualiza cada 30s
   return () => clearInterval(interval);
 }, []);
 
