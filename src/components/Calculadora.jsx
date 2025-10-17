@@ -376,15 +376,6 @@ const [variacion, setVariacion] = useState(null);
         <div className="text-center mt-6 text-sm text-gray-600">
           <p>
             Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
-            {variacion && (
-              <span
-                className={`ml-2 font-semibold ${
-                  variacion > 0 ? "text-green-600" : variacion < 0 ? "text-red-600" : "text-gray-500"
-                }`}
-              >
-                {variacion > 0 ? "▲" : variacion < 0 ? "▼" : "●"} {Math.abs(variacion)}%
-              </span>
-            )}
           </p>
 
           <p className="mt-1 mb-2">
