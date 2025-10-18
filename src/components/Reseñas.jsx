@@ -4,6 +4,13 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "Fer Palacios",
+    comentario:
+      "La verdad es que dudaba al principio pero todo salio como habiamos acordado. Le pongo 4 estrellas porque demoraron unos 45 minutos en enviarme el dinero, cuando dicen que demoran maximo 30, pero aun asi llegó bien!",
+    fecha: "2025-10-18T17:50:00",
+    estrellas: 4,
+  },
+  {
     nombre: "Nacho",
     comentario:
       "Excelente experiencia de cambio! Primera vez que utilizo el servicio y todo joya, cargaron mi cuenta literalmente en 4 minutos",
@@ -54,7 +61,7 @@ export default function SliderReseñas() {
       </h2>
 
       <div className="relative w-full overflow-hidden flex justify-center items-center">
-        <div className="w-full max-w-xl h-72 flex justify-center items-center overflow-hidden">
+        <div className="w-full max-w-xl h-96 flex justify-center items-center overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
