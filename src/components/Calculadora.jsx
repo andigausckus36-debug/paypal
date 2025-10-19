@@ -45,8 +45,8 @@ const applyPayPalFee = (grossUSD) => {
 /* -----------------------
 Spreads
 ----------------------- */
-const SPREAD_COMPRAR = 0.10;
-const SPREAD_VENDER = 0.09;
+const SPREAD_COMPRAR = 0.09;
+const SPREAD_VENDER = 0.10;
 
 export default function Calculadora() {
   const [operation, setOperation] = useState("vender"); // 'vender' | 'comprar'
