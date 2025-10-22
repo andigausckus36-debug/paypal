@@ -4,6 +4,13 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "Lucas",
+    comentario:
+      "Me sosprendió el servicio, no confiaba jaja, pero todo bien. sme mandaron los pesos bastante rapido, en unos 15 minutos. recomendados!",
+    fecha: "2025-10-22T17:50:00",
+    estrellas: 5,
+  },
+  {
     nombre: "Fer Palacios",
     comentario:
       "La verdad es que dudaba al principio pero todo salio como habiamos acordado. Le pongo 4 estrellas porque demoraron unos 45 minutos en enviarme el dinero, cuando dicen que demoran maximo 30, pero aun asi llegó bien!",
@@ -73,10 +80,14 @@ export default function SliderReseñas() {
             >
               {/* Estrellas */}
               <div className="flex justify-center mb-4">
-                {[...Array(reseñasData[index].estrellas)].map((_, i) => (
+                {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-6 h-6 text-yellow-400 fill-yellow-400"
+                    className={`w-6 h-6 ${
+                      i < reseñasData[index].estrellas
+                        ? "text-yellow-400 fill-yellow-400" // ⭐ Estrella rellena
+                        : "text-gray-300 fill-transparent" // ☆ Estrella vacía
+                    }`}
                   />
                 ))}
               </div>
