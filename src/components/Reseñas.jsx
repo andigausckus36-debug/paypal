@@ -4,6 +4,13 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "fede ramirez",
+    comentario:
+      "100 recomendados",
+    fecha: "2025-11-01T17:50:00",
+    estrellas: 5,
+  },
+  {
     nombre: "Lucas",
     comentario:
       "Me sosprendió el servicio, no confiaba jaja, pero todo bien. sme mandaron los pesos bastante rapido, en unos 15 minutos. recomendados!",
