@@ -3,11 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 
 const reseñasData = [
+    {
+    nombre: "Luciana",
+    comentario:
+      "Cargué mi cuenta paypal sin problema. super recomendables los chicos",
+    fecha: "2025-11-10T10:34:48",
+    estrellas: 5,
+  },
   {
     nombre: "fede ramirez",
     comentario:
       "100 recomendados",
-    fecha: "2025-11-01T17:50:00",
+    fecha: "2025-11-01T11:10:00",
     estrellas: 5,
   },
   {
@@ -21,7 +28,7 @@ const reseñasData = [
     nombre: "Fer Palacios",
     comentario:
       "La verdad es que dudaba al principio pero todo salio como habiamos acordado. Le pongo 4 estrellas porque demoraron unos 45 minutos en enviarme el dinero, cuando dicen que demoran maximo 30, pero aun asi llegó bien!",
-    fecha: "2025-10-18T17:50:00",
+    fecha: "2025-10-18T14:22:00",
     estrellas: 4,
   },
   {
