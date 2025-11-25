@@ -3,6 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star } from "lucide-react";
 
 const reseñasData = [
+  {
+    nombre: "male",
+    comentario:
+      "Vendí mi saldo paypal sin problema, todo joya",
+    fecha: "2025-11-22T14:20:18",
+    estrellas: 5,
+  },
     {
     nombre: "Luciana",
     comentario:
