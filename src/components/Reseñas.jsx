@@ -4,6 +4,14 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "Manuel",
+    comentario:
+      "probé para vender $50 usd y me mandaron los pesos bastante rapido. los recomiendo 😄",
+    fecha: "2025-11-25T10:00:55",
+    estrellas: 5,
+  },
+  
+  {
     nombre: "male",
     comentario:
       "Vendí mi saldo paypal sin problema, todo joya",

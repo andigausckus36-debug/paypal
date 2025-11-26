@@ -266,7 +266,7 @@ const [variacion, setVariacion] = useState(null);
     Nota: El titular de la cuenta de PayPal debe ser el mismo que realiza la operación.
     `;
 
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=5493548563662&text=${encodeURIComponent(
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=5493548607102&text=${encodeURIComponent(
       message.trim()
     )}`;
     window.open(whatsappUrl, "_blank");
