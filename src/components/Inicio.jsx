@@ -16,7 +16,7 @@ export default function Inicio() {
       {/* Encabezado */}
       <header className="text-center mb-8 mt-6">
         <p className="text-2xl md:text-2xl font-bold italic text-gray-600 mt-2 max-w-2xl mx-auto text-center">
-          Comprá y vendé tu saldo PayPal de forma simple y segura con excelentes cotizaciones y un tiempo récord de 10 a 30 minutos en los intercambios
+          ¡Comprá y vendé tu saldo PayPal de forma simple y segura con excelentes cotizaciones y un tiempo récord de 10 a 30 minutos en los intercambios!
         </p>
 
         {/* Ilustración debajo del título */}

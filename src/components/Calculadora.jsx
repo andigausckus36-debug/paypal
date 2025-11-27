@@ -312,7 +312,7 @@ const [variacion, setVariacion] = useState(null);
               <img
                 src="https://i.postimg.cc/Dyt3zDBw/1000011533.png"
                 alt="PayPal Logo"
-                className="absolute left-4 top-1/2 -translate-y-1/2 h-18 w-28"
+                className="absolute left-2 top-1/2 -translate-y-1/2 h-18 w-28"
               />
               <input
                 type="number"
@@ -321,7 +321,7 @@ const [variacion, setVariacion] = useState(null);
                 step="0.01"
                 value={usd}
                 onChange={onChangeUsd}
-                className="w-full p-4 pl-14 text-3xl font-medium border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
+                className="w-full p-4 pl-16 text-3xl font-medium border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
                 placeholder="20"
               />
               <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
