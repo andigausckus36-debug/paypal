@@ -58,7 +58,7 @@ const [variacion, setVariacion] = useState(null);
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
 
   // Dual inputs
-  const [usd, setUsd] = useState(20);
+  const [usd, setUsd] = useState(10);
   const [ars, setArs] = useState("");
   const [lastEdited, setLastEdited] = useState("usd");
 
@@ -172,8 +172,8 @@ const [variacion, setVariacion] = useState(null);
         ? Number(usd)
         : Number((parseFloat(ars) || 0) / tipoAplicado);
 
-    if (isNaN(currUsd) || currUsd < 20) {
-      setMinMessage("Ingresa un mínimo de 20 USD");
+    if (isNaN(currUsd) || currUsd < 10) {
+      setMinMessage("Ingresa un mínimo de 10 USD");
     } else {
       setMinMessage("");
     }
@@ -227,8 +227,8 @@ const [variacion, setVariacion] = useState(null);
       return;
     }
 
-    if (Number(usd) < 20) {
-      alert("Ingresa un mínimo de 20 USD");
+    if (Number(usd) < 10) {
+      alert("Ingresa un mínimo de 10 USD");
       return;
     }
 
@@ -322,7 +322,7 @@ const [variacion, setVariacion] = useState(null);
                 value={usd}
                 onChange={onChangeUsd}
                 className="w-full p-4 pl-16 text-3xl font-medium border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
-                placeholder="20"
+                placeholder="10"
               />
               <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
                 USD

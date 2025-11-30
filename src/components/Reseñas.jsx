@@ -4,6 +4,20 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "Lucia Almada",
+    comentario:
+      "Despues de ver los comentarios probé con vender $10 y me mandaron los pesos a mi Uala en 10 minutos y además tienen muy buena cotización. Me dan confianza, voy a seguir cambiando con ellos.",
+    fecha: "2025-11-29T15:26:00",
+    estrellas: 5,
+  },
+  {
+    nombre: "Matias Romero",
+    comentario:
+      "Por miedo a estafa compré lo minimo para ver si era real y en cuánto tiempo llegaba el saldo y me sorprendió la velocidad!! recomendados!",
+    fecha: "2025-11-28T11:00:00",
+    estrellas: 5,
+  },
+  {
     nombre: "Manuel",
     comentario:
       "probé para vender $50 usd y me mandaron los pesos bastante rapido. los recomiendo 😄",
@@ -75,7 +89,7 @@ export default function SliderReseñas() {
   useEffect(() => {
     const intervalo = setInterval(() => {
       setIndex((prev) => (prev + 1) % reseñasData.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(intervalo);
   }, []);
 
