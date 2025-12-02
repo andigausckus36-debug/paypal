@@ -4,6 +4,20 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "Luis",
+    comentario:
+      "primera venta de saldo y todo impecable!",
+    fecha: "2025-12-02T14:15:00",
+    estrellas: 5,
+  },
+  {
+    nombre: "Lucia Almada",
+    comentario:
+      "Despues de ver los comentarios probé con vender $10 y me mandaron los pesos a mi Uala en 10 minutos y además tienen muy buena cotización. Me dan confianza, voy a seguir cambiando con ellos.",
+    fecha: "2025-11-29T15:26:00",
+    estrellas: 5,
+  },
+  {
     nombre: "Lucia Almada",
     comentario:
       "Despues de ver los comentarios probé con vender $10 y me mandaron los pesos a mi Uala en 10 minutos y además tienen muy buena cotización. Me dan confianza, voy a seguir cambiando con ellos.",
