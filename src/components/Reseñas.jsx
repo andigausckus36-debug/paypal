@@ -6,8 +6,8 @@ const reseñasData = [
   {
     nombre: "Diego Aguirre",
     comentario:
-      "Super recomendables! Usaré nurvamente el servicio para cargar mi cuenta porque me funcionó y me mandaron el saldo bastante rapido. ojalá sigan así",
-    fecha: "2025-12-03T7:30:00",
+      "Super recomendables! Usaré nuevamente el servicio para cargar mi cuenta porque me funcionó y me mandaron el saldo bastante rapido. ojalá sigan así!!",
+    fecha: "2025-12-03T07:30:00",
     estrellas: 5,
   },
   {
