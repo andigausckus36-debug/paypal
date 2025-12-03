@@ -4,6 +4,13 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "Diego Aguirre",
+    comentario:
+      "Super recomendables! Usaré nurvamente el servicio para cargar mi cuenta porque me funcionó y me mandaron el saldo bastante rapido. ojalá sigan así",
+    fecha: "2025-12-03T7:30:00",
+    estrellas: 5,
+  },
+  {
     nombre: "Luis",
     comentario:
       "primera venta de saldo y todo impecable!",
