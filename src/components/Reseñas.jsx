@@ -18,16 +18,16 @@ const reseñasData = [
     estrellas: 5,
   },
   {
-    nombre: "Lucia Almada",
+    nombre: "Paula",
     comentario:
-      "Despues de ver los comentarios probé con vender $10 y me mandaron los pesos a mi Uala en 10 minutos y además tienen muy buena cotización. Me dan confianza, voy a seguir cambiando con ellos.",
+      "Super recomendables ❤️",
     fecha: "2025-11-29T15:26:00",
     estrellas: 5,
   },
   {
     nombre: "Lucia Almada",
     comentario:
-      "Despues de ver los comentarios probé con vender $10 y me mandaron los pesos a mi Uala en 10 minutos y además tienen muy buena cotización. Me dan confianza, voy a seguir cambiando con ellos.",
+      "Despues de ver los comentarios probé con vender $20 y me mandaron los pesos a mi Uala en 10 minutos y además tienen muy buena cotización. Me dan confianza, voy a seguir cambiando con ellos.",
     fecha: "2025-11-29T15:26:00",
     estrellas: 5,
   },
@@ -41,7 +41,7 @@ const reseñasData = [
   {
     nombre: "Manuel",
     comentario:
-      "probé para vender $50 usd y me mandaron los pesos bastante rapido. los recomiendo 😄",
+      "probé para vender $50 usd y me mandaron los pesos bastante rapido. los recomiendo :)",
     fecha: "2025-11-25T10:00:55",
     estrellas: 5,
   },
@@ -63,14 +63,14 @@ const reseñasData = [
   {
     nombre: "fede ramirez",
     comentario:
-      "100 recomendados",
+      "100% recomendados",
     fecha: "2025-11-01T11:10:00",
     estrellas: 5,
   },
   {
     nombre: "Lucas",
     comentario:
-      "Me sosprendió el servicio, no confiaba jaja, pero todo bien. sme mandaron los pesos bastante rapido, en unos 15 minutos. recomendados!",
+      "Me sorprendió el servicio, no confiaba jaja, pero todo bien. me mandaron los pesos bastante rapido, en unos 15 minutos. recomendados!",
     fecha: "2025-10-22T17:50:00",
     estrellas: 5,
   },
