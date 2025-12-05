@@ -33,8 +33,7 @@ export default function Inicio() {
         <Calculadora />
       </main>
 
-        {/* Reseñas de Facebook justo debajo de la calculadora */}
-<ReseñasFB />
+        
 
         {/* Ventajas principales con fondo destacado */}
         <div className="mt-8 w-full bg-gradient-to-r from-blue-100 via-blue-50 to-blue-100 p-6 md:p-10 rounded-xl shadow-lg flex flex-col md:flex-row justify-center gap-6 max-w-4xl mx-auto text-left mb-6">
@@ -65,6 +64,9 @@ export default function Inicio() {
 
         </div>
       </header>
+
+      {/* Reseñas de Facebook justo debajo de la calculadora */}
+<ReseñasFB />
 
 
       {/* Cómo funciona */}
