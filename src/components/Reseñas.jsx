@@ -6,8 +6,8 @@ const reseñasData = [
   {
     nombre: "Mati",
     comentario:
-      "Todo perfecto, salió todo bie. Muy bueno el servicio",
-    fecha: "2025-12-06T8:30:00",
+      "Todo perfecto, salió todo bien. Muy bueno el servicio",
+    fecha: "2025-12-06T08:30:00",
     estrellas: 5,
   },
   {
