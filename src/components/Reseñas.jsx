@@ -4,6 +4,13 @@ import { Star } from "lucide-react";
 
 const reseñasData = [
   {
+    nombre: "Mati",
+    comentario:
+      "Todo perfecto, salió todo bie. Muy bueno el servicio",
+    fecha: "2025-12-06T8:30:00",
+    estrellas: 5,
+  },
+  {
     nombre: "LUCHI",
     comentario:
       "ESTOY MUY SORPRENDIDA POR LA VELOCIDAD EN QUE CARGARON MI CUENTA ♥ Y ADEMÁS LA EXCELENTE ATENCIÓN EN TODO MOMENTO. OBVIAMENTE QUE USARÉ DE NUEVO EL SERVICIO!",
