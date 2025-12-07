@@ -304,14 +304,12 @@ const [variacion, setVariacion] = useState(null);
           </button>
         </div>
 
-<div className="text-center mt-6 text-sm text-gray-600">
+<div className="text-center mt-6 text-gl text-gray-600">
           <p>
             Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
           </p>
 
-          <p className="mt-1 mb-2">
-            Tipo cambio aplicado ${tipoAplicado ? tipoAplicado.toFixed(2) : "—"} ARS
-          </p>
+          
 
           {ultimaActualizacion && (
             <p className="mt-1 mb-6 text-xs text-gray-500 italic">
@@ -358,7 +356,7 @@ const [variacion, setVariacion] = useState(null);
               {operation === "vender" ? (
   <div className="flex items-center gap-2">
     {SHOW_BUEN_PRECIO && (
-    <span className="text-xs font-bold bg-green-100 text-green-800 px-2 py-1 rounded-full">
+    <span className="text-xs font-bold bg-gray-700 text-white px-2 py-1 rounded-full">
   Buen precio ahora!
 </span>
     )}
@@ -369,7 +367,7 @@ const [variacion, setVariacion] = useState(null);
 ) : (
   <div className="flex items-center gap-2">
     {SHOW_BUEN_PRECIO && (
-    <span className="text-xs font-bold bg-green-100 text-green-800 px-2 py-1 rounded-full">
+    <span className="text-xs font-bold bg-gray-700 text-white px-2 py-1 rounded-full">
       Buen precio ahora!
     </span>
     )}

@@ -114,8 +114,8 @@ export default function SliderReseñas() {
       </h2>
 
       {/* ⭐ Promedio de puntuación */}
-      <div className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-yellow-400 bg-white">
-        <span className="text-yellow-600 font-bold text-sm">
+      <div className="w-14 h-14 flex items-center justify-center rounded-full border-2 border-yellow-400 bg-white">
+        <span className="text-yellow-600 font-bold text-gl">
           {(
             reseñasData.reduce((acc, r) => acc + r.estrellas, 0) /
             reseñasData.length
