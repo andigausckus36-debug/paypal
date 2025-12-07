@@ -48,6 +48,8 @@ Spreads
 const SPREAD_COMPRAR = 0.05;
 const SPREAD_VENDER = 0.06;
 
+const SHOW_BUEN_PRECIO = true; // ← cambiá a false cuando no quieras mostrarlo
+
 export default function Calculadora() {
   const [operation, setOperation] = useState("vender"); // 'vender' | 'comprar'
   const [dolarBlue, setDolarBlue] = useState({ compra: 0, venta: 0 });
@@ -337,14 +339,28 @@ const [variacion, setVariacion] = useState(null);
                 {operation === "vender" ? "Tú recibes" : "Tú pagas"}
               </label>
               {operation === "vender" ? (
-                <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                  -{(SPREAD_VENDER * 100).toFixed(0)}% Blue
-                </span>
-              ) : (
-                <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                  -{(SPREAD_COMPRAR * 100).toFixed(0)}% Blue
-                </span>
-              )}
+  <div className="flex items-center gap-2">
+    {SHOW_BUEN_PRECIO && (
+    <span className="text-xs font-bold bg-green-100 text-green-800 px-2 py-1 rounded-full">
+  Buen precio ahora!
+</span>
+    )}
+    <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
+      -{(SPREAD_VENDER * 100).toFixed(0)}% Blue
+    </span>
+  </div>
+) : (
+  <div className="flex items-center gap-2">
+    {SHOW_BUEN_PRECIO && (
+    <span className="text-xs font-bold bg-green-100 text-green-800 px-2 py-1 rounded-full">
+      Buen precio ahora!
+    </span>
+    )}
+    <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
+      -{(SPREAD_COMPRAR * 100).toFixed(0)}% Blue
+    </span>
+  </div>
+)}
             </div>
 
             <div className="relative">

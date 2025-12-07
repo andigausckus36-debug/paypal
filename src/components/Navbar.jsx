@@ -37,9 +37,9 @@ export default function Navbar({ goToPage }) {
         <div className="absolute left-1/2 transform -translate-x-1/2">
           <button onClick={() => goToPage("inicio")}>
             <img
-              src="https://i.postimg.cc/CK5R5vjk/1000014500.png"
+              src="https://i.postimg.cc/fW5M0bkp/wmremove-transformed-1.png"
               alt="SaldoPayPal Logo"
-              className="h-24 w-auto"
+              className="h-16 w-auto"
             />
           </button>
         </div>
