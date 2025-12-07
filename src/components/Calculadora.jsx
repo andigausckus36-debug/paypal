@@ -304,6 +304,23 @@ const [variacion, setVariacion] = useState(null);
           </button>
         </div>
 
+<div className="text-center mt-6 text-sm text-gray-600">
+          <p>
+            Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
+          </p>
+
+          <p className="mt-1 mb-2">
+            Tipo cambio aplicado ${tipoAplicado ? tipoAplicado.toFixed(2) : "—"} ARS
+          </p>
+
+          {ultimaActualizacion && (
+            <p className="mt-1 mb-6 text-xs text-gray-500 italic">
+              Última actualización {ultimaActualizacion}
+            </p>
+          )}
+        </div>
+        
+
         <div className="space-y-10">
           {/* USD input */}
           <div>
@@ -387,22 +404,6 @@ const [variacion, setVariacion] = useState(null);
               </span>
             </div>
           </div>
-        </div>
-
-        <div className="text-center mt-6 text-sm text-gray-600">
-          <p>
-            Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
-          </p>
-
-          <p className="mt-1 mb-2">
-            Tipo cambio aplicado ${tipoAplicado ? tipoAplicado.toFixed(2) : "—"} ARS
-          </p>
-
-          {ultimaActualizacion && (
-            <p className="mt-1 text-xs text-gray-500 italic">
-              Última actualización {ultimaActualizacion}
-            </p>
-          )}
         </div>
 
         {minMessage && (
