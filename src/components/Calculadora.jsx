@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { LinkIcon, Zap } from "lucide-react";
 
 /* -----------------------
 Mock / Reemplazar con llamada real a la API
@@ -48,23 +49,22 @@ Spreads
 const SPREAD_COMPRAR = 0.05;
 const SPREAD_VENDER = 0.06;
 
-const SHOW_BUEN_PRECIO = true; // ← cambiá a false cuando no quieras mostrarlo
+const MXN_RATE_VENDER = 16.70;   // tú recibes cuando vendes USD
+const MXN_RATE_COMPRAR = 17;     // tú pagas cuando compras USD
+
+const SHOW_BUEN_PRECIO = true;
 
 export default function Calculadora() {
-  const [operation, setOperation] = useState("vender"); // 'vender' | 'comprar'
+  const [operation, setOperation] = useState("vender");
   const [dolarBlue, setDolarBlue] = useState({ compra: 0, venta: 0 });
 
-  const [prevDolarBlue, setPrevDolarBlue] = useState(null);
-const [variacion, setVariacion] = useState(null);
-
+  const [variacion, setVariacion] = useState(null);
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
 
-  // Dual inputs
   const [usd, setUsd] = useState(20);
   const [ars, setArs] = useState("");
   const [lastEdited, setLastEdited] = useState("usd");
 
-  // Form modal y datos del formulario
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -72,75 +72,70 @@ const [variacion, setVariacion] = useState(null);
     whatsapp: "",
     cbu: "",
     bankOrWallet: "",
+    clabe: ""
   });
 
-  // Mensaje mínimo
   const [minMessage, setMinMessage] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState(null);
 
   /* -----------------------
   Obtener cotización
   ----------------------- */
   useEffect(() => {
-  const getBlue = async () => {
-    try {
-      // 🔹 Limpiar localStorage solo la primera vez
-      if (!localStorage.getItem("limpiezaHecha")) {
-        localStorage.clear();
-        localStorage.setItem("limpiezaHecha", "true");
-      }
-
-      const data = await fetchDolarBlue();
-
-      // 📦 Intentamos obtener la última cotización guardada
-      const lastSaved = localStorage.getItem("ultimoDolarBlue");
-      const parsedLast = lastSaved ? JSON.parse(lastSaved) : null;
-
-      // Solo calculamos variación si tenemos un valor previo válido
-      if (parsedLast && parsedLast.venta > 0 && isFinite(parsedLast.venta)) {
-        const cambio = ((data.venta - parsedLast.venta) / parsedLast.venta) * 100;
-
-        if (isFinite(cambio) && cambio !== 0) {
-          setVariacion(cambio.toFixed(2));
-          localStorage.setItem("variacionDolarBlue", cambio.toFixed(2));
-        } else {
-          // Mantener último valor conocido
-          const lastVar = localStorage.getItem("variacionDolarBlue");
-          if (lastVar) setVariacion(lastVar);
+    const getBlue = async () => {
+      try {
+        if (!localStorage.getItem("limpiezaHecha")) {
+          localStorage.clear();
+          localStorage.setItem("limpiezaHecha", "true");
         }
-      } else {
-        // Primera carga o datos inválidos
+
+        const data = await fetchDolarBlue();
+
+        const lastSaved = localStorage.getItem("ultimoDolarBlue");
+        const parsedLast = lastSaved ? JSON.parse(lastSaved) : null;
+
+        if (parsedLast && parsedLast.venta > 0 && isFinite(parsedLast.venta)) {
+          const cambio =
+            ((data.venta - parsedLast.venta) / parsedLast.venta) * 100;
+
+          if (isFinite(cambio) && cambio !== 0) {
+            setVariacion(cambio.toFixed(2));
+            localStorage.setItem("variacionDolarBlue", cambio.toFixed(2));
+          } else {
+            const lastVar = localStorage.getItem("variacionDolarBlue");
+            if (lastVar) setVariacion(lastVar);
+          }
+        } else {
+          setVariacion(null);
+        }
+
+        if (data.venta > 0 && isFinite(data.venta)) {
+          localStorage.setItem("ultimoDolarBlue", JSON.stringify(data));
+          setDolarBlue(data);
+        }
+
+        const ahora = new Date();
+        const fechaFormateada = ahora.toLocaleDateString("es-AR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+        const horaFormateada = ahora.toLocaleTimeString("es-AR", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        });
+        setUltimaActualizacion(`${fechaFormateada} · ${horaFormateada} hs`);
+      } catch (err) {
+        console.error("Error al traer cotización:", err);
         setVariacion(null);
       }
+    };
 
-      // Guardamos la nueva cotización solo si es válida
-      if (data.venta > 0 && isFinite(data.venta)) {
-        localStorage.setItem("ultimoDolarBlue", JSON.stringify(data));
-        setDolarBlue(data);
-      }
-
-      // Actualizamos hora
-      const ahora = new Date();
-      const fechaFormateada = ahora.toLocaleDateString("es-AR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-      const horaFormateada = ahora.toLocaleTimeString("es-AR", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-      setUltimaActualizacion(`${fechaFormateada} · ${horaFormateada} hs`);
-    } catch (err) {
-      console.error("Error al traer cotización:", err);
-      setVariacion(null); // aseguramos no mostrar Infinity si hay error
-    }
-  };
-
-  getBlue();
-  const interval = setInterval(getBlue, 30000); // actualiza cada 30s
-  return () => clearInterval(interval);
-}, []);
+    getBlue();
+    const interval = setInterval(getBlue, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   /* -----------------------
   Tipo aplicado según operación
@@ -160,13 +155,11 @@ const [variacion, setVariacion] = useState(null);
     if (!tipoAplicado || tipoAplicado === 0) return;
 
     if (lastEdited === "usd") {
-      const valUsd = parseFloat(usd) || 0;
-      const calcArs = valUsd * tipoAplicado;
-      setArs(Number.isFinite(calcArs) ? calcArs.toFixed(2) : "");
+      const calc = (parseFloat(usd) || 0) * tipoAplicado;
+      setArs(Number.isFinite(calc) ? calc.toFixed(2) : "");
     } else {
-      const valArs = parseFloat(ars) || 0;
-      const calcUsd = valArs / tipoAplicado;
-      setUsd(Number.isFinite(calcUsd) ? Number(calcUsd.toFixed(2)) : "");
+      const calc = (parseFloat(ars) || 0) / tipoAplicado;
+      setUsd(Number.isFinite(calc) ? Number(calc.toFixed(2)) : "");
     }
 
     const currUsd =
@@ -182,7 +175,7 @@ const [variacion, setVariacion] = useState(null);
   }, [usd, ars, tipoAplicado, lastEdited]);
 
   /* -----------------------
-  Recalculo al cambiar operación
+  Recalcular al cambiar operación
   ----------------------- */
   useEffect(() => {
     if (lastEdited === "usd") setUsd((u) => Number(u));
@@ -190,17 +183,25 @@ const [variacion, setVariacion] = useState(null);
   }, [operation]);
 
   /* -----------------------
-  PayPal neto para comprador
+  PayPal neto
   ----------------------- */
-  const usdGrossForBuyer = useMemo(() => (Number(usd) || 0), [usd, operation]);
+  const usdGrossForBuyer = useMemo(() => Number(usd) || 0, [usd]);
   const usdNetForBuyer = useMemo(() => {
     if (operation !== "comprar") return 0;
     const net = applyPayPalFee(usdGrossForBuyer);
     return net > 0 ? Number(net.toFixed(2)) : 0;
   }, [usdGrossForBuyer, operation]);
 
+  // -----------------------
+  // Cálculo MXN
+  // -----------------------
+  const mxn =
+    operation === "vender"
+      ? usd * MXN_RATE_VENDER
+      : usd * MXN_RATE_COMPRAR;
+
   /* -----------------------
-  Handlers inputs
+  Handlers
   ----------------------- */
   const onChangeUsd = (e) => {
     setLastEdited("usd");
@@ -214,19 +215,30 @@ const [variacion, setVariacion] = useState(null);
     setArs(v.replace(/[^0-9.,]/g, "").replace(",", "."));
   };
 
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const handleFormChange = (e) =>
+    setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Validación de campos obligatorios
     const { fullName, paypalEmail, whatsapp, cbu, bankOrWallet } = formData;
-    if (!fullName || !paypalEmail || !whatsapp || !cbu || !bankOrWallet) {
-      alert("Completa todos los campos obligatorios.");
-      return;
+    if (selectedCurrency === "ARS") {
+      if (!fullName || !paypalEmail || !whatsapp || !cbu || !bankOrWallet) {
+        alert("Completa todos los campos obligatorios.");
+        return;
+      }
+    }
+
+    if (selectedCurrency === "MXN") {
+      if (!fullName || !paypalEmail || !whatsapp) {
+        alert("Completa todos los campos obligatorios.");
+        return;
+      }
+
+      if (operation === "vender" && !formData.clabe) {
+        alert("Ingresa tu número CLABE.");
+        return;
+      }
     }
 
     if (Number(usd) < 20) {
@@ -234,95 +246,126 @@ const [variacion, setVariacion] = useState(null);
       return;
     }
 
-    // Armar mensaje WhatsApp
-    const message = `
-    ¡Hola! Quiero iniciar un intercambio
+    let message = `¡Hola! Quiero iniciar un intercambio
 
-    Tipo de intercambio
-    ${operation === "vender" ? "Vender saldo" : "Comprar saldo"}
+Tipo de intercambio
+${operation === "vender" ? "Vender saldo" : "Comprar saldo"}
 
-    Monto USD
-    ${formatUSD(usd)} USD
+Monto USD
+${formatUSD(usd)} USD
+`;
 
-    Monto ARS
-    $${formatARS(ars)} ARS
+    if (selectedCurrency === "ARS") {
+      message += `
+Monto ARS
+$${formatARS(ars)} ARS
 
+Mis Datos
 
-    Mis Datos
+Nombre
+${formData.fullName}
 
-    Nombre y apellido
-    ${formData.fullName}
+Email PayPal
+${formData.paypalEmail}
 
-    Email de PayPal
-    ${formData.paypalEmail}
+WhatsApp
+${formData.whatsapp}
 
-    WhatsApp
-    ${formData.whatsapp}
+CBU / CVU
+${formData.cbu}
 
-    CBU / CVU
-    ${formData.cbu}
+Banco / Billetera
+${formData.bankOrWallet}
+`;
+    } else if (selectedCurrency === "MXN") {
+      message += `
+Monto MXN
+$${mxn.toFixed(2)} MXN
 
-    Banco o Billetera virtual
-    ${formData.bankOrWallet}
+Mis Datos
 
-    Nota: El titular de la cuenta de PayPal debe ser el mismo que realiza la operación.
-    `;
+Nombre
+${formData.fullName}
 
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=5493548563662&text=${encodeURIComponent(
-      message.trim()
-    )}`;
+Email PayPal
+${formData.paypalEmail}
+
+WhatsApp
+${formData.whatsapp}
+`;
+
+      if (operation === "vender") {
+        message += `
+Número de cuenta CLABE
+${formData.clabe}
+`;
+      } else if (operation === "comprar") {
+        message += `
+Al enviar tu pedido, te daremos un link para que completes tu pago.
+`;
+      }
+    }
+
+    const whatsappUrl =
+      "https://api.whatsapp.com/send?phone=5493548563662&text=" +
+      encodeURIComponent(message.trim());
+
     window.open(whatsappUrl, "_blank");
     setShowForm(false);
   };
 
-  /* -----------------------
-  Clases para botones
-  ----------------------- */
   const venderBtnClasses =
-    operation === "vender" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800";
-  const comprarBtnClasses =
-    operation === "comprar" ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800";
+    operation === "vender"
+      ? "bg-blue-600 text-white"
+      : "bg-gray-200 text-gray-800";
 
+  const comprarBtnClasses =
+    operation === "comprar"
+      ? "bg-blue-600 text-white"
+      : "bg-gray-200 text-gray-800";
+
+  /* -----------------------
+  JSX
+  ----------------------- */
   return (
     <>
       <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
-        
-
         <div className="grid grid-cols-2 gap-4 mb-6">
           <button
             onClick={() => setOperation("vender")}
-            className={`w-full py-3 rounded-lg font-semibold text-lg transition-colors duration-300 ${venderBtnClasses}`}
+            className={`w-full py-3 rounded-lg font-semibold text-lg ${venderBtnClasses}`}
           >
             Vender
           </button>
 
           <button
             onClick={() => setOperation("comprar")}
-            className={`w-full py-3 rounded-lg font-semibold text-lg transition-colors duration-300 ${comprarBtnClasses}`}
+            className={`w-full py-3 rounded-lg font-semibold text-lg ${comprarBtnClasses}`}
           >
             Comprar
           </button>
         </div>
 
-<div className="text-center mt-6 text-gl text-gray-600">
+        <div className="text-center mt-6 text-gray-600">
           <p>
             Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
           </p>
-
-          
 
           {ultimaActualizacion && (
             <p className="mt-1 mb-6 text-xs text-gray-500 italic">
               Última actualización {ultimaActualizacion}
             </p>
           )}
+
+          <h3 className="text-lg font-semibold text-gray-700 mt-4 mb-4">
+            Elegí con qué moneda vas a recibir/pagar
+          </h3>
         </div>
-        
 
         <div className="space-y-10">
-          {/* USD input */}
+          {/* USD Input */}
           <div>
-            <label className="block text-sm font-medium text-left text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-left text-gray-700 mb-2">
               {operation === "vender" ? "Tú envías" : "Tú compras"}
             </label>
             <div className="relative">
@@ -338,8 +381,7 @@ const [variacion, setVariacion] = useState(null);
                 step="0.01"
                 value={usd}
                 onChange={onChangeUsd}
-                className="w-full p-4 pl-16 text-3xl font-medium border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
-                placeholder="20"
+                className="w-full p-4 pl-16 text-3xl font-medium border border-gray-400 outline-none rounded-lg text-center"
               />
               <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
                 USD
@@ -347,56 +389,93 @@ const [variacion, setVariacion] = useState(null);
             </div>
           </div>
 
-          {/* ARS input */}
+          {/* MXN Input */}
           <div>
-            <div className="flex justify-between items-center mb-1">
+            <div className="flex justify-between items-center">
               <label className="block text-sm font-medium text-gray-700">
                 {operation === "vender" ? "Tú recibes" : "Tú pagas"}
               </label>
-              {operation === "vender" ? (
-  <div className="flex items-center gap-2">
-    {SHOW_BUEN_PRECIO && (
-    <span className="text-xs font-bold bg-gray-700 text-white px-2 py-1 rounded-full">
-  Buen precio ahora!
-</span>
-    )}
-    <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-      -{(SPREAD_VENDER * 100).toFixed(0)}% Blue
-    </span>
-  </div>
-) : (
-  <div className="flex items-center gap-2">
-    {SHOW_BUEN_PRECIO && (
-    <span className="text-xs font-bold bg-gray-700 text-white px-2 py-1 rounded-full">
-      Buen precio ahora!
-    </span>
-    )}
-    <span className="text-xs font-bold bg-red-100 text-red-800 px-2 py-1 rounded-full">
-      -{(SPREAD_COMPRAR * 100).toFixed(0)}% Blue
-    </span>
-  </div>
-)}
             </div>
 
-            <div className="relative">
-              {/* Icono bandera a la izquierda */}
+            <div className="mt-2 relative">
+              {SHOW_BUEN_PRECIO && (
+                <span className="absolute -top-4 right-3 text-xs font-bold bg-green-800 text-white px-2 py-0.5 rounded-md animate-pulse z-10">
+                  NUEVO
+                </span>
+              )}
+
+                <div
+                  onClick={() => setSelectedCurrency("MXN")}
+                  className={`mb-12 relative p-3 rounded-lg cursor-pointer transition border border-gray-400 ${
+                    selectedCurrency === "MXN" ? "bg-blue-100" : "bg-gray-50"
+                  }`}
+                >
+                <div className="relative">
+                  <img
+                    src="https://i.postimg.cc/tgDtZFdj/Flag-of-Mexico-svg.png"
+                    alt="MXN"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-xl h-8 w-12"
+                  />
+
+                  <input
+                    type="text"
+                    value={usd ? mxn.toFixed(2) : ""}
+                    readOnly
+                    className="w-full p-4 pl-10 text-3xl font-medium bg-gray-50 border border-gray-400 outline-none rounded-lg text-center"
+                  />
+
+                  <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
+                    MXN
+                  </span>
+                </div>
+              </div>
+
+              {operation === "comprar" && (
+                <div className="absolute -bottom-3 left-3 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+                  <LinkIcon size={14} className="text-gray-700" />
+                  <span className="text-xs font-medium text-gray-700">
+                    Paga con link o QR al instante
+                  </span>
+                  <img
+                    src="https://i.postimg.cc/4ds3CWBW/images.png"
+                    alt="AstroPay"
+                    className="rounded-full h-6"
+                  />
+                </div>
+              )}
+
+              {operation === "vender" && (
+                <div className="absolute -bottom-3 left-3 flex items-center gap-2 bg-white px-2 py-2 rounded-full shadow z-10">
+                  <Zap size={14} className="text-gray-700" />
+                  <span className="text-xs font-medium text-gray-700">
+                    Transferencia rápida por CLABE
+                  </span>
+                </div>
+              )}
+            </div>
+
+              <div
+                onClick={() => setSelectedCurrency("ARS")}
+                className={`relative mt-6 p-3 rounded-lg cursor-pointer transition border border-gray-400 ${
+                  selectedCurrency === "ARS" ? "bg-blue-100" : "bg-gray-50"
+                }`}
+              >
               <img
                 src="https://i.postimg.cc/0yxDfVFF/Flag-of-Argentina-svg.png"
                 alt="ARS"
                 className="absolute left-4 top-1/2 -translate-y-1/2 rounded-xl h-8 w-12"
               />
 
-              {/* Campo principal */}
               <input
                 type="text"
+                readOnly
                 inputMode="decimal"
                 value={ars ? ars : ""}
                 onChange={onChangeArs}
-                className="w-full p-4 pl-10 text-3xl font-medium bg-gray-50 border border-gray-400 rounded-lg focus:outline-none focus:border-gray-500 text-center"
+                className="w-full p-4 pl-10 text-3xl font-medium bg-gray-50 border border-gray-400 outline-none rounded-lg text-center"
                 placeholder="0.00"
               />
 
-              {/* Etiqueta ARS a la derecha */}
               <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
                 ARS
               </span>
@@ -405,15 +484,19 @@ const [variacion, setVariacion] = useState(null);
         </div>
 
         {minMessage && (
-          <div className="mt-4 text-center text-sm text-red-600 font-medium">{minMessage}</div>
+          <div className="mt-4 text-center text-sm text-red-600 font-medium">
+            {minMessage}
+          </div>
         )}
 
         {operation === "comprar" && (
           <div className="mt-4 p-3 bg-yellow-50 rounded-md border border-yellow-200 text-sm">
-            <strong>USD netos a recibir en tu cuenta PayPal</strong>
-            <div className="text-xl font-bold mt-1">{formatUSD(usdNetForBuyer)} USD</div>
-            <div className="text-xs text-gray-600 mt-1">
-              Si compras {formatUSD(usdGrossForBuyer)} USD, PayPal retendrá {(usdGrossForBuyer * 0.054 + 0.3).toFixed(2)} USD en comisiones (5.4% + 0.30 USD)
+            <strong>USD netos a recibir en PayPal </strong>
+            <div className="text-xl font-bold mt-1">
+              {formatUSD(usdNetForBuyer)} USD
+            </div>
+            <div className="text-xs text-semibold mt-1">
+              PayPal te cobrará  una comisión de {(usdGrossForBuyer * 0.054 + 0.3).toFixed(2)} USD (5.4% + 0.30 USD)
             </div>
           </div>
         )}
@@ -421,14 +504,13 @@ const [variacion, setVariacion] = useState(null);
         <div className="mt-6">
           <button
             onClick={() => setShowForm(true)}
-            className="w-full block text-center bg-green-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-600 transition-transform transform hover:scale-105 disabled:opacity-60"
+            className="w-full bg-green-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-600"
             disabled={!!minMessage}
           >
             Iniciar Operación
           </button>
         </div>
-
-        </div>
+      </div>
 
       {/* FORM Modal */}
       {showForm && (
@@ -497,43 +579,66 @@ const [variacion, setVariacion] = useState(null);
                 />
               </div>
 
-              
+              {selectedCurrency === "MXN" && operation === "vender" && (
+                <div>
+                  <label className="block text-sm font-medium text-left text-gray-700">
+                    Número CLABE para transferencia
+                  </label>
+                  <input
+                    type="text"
+                    name="clabe"
+                    onChange={handleFormChange}
+                    required
+                    pattern="[0-9]+"
+                    placeholder="Recibirás tus pesos en esta cuenta"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+              )}
 
-              {/* CBU / CVU */}
-              <div>
-                <label className="block text-sm font-medium text-left text-gray-700">
-                  CBU / CVU
-                </label>
-                <input
-                  type="text"
-                  name="cbu"
-                  onChange={handleFormChange}
-                  required
-                  pattern="[0-9]+"
-                  title="Ingrese solo números"
-                  placeholder={
-                    operation === "vender"
-                      ? "Recibirás tus pesos en esta cuenta"
-                      : "Pagarás desde esta cuenta"
-                  }
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
+              {selectedCurrency === "MXN" && operation === "comprar" && (
+                <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
+                  Al enviar tu pedido, te daremos un link para que completes tu pago.
+                </p>
+              )}
 
-              {/* Banco o Billetera virtual */}
-              <div>
-                <label className="block text-sm font-medium text-left text-gray-700">
-                  Banco o Billetera virtual
-                </label>
-                <input
-                  type="text"
-                  name="bankOrWallet"
-                  placeholder="Ej: Mercado Pago"
-                  onChange={handleFormChange}
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
+              {selectedCurrency === "ARS" && (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-left text-gray-700">
+                      CBU / CVU
+                    </label>
+                    <input
+                      type="text"
+                      name="cbu"
+                      onChange={handleFormChange}
+                      required={selectedCurrency === "ARS"}
+                      pattern="[0-9]+"
+                      title="Ingrese solo números"
+                      placeholder={
+                        operation === "vender"
+                          ? "Recibirás tus pesos en esta cuenta"
+                          : "Pagarás desde esta cuenta"
+                      }
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-left text-gray-700">
+                      Banco o Billetera virtual
+                    </label>
+                    <input
+                      type="text"
+                      name="bankOrWallet"
+                      placeholder="Ej: Mercado Pago"
+                      onChange={handleFormChange}
+                      required={selectedCurrency === "ARS"}
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                </>
+              )}
 
               <button
                 type="submit"
