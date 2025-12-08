@@ -358,7 +358,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
           )}
 
           <h3 className="text-lg font-semibold text-gray-700 mt-4 mb-4">
-            Elegí con qué moneda vas a recibir/pagar
+            Elegí con qué moneda vas a recibir o pagar
           </h3>
         </div>
 
@@ -503,12 +503,12 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
 
         <div className="mt-6">
           <button
-            onClick={() => setShowForm(true)}
-            className="w-full bg-green-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-600"
-            disabled={!!minMessage}
-          >
-            Iniciar Operación
-          </button>
+  onClick={() => setShowForm(true)}
+  className="w-full bg-green-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-600"
+  disabled={!!minMessage || !selectedCurrency}
+>
+  Iniciar Operación
+</button>
         </div>
       </div>
 
