@@ -11,6 +11,16 @@ const FLAGS = {
 // ✅ Reseñas con mejoras
 const reseñasData = [
   {
+    nombre: "Luis Hernández",
+    comentario: "Chevere, le pagué con un link, se acreditó de inmediato y me enviaron los USD bastante rapido también. Gracias, ahora puedo comprar mi juego en Ebay 😁",
+    fecha: "2025-12-08",
+    estrellas: 5,
+    bandera: "mx",
+    ciudad: "Guadalajara",
+    metodo: "MXN → PayPal",
+    tiempo: "25 min",
+  },
+  {
     nombre: "Juani Ponce",
     comentario: "Le pongo 3 estrellas porque me mandaron el dinero en 45 minutos siendo que pagan en 30 minutos máximo, pero aun así todo bien salió, y además se disculparon por la demora.",
     fecha: "2025-12-06",
