@@ -49,8 +49,12 @@ Spreads
 const SPREAD_COMPRAR = 0.05;
 const SPREAD_VENDER = 0.06;
 
-const MXN_RATE_VENDER = 16.70;   // tú recibes cuando vendes USD
 const MXN_RATE_COMPRAR = 17;     // tú pagas cuando compras USD
+const MXN_RATE_VENDER = 16.70;   // tú recibes cuando vendes USD
+
+const BRL_RATE_COMPRAR = 5;   // USD → BRL al comprar
+const BRL_RATE_VENDER = 4.95; // USD → BRL al vender
+
 
 const SHOW_BUEN_PRECIO = true;
 
@@ -301,9 +305,45 @@ ${formData.clabe}
 `;
       } else if (operation === "comprar") {
         message += `
-Al enviar tu pedido, te daremos un link para que completes tu pago.
+Al enviar tu pedido, te daremos un link de AstroPay para que completes tu pago.
 `;
       }
+    }
+
+    else if (selectedCurrency === "BRL") {
+  const montoBRL =
+    operation === "vender"
+      ? (usd * BRL_RATE_VENDER).toFixed(2)
+      : (usd * BRL_RATE_COMPRAR).toFixed(2);
+
+  message += `
+Monto BRL
+$${montoBRL} BRL
+
+Mis Datos
+
+Nombre
+${formData.fullName}
+
+Email PayPal
+${formData.paypalEmail}
+
+WhatsApp
+${formData.whatsapp}
+`;
+
+  if (operation === "vender") {
+    message += `
+Tu clave Pix
+${formData.pix}
+`;
+  }
+
+  if (operation === "comprar") {
+    message += `
+Al enviar tu pedido, te daremos un link para que completes tu pago.
+`;
+  }
     }
 
     const whatsappUrl =
@@ -357,7 +397,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
             </p>
           )}
 
-          <h3 className="text-lg font-semibold text-gray-700 mt-4 mb-4">
+          <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6">
             Elegí con qué moneda vas a recibir o pagar
           </h3>
         </div>
@@ -387,7 +427,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                 USD
               </span>
             </div>
-          </div>
+          </div>         
 
           {/* MXN Input */}
           <div>
@@ -397,73 +437,113 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
               </label>
             </div>
 
-            <div className="mt-2 relative">
-              {SHOW_BUEN_PRECIO && (
-                <span className="absolute -top-4 right-3 text-xs font-bold bg-green-800 text-white px-2 py-0.5 rounded-md animate-pulse z-10">
-                  NUEVO
+            <div className="mt-2 relative">           
+
+              <div
+                onClick={() => setSelectedCurrency("MXN")}
+                className={`mb-8 relative p-3 rounded-lg cursor-pointer transition border border-gray-400 ${
+                  selectedCurrency === "MXN" ? "bg-blue-50" : "bg-gray-50"
+                }`}
+              >
+                <img
+                  src="https://i.postimg.cc/tgDtZFdj/Flag-of-Mexico-svg.png"
+                  alt="MXN"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+                />
+
+                <input
+                  type="text"
+                  value={usd ? mxn.toFixed(2) : ""}
+                  readOnly
+                  className="w-full p-2 pl-6 text-3xl font-medium bg-transparent outline-none rounded-lg text-center"
+                />
+
+                <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
+                  MXN
                 </span>
-              )}
-
-                <div
-                  onClick={() => setSelectedCurrency("MXN")}
-                  className={`mb-12 relative p-3 rounded-lg cursor-pointer transition border border-gray-400 ${
-                    selectedCurrency === "MXN" ? "bg-blue-100" : "bg-gray-50"
-                  }`}
-                >
-                <div className="relative">
-                  <img
-                    src="https://i.postimg.cc/tgDtZFdj/Flag-of-Mexico-svg.png"
-                    alt="MXN"
-                    className="absolute left-4 top-1/2 -translate-y-1/2 rounded-xl h-8 w-12"
-                  />
-
-                  <input
-                    type="text"
-                    value={usd ? mxn.toFixed(2) : ""}
-                    readOnly
-                    className="w-full p-4 pl-10 text-3xl font-medium bg-gray-50 border border-gray-400 outline-none rounded-lg text-center"
-                  />
-
-                  <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
-                    MXN
-                  </span>
-                </div>
               </div>
+              
 
               {operation === "comprar" && (
-                <div className="absolute -bottom-3 left-3 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+      <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+        <LinkIcon size={14} className="text-gray-700" />
+        <span className="text-xs font-medium text-gray-700">
+          Paga con link o QR al instante
+        </span>
+      </div>
+              )}
+
+              {operation === "vender" && (
+      <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+        <Zap size={14} className="text-gray-700" />
+        <span className="text-xs font-medium text-gray-700">
+          Envío rápido por CLABE
+        </span>
+      </div>
+              )}
+            </div>
+
+            {/* BRL Input */}
+            <div
+              onClick={() => setSelectedCurrency("BRL")}
+              className={`mb-6 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
+                selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
+              }`}
+            >
+
+              {/* SPAN SEGÚN OPERACIÓN */}
+              {operation === "vender" ? (
+                // VENDER → PIX
+                <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
+                  <Zap size={14} className="text-gray-700 mr-1" />
+                  <span className="text-xs font-medium text-gray-700">
+                    Envío rápido por Pix
+                  </span>
+                </div>
+              ) : (
+                // COMPRAR → LINK/QR
+                <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
                   <LinkIcon size={14} className="text-gray-700" />
                   <span className="text-xs font-medium text-gray-700">
                     Paga con link o QR al instante
                   </span>
-                  <img
-                    src="https://i.postimg.cc/4ds3CWBW/images.png"
-                    alt="AstroPay"
-                    className="rounded-full h-6"
-                  />
                 </div>
               )}
 
-              {operation === "vender" && (
-                <div className="absolute -bottom-3 left-3 flex items-center gap-2 bg-white px-2 py-2 rounded-full shadow z-10">
-                  <Zap size={14} className="text-gray-700" />
-                  <span className="text-xs font-medium text-gray-700">
-                    Transferencia rápida por CLABE
-                  </span>
-                </div>
-              )}
+              <img
+                src="https://i.postimg.cc/wBpJ6kG0/Flag-of-Brazil-svg.png"
+                alt="BRL"
+                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+              />
+
+              <input
+                type="text"
+                value={
+                  usd
+                    ? (operation === "vender" ? usd * BRL_RATE_VENDER : usd * BRL_RATE_COMPRAR).toFixed(2)
+                    : ""
+                }
+                readOnly
+                className={`w-full p-2 pl-10 text-3xl font-medium outline-none rounded-lg text-center ${
+                  selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
+                }`}
+              />
+
+              <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
+                BRL
+              </span>
             </div>
 
-              <div
-                onClick={() => setSelectedCurrency("ARS")}
-                className={`relative mt-6 p-3 rounded-lg cursor-pointer transition border border-gray-400 ${
-                  selectedCurrency === "ARS" ? "bg-blue-100" : "bg-gray-50"
-                }`}
-              >
+            <div
+              onClick={() => setSelectedCurrency("ARS")}
+              className={`relative mt-6 p-1 rounded-lg cursor-pointer transition border border-gray-300 ${
+                selectedCurrency === "ARS" ? "bg-blue-50" : "bg-gray-50"
+              }`}
+            >
               <img
                 src="https://i.postimg.cc/0yxDfVFF/Flag-of-Argentina-svg.png"
                 alt="ARS"
-                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-xl h-8 w-12"
+                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
               />
 
               <input
@@ -472,11 +552,11 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                 inputMode="decimal"
                 value={ars ? ars : ""}
                 onChange={onChangeArs}
-                className="w-full p-4 pl-10 text-3xl font-medium bg-gray-50 border border-gray-400 outline-none rounded-lg text-center"
+                className="w-full p-4 pl-10 text-3xl font-medium bg-transparent outline-none rounded-lg text-center"
                 placeholder="0.00"
               />
 
-              <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
+              <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
                 ARS
               </span>
             </div>
@@ -571,13 +651,17 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                   onChange={handleFormChange}
                   required
                   inputMode="numeric"
-                  pattern="[0-9]{10}"
-                  maxLength="10"
-                  title="Ingrese exactamente 10 números"
-                  placeholder="Ej: 3512345678"
+                  placeholder="Ej: +55 21 99888 7777"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
+
+              {/* Texto SOLO si compra y paga con BRL */}
+{selectedCurrency === "BRL" && operation === "comprar" && (
+  <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
+    Al enviar tu pedido, te daremos un link para que completes tu pago.
+  </p>
+)}
 
               {selectedCurrency === "MXN" && operation === "vender" && (
                 <div>
@@ -591,6 +675,23 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                     required
                     pattern="[0-9]+"
                     placeholder="Recibirás tus pesos en esta cuenta"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+              )}
+
+              {/* Clave Pix */}
+              {selectedCurrency === "BRL" && operation === "vender" && (
+                <div>
+                  <label className="block text-sm font-medium text-left text-gray-700">
+                    Tu clave Pix
+                  </label>
+                  <input
+                    type="text"
+                    name="pix"
+                    onChange={handleFormChange}
+                    required
+                    placeholder="Ej: miclave@pix.com"
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                   />
                 </div>
