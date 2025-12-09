@@ -49,11 +49,14 @@ Spreads
 const SPREAD_COMPRAR = 0.05;
 const SPREAD_VENDER = 0.06;
 
-const MXN_RATE_COMPRAR = 17;     // tú pagas cuando compras USD
-const MXN_RATE_VENDER = 16.70;   // tú recibes cuando vendes USD
+const MXN_RATE_VENDER = 16.70;
+const MXN_RATE_COMPRAR = 17;
 
-const BRL_RATE_COMPRAR = 5;   // USD → BRL al comprar
-const BRL_RATE_VENDER = 4.95; // USD → BRL al vender
+const BRL_RATE_VENDER = 4.95;
+const BRL_RATE_COMPRAR = 5;
+
+const COP_RATE_VENDER = 3420;
+const COP_RATE_COMPRAR = 3480;
 
 
 const SHOW_BUEN_PRECIO = true;
@@ -65,7 +68,7 @@ export default function Calculadora() {
   const [variacion, setVariacion] = useState(null);
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
 
-  const [usd, setUsd] = useState(20);
+  const [usd, setUsd] = useState(5);
   const [ars, setArs] = useState("");
   const [lastEdited, setLastEdited] = useState("usd");
 
@@ -171,8 +174,8 @@ export default function Calculadora() {
         ? Number(usd)
         : Number((parseFloat(ars) || 0) / tipoAplicado);
 
-    if (isNaN(currUsd) || currUsd < 20) {
-      setMinMessage("Ingresa un mínimo de 20 USD");
+    if (isNaN(currUsd) || currUsd < 5) {
+      setMinMessage("Ingresa un mínimo de 5 USD");
     } else {
       setMinMessage("");
     }
@@ -245,8 +248,8 @@ export default function Calculadora() {
       }
     }
 
-    if (Number(usd) < 20) {
-      alert("Ingresa un mínimo de 20 USD");
+    if (Number(usd) < 5) {
+      alert("Ingresa un mínimo de 5 USD");
       return;
     }
 
@@ -345,6 +348,44 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
 `;
   }
     }
+
+    else if (selectedCurrency === "COP") {
+  const montoCOP =
+    operation === "vender"
+      ? (usd * COP_RATE_VENDER).toFixed(2)
+      : (usd * COP_RATE_COMPRAR).toFixed(2);
+
+  message += `
+Monto COP
+$${montoCOP} COP
+
+Mis Datos
+
+Nombre
+${formData.fullName}
+
+Email PayPal
+${formData.paypalEmail}
+
+WhatsApp
+${formData.whatsapp}
+`;
+
+  // Si VENDE → debe ingresar su número Nequi
+  if (operation === "vender") {
+    message += `
+Número teléfono Nequi
+${formData.nequi}
+`;
+  }
+
+  // Si COMPRA → mensaje de link de pago
+  if (operation === "comprar") {
+    message += `
+Al enviar tu pedido, te daremos un link para que completes tu pago.
+`;
+  }
+}
 
     const whatsappUrl =
       "https://api.whatsapp.com/send?phone=5493548563662&text=" +
@@ -534,6 +575,60 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
               </span>
             </div>
 
+            {/* COP Input */}
+<div
+  onClick={() => setSelectedCurrency("COP")}
+  className={`mb-6 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
+    selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
+  }`}
+>
+
+  {/* BADGE ARRIBA A LA DERECHA */}
+  <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
+    {operation === "vender" ? (
+      <>
+        <LinkIcon size={14} className="text-gray-700 mr-1" />
+        <span className="text-xs font-medium text-gray-700">
+          Envío rápido por Nequi
+        </span>
+      </>
+    ) : (
+      <>
+        <LinkIcon size={14} className="text-gray-700 mr-1" />
+        <span className="text-xs font-medium text-gray-700">
+          Paga con link o QR al instante
+        </span>
+      </>
+    )}
+  </div>
+
+  <img
+    src="https://i.postimg.cc/j2y84bkZ/images.webp"
+    alt="COP"
+    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+  />
+
+  <input
+    type="text"
+    value={
+      usd
+        ? (operation === "vender"
+            ? usd * COP_RATE_VENDER
+            : usd * COP_RATE_COMPRAR
+          ).toFixed(2)
+        : ""
+    }
+    readOnly
+    className={`w-full p-2 pl-10 text-3xl font-medium outline-none rounded-lg text-center ${
+      selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
+    }`}
+  />
+
+  <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
+    COP
+  </span>
+</div>
+
             <div
               onClick={() => setSelectedCurrency("ARS")}
               className={`relative mt-6 p-1 rounded-lg cursor-pointer transition border border-gray-300 ${
@@ -696,6 +791,30 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                   />
                 </div>
               )}
+
+              {/* Campo Nequi solo si el usuario VENDE y seleccionó COP */}
+{operation === "vender" && selectedCurrency === "COP" && (
+  <div>
+    <label className="block text-sm font-medium text-left text-gray-700">
+      Número teléfono Nequi
+    </label>
+    <input
+      type="text"
+      name="nequi"
+      onChange={handleFormChange}
+      required
+      placeholder="Ej: 3001234567"
+      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+    />
+  </div>
+)}
+
+              {/* Texto SOLO si compra y paga con COP */}
+{selectedCurrency === "COP" && operation === "comprar" && (
+  <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
+    Al enviar tu pedido, te daremos un link para que completes tu pago.
+  </p>
+)}
 
               {selectedCurrency === "MXN" && operation === "comprar" && (
                 <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
