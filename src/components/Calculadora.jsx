@@ -423,7 +423,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                 onChange={onChangeUsd}
                 className="w-full p-4 pl-16 text-3xl font-medium border border-gray-400 outline-none rounded-lg text-center"
               />
-              <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
+              <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
                 USD
               </span>
             </div>
@@ -458,7 +458,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                   className="w-full p-2 pl-6 text-3xl font-medium bg-transparent outline-none rounded-lg text-center"
                 />
 
-                <span className="absolute inset-y-0 right-4 flex items-center text-xl text-gray-500">
+                <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
                   MXN
                 </span>
               </div>
