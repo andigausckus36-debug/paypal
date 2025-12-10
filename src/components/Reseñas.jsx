@@ -12,6 +12,26 @@ const FLAGS = {
 
 // Reseñas
 const reseñasData = [
+  {
+    nombre: "Lucas Moreira",
+    comentario:
+      "Comprei saldo para o PayPal e consegui recarregar com a minha moeda de forma simples e rápida. Recomendo esse ótimo serviço.",
+    fecha: "2025-12-10",
+    estrellas: 5,
+    bandera: "br",
+    ciudad: "Sao Pablo",
+    metodo: "BRL → PayPal",
+  },
+  {
+    nombre: "Agustin Garcia",
+    comentario:
+      "Todo impecable desde el inicio al final",
+    fecha: "2025-12-10",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "Palermo",
+    metodo: "PayPal → ARS",
+  },
   
   {
     nombre: "Mariana Souza",
