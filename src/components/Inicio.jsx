@@ -23,7 +23,7 @@ export default function Inicio() {
 
         {/* Subtítulo */}
         <p className="text-lg md:text-base text-gray-500 mt-3 max-w-xl mx-auto">
-          Operamos con <span className="font-semibold">AstroPay</span>, la billetera virtual segura y global para realizar tus pagos en MXN, BRL y COP.
+          Operamos con <span className="font-semibold">AstroPay</span>, la billetera virtual segura y global para que realices tus pagos en MXN, BRL y COP, y se confirmen al instante.
         </p>
 
         {/* Logo AstroPay */}
