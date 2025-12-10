@@ -1,47 +1,70 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, MapPin, Repeat, Clock } from "lucide-react";
+import { Star, MapPin, Repeat } from "lucide-react";
 
-// ✅ Banderas
+// Banderas
 const FLAGS = {
   ar: "https://i.postimg.cc/MGNgBvQ7/Flag-of-Argentina-svg.png",
   mx: "https://i.postimg.cc/6pQP1dVd/Flag-of-Mexico-svg.png",
+  br: "https://i.postimg.cc/cHGtX3z7/Flag-of-Brazil-svg.png",
+  co: "https://i.postimg.cc/j2y84bkZ/images.webp",
 };
 
-// ✅ Reseñas con mejoras
+// Reseñas
 const reseñasData = [
+  
+  {
+    nombre: "Mariana Souza",
+    comentario:
+      "É verdade que pagam rápido. Enviaram meu dinheiro para minha conta Pix em 20 minutos.",
+    fecha: "2025-12-08",
+    estrellas: 5,
+    bandera: "br",
+    ciudad: "Curitiba",
+    metodo: "PayPal → BRL",
+  },
+  {
+    nombre: "Ramón Diaz",
+    comentario:
+      "Servicio muy recomendable!!",
+    fecha: "2025-12-09",
+    estrellas: 5,
+    bandera: "mx",
+    ciudad: "Puebla",
+    metodo: "MXN → PayPal",
+  },
   {
     nombre: "Luis Hernández",
-    comentario: "Chevere, le pagué con un link, se acreditó de inmediato y me enviaron los USD bastante rapido también. Gracias, ahora puedo comprar mi juego en Ebay 😁",
+    comentario:
+      "Chevere, le pagué con un link, se acreditó de inmediato y me enviaron los USD bastante rapido también. Gracias, ahora puedo comprar mi juego en Ebay 😁",
     fecha: "2025-12-08",
     estrellas: 5,
     bandera: "mx",
     ciudad: "Guadalajara",
     metodo: "MXN → PayPal",
-    tiempo: "25 min",
   },
   {
     nombre: "Juani Ponce",
-    comentario: "Le pongo 3 estrellas porque me mandaron el dinero en 45 minutos siendo que pagan en 30 minutos máximo, pero aun así todo bien salió, y además se disculparon por la demora.",
+    comentario:
+      "Le pongo 4 estrellas porque me mandaron el dinero en 45 minutos siendo que pagan en 30 minutos máximo, pero aun así todo bien salió, y además se disculparon por la demora.",
     fecha: "2025-12-06",
-    estrellas: 3,
+    estrellas: 4,
     bandera: "ar",
     ciudad: "Bariloche",
     metodo: "PayPal → ARS",
-    tiempo: "15 min",
   },
   {
-    nombre: "Matias",
-    comentario: "Todo perfecto, salió todo bien. Muy bueno el servicio, pensé que era estafa jaja, pero me arriesgué y salió todo bien",
+    nombre: "Matias Moreno",
+    comentario:
+      "Todo perfecto, salió todo bien. Muy bueno el servicio, pensé que era estafa jaja, pero me arriesgué y salió todo bien",
     fecha: "2025-12-06T08:30:00",
     estrellas: 5,
     bandera: "ar",
-    ciudad: "Bariloche",
+    ciudad: "Concordia",
     metodo: "PayPal → ARS",
-    tiempo: "15 min",
   },
   {
-    nombre: "Luchi",
+    nombre: "Luchi Luz",
     comentario:
       "Estoy sorprendida por la velocidad en que cargaron mi cuenta y además la buena atención en todo momento del proceso. Gracias 😊",
     fecha: "2025-12-04T18:25:00",
@@ -49,83 +72,93 @@ const reseñasData = [
     bandera: "ar",
     ciudad: "Córdoba",
     metodo: "ARS → PayPal",
-    tiempo: "20 min",
   },
   {
-    nombre: "Diego Aguirre",
+    nombre: "Ricardo Lopez",
     comentario:
-      "Super recomendables! Usaré nuevamente el servicio para cargar mi cuenta porque me funcionó y me mandaron el saldo bastante rapido.",
-    fecha: "2025-12-03T07:30:00",
+      "La operación salió muy bien. Fue rápida y estuvimos en contacto en todo momento.",
+    fecha: "2025-12-04T18:25:00",
+    estrellas: 5,
+    bandera: "co",
+    ciudad: "Bogota",
+    metodo: "COP → PayPal",
+  },
+  {
+    nombre: "Paula Olivera",
+    comentario:
+      "El servicio es excelente. No tuve ningun inconveniente durante el cambio",
+    fecha: "2025-12-04",
     estrellas: 5,
     bandera: "ar",
-    ciudad: "Moreno",
+    ciudad: "Mar del Plata",
     metodo: "ARS → PayPal",
-    tiempo: "25 min",
   },
   {
-    nombre: "Luis",
-    comentario: "primera venta de saldo y todo impecable!",
-    fecha: "2025-12-02T14:15:00",
-    estrellas: 5,
-    bandera: "ar",
-    ciudad: "Pergamino",
-    metodo: "PayPal → ARS",
-    tiempo: "18 min",
-  },
-  {
-    nombre: "Paula",
-    comentario: "Super recomendables ❤️",
-    fecha: "2025-11-29T15:26:00",
-    estrellas: 5,
-    bandera: "ar",
-    ciudad: "Rosario",
-    metodo: "PayPal → ARS",
-    tiempo: "40 min",
-  },
-  {
-    nombre: "Lucia Almada",
+    nombre: "Ana Beatriz Ferreira",
     comentario:
-      "Después de ver los comentarios probé con vender $20 y me mandaron los pesos a mi Ualá en 10 minutos.",
-    fecha: "2025-11-29T15:26:00",
+      "Me atenderam pelo WhatsApp com muita cordialidade e me ajudaram em todo o processo, além de que tudo foi muito rápido.",
+    fecha: "2025-12-04",
     estrellas: 5,
-    bandera: "ar",
-    ciudad: "Guaymallen",
-    metodo: "PayPal → ARS",
-    tiempo: "10 min",
+    bandera: "br",
+    ciudad: "Rio de Janeiro",
+    metodo: "BRL → PayPal",
   },
 ];
 
 export default function SliderReseñas() {
   const [index, setIndex] = useState(0);
+  const [paisFiltro, setPaisFiltro] = useState("todos");
+
+  // Aplicar filtro
+  const reseñasFiltradas =
+    paisFiltro === "todos"
+      ? reseñasData
+      : reseñasData.filter((r) => r.bandera === paisFiltro);
 
   useEffect(() => {
     const intervalo = setInterval(() => {
-      setIndex((prev) => (prev + 1) % reseñasData.length);
-    }, 10000);
+      setIndex((prev) => (prev + 1) % reseñasFiltradas.length);
+    }, 8000);
     return () => clearInterval(intervalo);
-  }, []);
+  }, [reseñasFiltradas]);
 
   const formatFecha = (fechaStr) => {
     const fecha = new Date(fechaStr);
-    const dia = fecha.getDate().toString().padStart(2, "0");
-    const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
-    const año = fecha.getFullYear();
-    
-    return `${dia}/${mes}/${año}`;
+    const d = fecha.getDate().toString().padStart(2, "0");
+    const m = (fecha.getMonth() + 1).toString().padStart(2, "0");
+    const y = fecha.getFullYear();
+    return `${d}/${m}/${y}`;
   };
 
-  const review = reseñasData[index];
+  const review = reseñasFiltradas[index] || reseñasFiltradas[0];
 
   return (
     <div className="w-full flex flex-col items-center mb-10 bg-white">
-      {/* ✅ Título */}
-      <h2 className="text-xl italic font-medium text-center text-gray-800 mb-3">
+
+      {/* Título */}
+      <h2 className="text-xl italic font-medium text-center text-gray-800 mb-2">
         Opiniones de nuestros clientes
       </h2>
 
-      {/* ⭐ Promedio de puntuación */}
+      {/* Filtro */}
+      <select
+        value={paisFiltro}
+        onChange={(e) => {
+          setPaisFiltro(e.target.value);
+          setIndex(0);
+        }}
+        className="border border-gray-300 rounded-md outline-none px-3 py-2 text-sm mb-5"
+      >
+        <option value="todos">Filtrar por país</option>
+        <option value="ar">Argentina</option>
+        <option value="br">Brasil</option>
+        <option value="co">Colombia</option>
+        <option value="mx">México</option>
+      </select>
+
+      {/* Promedio */}
       <div className="w-14 h-14 flex items-center justify-center rounded-full border-2 border-yellow-400 bg-white">
-        <span className="text-yellow-600 font-bold text-gl">
+        <span className="text-yellow-600 font-bold text-lg">
           {(
             reseñasData.reduce((acc, r) => acc + r.estrellas, 0) /
             reseñasData.length
@@ -144,7 +177,7 @@ export default function SliderReseñas() {
               transition={{ duration: 1, ease: "easeInOut" }}
               className="absolute w-full text-center px-8"
             >
-              {/* ⭐ Estrellas */}
+              {/* Estrellas */}
               <div className="flex justify-center mb-8">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -158,15 +191,15 @@ export default function SliderReseñas() {
                 ))}
               </div>
 
-              {/* 💬 Comentario más cerca del título */}
+              {/* Comentario */}
               <p className="italic text-gray-700 text-md mb-8">
                 “{review.comentario}”
               </p>
 
-              {/* ✅ Bloque inferior con 2 renglones */}
+              {/* Info inferior */}
               <div className="flex flex-col mt-3 space-y-2">
 
-                {/* 🧍 Primera fila: Nombre + fecha/hora + bandera */}
+                {/* Nombre + fecha + bandera */}
                 <div className="flex justify-between items-center mb-6">
                   <div className="flex flex-col text-left">
                     <p className="font-semibold text-gray-900">
@@ -177,37 +210,30 @@ export default function SliderReseñas() {
                     </p>
                   </div>
 
-                  {/* 🇦🇷 / 🇲🇽 Bandera */}
-                  {review.bandera && (
-                    <img
-                      src={FLAGS[review.bandera]}
-                      alt="Bandera"
-                      className="w-9 h-6 rounded-sm object-cover"
-                    />
-                  )}
+                  <img
+                    src={FLAGS[review.bandera]}
+                    alt="Bandera"
+                    className="w-9 h-6 rounded-sm object-cover"
+                  />
                 </div>
 
-                {/* 🌎 Segunda fila: Ciudad + tiempo + tipo de operación */}
                 <div className="flex justify-center gap-6 text-xs text-gray-500">
 
+                  {/* Ciudad */}
                   <span className="flex items-center gap-1">
                     <MapPin className="w-3 h-3" />
                     {review.ciudad}
                   </span>
 
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {review.tiempo}
-                  </span>
-
+                  {/* Método: PayPal → ARS, ARS → PayPal, etc */}
                   <span className="flex items-center gap-1">
                     <Repeat className="w-3 h-3" />
                     {review.metodo}
                   </span>
 
                 </div>
-              </div>
 
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>

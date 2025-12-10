@@ -15,9 +15,25 @@ export default function Inicio() {
 
       {/* Encabezado */}
       <header className="text-center mb-8 mt-6">
-        <p className="text-2xl md:text-2xl font-bold italic text-gray-600 mt-2 max-w-2xl mx-auto text-center">
-          ¡Comprá y vendé tu saldo PayPal de forma simple y segura con excelentes cotizaciones y un tiempo récord de 10 a 30 minutos en los intercambios!
+
+  {/* Título */}
+  <p className="text-3xl md:text-2xl font-bold italic text-gray-600 mb-6 mt-2 max-w-2xl mx-auto">
+    ¡Compra y vende tu saldo PayPal de forma simple y segura con excelentes cotizaciones y un tiempo récord de 10 a 30 minutos en los intercambios!
+  </p>
+
+        {/* Subtítulo */}
+        <p className="text-lg md:text-base text-gray-500 mt-3 max-w-xl mx-auto">
+          Operamos con <span className="font-semibold">AstroPay</span>, la billetera virtual segura y global para realizar tus pagos en MXN, BRL y COP.
         </p>
+
+        {/* Logo AstroPay */}
+        <div className="mt-3 flex justify-center">
+          <img
+            src="https://i.postimg.cc/Z5qLwT6g/images.png"
+            alt="AstroPay Logo"
+            className="h-14 md:h-14 object-contain rounded-full"
+          />
+        </div>
 
         {/* Ilustración debajo del título */}
         <div className="flex justify-center mt-6 mb-6">

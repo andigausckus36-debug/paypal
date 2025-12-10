@@ -439,7 +439,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
           )}
 
           <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6">
-            Elegí con qué moneda vas a recibir o pagar
+           Elige entre ARS, MXN, BRL o COP para recibir o pagar
           </h3>
         </div>
 
@@ -527,7 +527,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
             {/* BRL Input */}
             <div
               onClick={() => setSelectedCurrency("BRL")}
-              className={`mb-6 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
+              className={`mb-8 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
                 selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
               }`}
             >
@@ -578,7 +578,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
             {/* COP Input */}
 <div
   onClick={() => setSelectedCurrency("COP")}
-  className={`mb-6 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
+  className={`mb-8 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
     selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
   }`}
 >
