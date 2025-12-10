@@ -18,7 +18,7 @@ export default function Inicio() {
 
   {/* Título */}
   <p className="text-3xl md:text-2xl font-bold italic text-gray-600 mb-6 mt-2 max-w-2xl mx-auto">
-    ¡Compra y vende tu saldo PayPal de forma simple y segura con excelentes cotizaciones y un tiempo récord de 10 a 30 minutos en los intercambios!
+    ¡Compra y vende tu saldo PayPal de forma simple y segura a la mejor cotización, y un tiempo récord de 10 a 30 minutos en todas las operaciones!
   </p>
 
         {/* Subtítulo */}

@@ -46,18 +46,21 @@ const applyPayPalFee = (grossUSD) => {
 /* -----------------------
 Spreads
 ----------------------- */
+// Spreads generales
 const SPREAD_COMPRAR = 0.06;
 const SPREAD_VENDER = 0.07;
 
+// Tipos de cambio MXN
 const MXN_RATE_VENDER = 16.70;
 const MXN_RATE_COMPRAR = 17;
 
+// Tipos de cambio BRL
 const BRL_RATE_VENDER = 4.95;
 const BRL_RATE_COMPRAR = 5;
 
+// Tipos de cambio COP
 const COP_RATE_VENDER = 3420;
 const COP_RATE_COMPRAR = 3480;
-
 
 const SHOW_BUEN_PRECIO = true;
 
@@ -74,13 +77,15 @@ export default function Calculadora() {
 
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
-    paypalEmail: "",
-    whatsapp: "",
-    cbu: "",
-    bankOrWallet: "",
-    clabe: ""
-  });
+  fullName: "",
+  paypalEmail: "",
+  whatsapp: "",
+  cbu: "",
+  bankOrWallet: "",
+  clabe: "",
+  pix: "",      // ← FALTA AGREGAR
+  nequi: ""     // ← FALTA AGREGAR
+});
 
   const [minMessage, setMinMessage] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState(null);
@@ -587,7 +592,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
   <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
     {operation === "vender" ? (
       <>
-        <LinkIcon size={14} className="text-gray-700 mr-1" />
+        <Zap size={14} className="text-gray-700 mr-1" />
         <span className="text-xs font-medium text-gray-700">
           Envío rápido por Nequi
         </span>
