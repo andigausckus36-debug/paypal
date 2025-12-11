@@ -13,6 +13,27 @@ const FLAGS = {
 // Reseñas
 const reseñasData = [
   {
+    nombre: "Martina Sosa",
+    comentario:
+      "Rápido y seguro. Muy conforme con la atención.",
+    fecha: "2025-12-11",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "Tilcara",
+    metodo: "ARS → PayPal",
+  },
+  {
+    nombre: "João Silva",
+    comentario:
+      "Vendi meu saldo do PayPal de uma maneira simples e, em poucos minutos, enviaram o dinheiro para minha conta. Esse serviço realmente funciona, eu recomendo.",
+    fecha: "2025-12-11",
+    estrellas: 5,
+    bandera: "br",
+    ciudad: "Brasília",
+    metodo: "BRL → PayPal",
+  },
+  
+  {
     nombre: "Lucas Moreira",
     comentario:
       "Comprei saldo para o PayPal e consegui recarregar com a minha moeda de forma simples e rápida. Recomendo esse ótimo serviço.",
@@ -104,10 +125,30 @@ const reseñasData = [
     metodo: "COP → PayPal",
   },
   {
+    nombre: "Catalina Pérez",
+    comentario:
+      " El intercambio fue rápido y sencillo",
+    fecha: "2025-12-04T18:25:00",
+    estrellas: 5,
+    bandera: "co",
+    ciudad: "Medellín",
+    metodo: "COP → PayPal",
+  },
+  {
+    nombre: "Juan Pérez",
+    comentario:
+      "Son personas serias y responsables por qué me acreditaron mis pesos en mi cuenta de forma muy rápida,recomiendo este servicio",
+    fecha: "2025-12-04T18:25:00",
+    estrellas: 5,
+    bandera: "co",
+    ciudad: "Bogotá",
+    metodo: "PayPal → COP",
+  },
+  {
     nombre: "Paula Olivera",
     comentario:
       "El servicio es excelente. No tuve ningun inconveniente durante el cambio",
-    fecha: "2025-12-04",
+    fecha: "2025-12-05",
     estrellas: 5,
     bandera: "ar",
     ciudad: "Mar del Plata",
