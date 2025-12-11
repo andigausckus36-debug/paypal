@@ -759,7 +759,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
               {/* Texto SOLO si compra y paga con BRL */}
 {selectedCurrency === "BRL" && operation === "comprar" && (
   <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
-    Al enviar tu pedido, te daremos un link para que completes tu pago.
+    Al enviar tu pedido, te daremos un link para que completes tu pago con tu método de pago preferido.
   </p>
 )}
 
@@ -817,13 +817,13 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
               {/* Texto SOLO si compra y paga con COP */}
 {selectedCurrency === "COP" && operation === "comprar" && (
   <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
-    Al enviar tu pedido, te daremos un link para que completes tu pago.
+    Al enviar tu pedido, te daremos un link para que completes tu pago con tu método de pago preferido. 
   </p>
 )}
 
               {selectedCurrency === "MXN" && operation === "comprar" && (
                 <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
-                  Al enviar tu pedido, te daremos un link para que completes tu pago.
+                  Al enviar tu pedido, te daremos un link para que completes tu pago con tu método de pago preferido.
                 </p>
               )}
 
