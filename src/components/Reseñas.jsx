@@ -23,6 +23,16 @@ const reseñasData = [
     metodo: "ARS → PayPal",
   },
   {
+    nombre: "David Herrera",
+    comentario:
+      "Recomendables al 100%",
+    fecha: "2025-12-11",
+    estrellas: 5,
+    bandera: "co",
+    ciudad: "Bucaramanga",
+    metodo: "COP → PayPal",
+  },
+  {
     nombre: "João Silva",
     comentario:
       "Vendi meu saldo do PayPal de uma maneira simples e, em poucos minutos, enviaram o dinheiro para minha conta. Esse serviço realmente funciona, eu recomendo.",
@@ -53,6 +63,26 @@ const reseñasData = [
     ciudad: "Palermo",
     metodo: "PayPal → ARS",
   },
+  {
+    nombre: "Sofía Martínez",
+    comentario:
+      " Súper recomendable este servicio, estoy sorprendida!",
+    fecha: "2025-12-10",
+    estrellas: 5,
+    bandera: "mx",
+    ciudad: "Monterrey",
+    metodo: "PayPal → MXN",
+  },
+  {
+    nombre: "Mateo Castro",
+    comentario:
+      " Cargaron mi cuenta din problemas y rápidamente. Seguire usando su servicio",
+    fecha: "2025-12-10",
+    estrellas: 5,
+    bandera: "co",
+    ciudad: "Bogotá",
+    metodo: "COL → PayPal",
+  },
   
   {
     nombre: "Mariana Souza",
@@ -82,6 +112,16 @@ const reseñasData = [
     estrellas: 5,
     bandera: "mx",
     ciudad: "Guadalajara",
+    metodo: "MXN → PayPal",
+  },
+  {
+    nombre: "Carlos López",
+    comentario:
+      " Funciona muy bien y la acreditación de mi saldo fue rápida. saludos DF",
+    fecha: "2025-12-06",
+    estrellas: 5,
+    bandera: "mx",
+    ciudad: "Ciudad de México",
     metodo: "MXN → PayPal",
   },
   {
