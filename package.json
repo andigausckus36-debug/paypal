@@ -12,9 +12,10 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "date-fns": "^4.1.0",
-    "framer-motion": "^12.23.24",
+    "framer-motion": "^12.23.26",
     "lucide-react": "^0.545.0",
     "react": "^19.1.1",
+    "react-countup": "^6.5.3",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.4",
     "react-select": "^5.10.2",
