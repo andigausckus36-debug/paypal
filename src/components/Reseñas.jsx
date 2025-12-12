@@ -16,7 +16,7 @@ const reseñasData = [
     nombre: "Nico",
     comentario:
       "Todo perfecto y rápido, los recomiendo",
-    fecha: "2025-12-11",
+    fecha: "2025-12-12",
     estrellas: 5,
     bandera: "ar",
     ciudad: "Carlos Paz",
