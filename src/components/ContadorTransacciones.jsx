@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ContadorTransacciones() {
   // CAMBIÁ ESTE NÚMERO CUANDO QUIERAS
-  const totalTransacciones = 12;
+  const totalTransacciones = 14;
 
   return (
     <motion.div

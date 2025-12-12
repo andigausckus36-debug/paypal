@@ -71,7 +71,7 @@ export default function Calculadora() {
   const [variacion, setVariacion] = useState(null);
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
 
-  const [usd, setUsd] = useState(5);
+  const [usd, setUsd] = useState(10);
   const [ars, setArs] = useState("");
   const [lastEdited, setLastEdited] = useState("usd");
 
@@ -179,8 +179,8 @@ export default function Calculadora() {
         ? Number(usd)
         : Number((parseFloat(ars) || 0) / tipoAplicado);
 
-    if (isNaN(currUsd) || currUsd < 5) {
-      setMinMessage("Ingresa un mínimo de 5 USD");
+    if (isNaN(currUsd) || currUsd < 10) {
+      setMinMessage("Ingresa un mínimo de 10 USD");
     } else {
       setMinMessage("");
     }
@@ -253,8 +253,8 @@ export default function Calculadora() {
       }
     }
 
-    if (Number(usd) < 5) {
-      alert("Ingresa un mínimo de 5 USD");
+    if (Number(usd) < 10) {
+      alert("Ingresa un mínimo de 10 USD");
       return;
     }
 
@@ -393,7 +393,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
 }
 
     const whatsappUrl =
-      "https://api.whatsapp.com/send?phone=5493548563662&text=" +
+      "https://api.whatsapp.com/send?phone=5493548610510&text=" +
       encodeURIComponent(message.trim());
 
     window.open(whatsappUrl, "_blank");

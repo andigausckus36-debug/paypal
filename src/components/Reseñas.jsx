@@ -13,6 +13,16 @@ const FLAGS = {
 // Reseñas
 const reseñasData = [
   {
+    nombre: "Nico",
+    comentario:
+      "Todo perfecto y rápido, los recomiendo",
+    fecha: "2025-12-11",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "Carlos Paz",
+    metodo: "PayPal → ARS",
+  },
+  {
     nombre: "Martina Sosa",
     comentario:
       "Rápido y seguro. Muy conforme con la atención.",
