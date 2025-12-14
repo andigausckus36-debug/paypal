@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ContadorTransacciones() {
   // CAMBIÁ ESTE NÚMERO CUANDO QUIERAS
-  const totalTransacciones = 15;
+  const totalTransacciones = 28;
 
   return (
     <motion.div
@@ -29,7 +29,7 @@ export default function ContadorTransacciones() {
 
       {/* Segundo texto */}
       <p className="text-gray-600 text-sm mt-1">
-        En los últimos 7 días
+        En los últimos 30 días
       </p>
     </motion.div>
   );

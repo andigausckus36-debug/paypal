@@ -13,6 +13,16 @@ const FLAGS = {
 // Reseñas
 const reseñasData = [
   {
+    nombre: "Carlos Guerrico",
+    comentario:
+      "Primera vez que compro saldo con ellos y todo salió bien por suerte, y la carga fue inmediata",
+    fecha: "2025-12-13",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "San Nicolas",
+    metodo: "ARS → PayPal",
+  },
+  {
     nombre: "Nico",
     comentario:
       "Todo perfecto y rápido, los recomiendo",
