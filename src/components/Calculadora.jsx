@@ -47,20 +47,20 @@ const applyPayPalFee = (grossUSD) => {
 Spreads
 ----------------------- */
 // Spreads generales
-const SPREAD_COMPRAR = 0.06;
+const SPREAD_COMPRAR = 0.05;
 const SPREAD_VENDER = 0.07;
 
 // Tipos de cambio MXN
-const MXN_RATE_VENDER = 16.70;
-const MXN_RATE_COMPRAR = 17;
+const MXN_RATE_VENDER = 16.00;
+const MXN_RATE_COMPRAR = 16.50;
 
 // Tipos de cambio BRL
-const BRL_RATE_VENDER = 4.95;
-const BRL_RATE_COMPRAR = 5;
+const BRL_RATE_VENDER = 4.80;
+const BRL_RATE_COMPRAR = 4.90;
 
 // Tipos de cambio COP
-const COP_RATE_VENDER = 3420;
-const COP_RATE_COMPRAR = 3480;
+const COP_RATE_VENDER = 3340;
+const COP_RATE_COMPRAR = 3400;
 
 const SHOW_BUEN_PRECIO = true;
 
