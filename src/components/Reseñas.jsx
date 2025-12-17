@@ -13,19 +13,27 @@ const FLAGS = {
 // Reseñas
 const reseñasData = [
   {
+    nombre: "Paula Liz",
+    comentario: "Todo perfecto, buena atención y cotización también.",
+    fecha: "2025-12-16",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "Viedma",
+    metodo: "ARS → PayPal",
+  },
+  {
     nombre: "Carlos Guerrico",
     comentario:
-      "Primera vez que compro saldo con ellos y todo salió bien por suerte, y la carga fue inmediata",
+      "Primera vez que compro saldo con ellos y todo salió bien, la carga fue inmediata.",
     fecha: "2025-12-13",
     estrellas: 5,
     bandera: "ar",
-    ciudad: "San Nicolas",
+    ciudad: "San Nicolás",
     metodo: "ARS → PayPal",
   },
   {
     nombre: "Nico",
-    comentario:
-      "Todo perfecto y rápido, los recomiendo",
+    comentario: "Todo perfecto y rápido, los recomiendo.",
     fecha: "2025-12-12",
     estrellas: 5,
     bandera: "ar",
@@ -34,8 +42,7 @@ const reseñasData = [
   },
   {
     nombre: "Martina Sosa",
-    comentario:
-      "Rápido y seguro. Muy conforme con la atención.",
+    comentario: "Rápido y seguro. Muy conforme con la atención.",
     fecha: "2025-12-11",
     estrellas: 5,
     bandera: "ar",
@@ -44,8 +51,7 @@ const reseñasData = [
   },
   {
     nombre: "David Herrera",
-    comentario:
-      "Recomendables al 100%",
+    comentario: "Recomendables al 100%.",
     fecha: "2025-12-11",
     estrellas: 5,
     bandera: "co",
@@ -55,28 +61,26 @@ const reseñasData = [
   {
     nombre: "João Silva",
     comentario:
-      "Vendi meu saldo do PayPal de uma maneira simples e, em poucos minutos, enviaram o dinheiro para minha conta. Esse serviço realmente funciona, eu recomendo.",
+      "Vendi meu saldo do PayPal de uma maneira simples e em poucos minutos enviaram o dinheiro.",
     fecha: "2025-12-11",
     estrellas: 5,
     bandera: "br",
     ciudad: "Brasília",
     metodo: "BRL → PayPal",
   },
-  
   {
     nombre: "Lucas Moreira",
     comentario:
-      "Comprei saldo para o PayPal e consegui recarregar com a minha moeda de forma simples e rápida. Recomendo esse ótimo serviço.",
+      "Comprei saldo para o PayPal de forma simples e rápida. Recomendo.",
     fecha: "2025-12-10",
     estrellas: 5,
     bandera: "br",
-    ciudad: "Sao Pablo",
+    ciudad: "São Paulo",
     metodo: "BRL → PayPal",
   },
   {
-    nombre: "Agustin Garcia",
-    comentario:
-      "Todo impecable desde el inicio al final",
+    nombre: "Agustín García",
+    comentario: "Todo impecable desde el inicio hasta el final.",
     fecha: "2025-12-10",
     estrellas: 5,
     bandera: "ar",
@@ -85,8 +89,7 @@ const reseñasData = [
   },
   {
     nombre: "Sofía Martínez",
-    comentario:
-      " Súper recomendable este servicio, estoy sorprendida!",
+    comentario: "Súper recomendable este servicio, estoy sorprendida.",
     fecha: "2025-12-10",
     estrellas: 5,
     bandera: "mx",
@@ -96,18 +99,17 @@ const reseñasData = [
   {
     nombre: "Mateo Castro",
     comentario:
-      " Cargaron mi cuenta din problemas y rápidamente. Seguire usando su servicio",
+      "Cargaron mi cuenta sin problemas y rápidamente. Seguiré usando el servicio.",
     fecha: "2025-12-10",
     estrellas: 5,
     bandera: "co",
     ciudad: "Bogotá",
-    metodo: "COL → PayPal",
+    metodo: "COP → PayPal",
   },
-  
   {
     nombre: "Mariana Souza",
     comentario:
-      "É verdade que pagam rápido. Enviaram meu dinheiro para minha conta Pix em 20 minutos.",
+      "É verdade que pagam rápido. Enviaram meu dinheiro em 20 minutos.",
     fecha: "2025-12-08",
     estrellas: 5,
     bandera: "br",
@@ -115,9 +117,8 @@ const reseñasData = [
     metodo: "PayPal → BRL",
   },
   {
-    nombre: "Ramón Diaz",
-    comentario:
-      "Servicio muy recomendable!!",
+    nombre: "Ramón Díaz",
+    comentario: "Servicio muy recomendable.",
     fecha: "2025-12-09",
     estrellas: 5,
     bandera: "mx",
@@ -127,7 +128,7 @@ const reseñasData = [
   {
     nombre: "Luis Hernández",
     comentario:
-      "Chevere, le pagué con un link, se acreditó de inmediato y me enviaron los USD bastante rapido también. Gracias, ahora puedo comprar mi juego en Ebay 😁",
+      "Se acreditó de inmediato y me enviaron los USD rápido. Gracias.",
     fecha: "2025-12-08",
     estrellas: 5,
     bandera: "mx",
@@ -137,7 +138,7 @@ const reseñasData = [
   {
     nombre: "Carlos López",
     comentario:
-      " Funciona muy bien y la acreditación de mi saldo fue rápida. saludos DF",
+      "Funciona muy bien y la acreditación fue rápida. Saludos.",
     fecha: "2025-12-06",
     estrellas: 5,
     bandera: "mx",
@@ -147,7 +148,7 @@ const reseñasData = [
   {
     nombre: "Juani Ponce",
     comentario:
-      "Le pongo 4 estrellas porque me mandaron el dinero en 45 minutos siendo que pagan en 30 minutos máximo, pero aun así todo bien salió, y además se disculparon por la demora.",
+      "Hubo una pequeña demora, pero avisaron y cumplieron. Todo bien.",
     fecha: "2025-12-06",
     estrellas: 4,
     bandera: "ar",
@@ -155,9 +156,9 @@ const reseñasData = [
     metodo: "PayPal → ARS",
   },
   {
-    nombre: "Matias Moreno",
+    nombre: "Matías Moreno",
     comentario:
-      "Todo perfecto, salió todo bien. Muy bueno el servicio, pensé que era estafa jaja, pero me arriesgué y salió todo bien",
+      "Todo perfecto, pensé que era estafa pero salió todo bien.",
     fecha: "2025-12-06T08:30:00",
     estrellas: 5,
     bandera: "ar",
@@ -167,7 +168,7 @@ const reseñasData = [
   {
     nombre: "Luchi Luz",
     comentario:
-      "Estoy sorprendida por la velocidad en que cargaron mi cuenta y además la buena atención en todo momento del proceso. Gracias 😊",
+      "Sorprendida por la velocidad y la buena atención. Gracias.",
     fecha: "2025-12-04T18:25:00",
     estrellas: 5,
     bandera: "ar",
@@ -175,19 +176,18 @@ const reseñasData = [
     metodo: "ARS → PayPal",
   },
   {
-    nombre: "Ricardo Lopez",
+    nombre: "Ricardo López",
     comentario:
-      "La operación salió muy bien. Fue rápida y estuvimos en contacto en todo momento.",
+      "La operación salió muy bien y fue rápida.",
     fecha: "2025-12-04T18:25:00",
     estrellas: 5,
     bandera: "co",
-    ciudad: "Bogota",
+    ciudad: "Bogotá",
     metodo: "COP → PayPal",
   },
   {
     nombre: "Catalina Pérez",
-    comentario:
-      " El intercambio fue rápido y sencillo",
+    comentario: "El intercambio fue rápido y sencillo.",
     fecha: "2025-12-04T18:25:00",
     estrellas: 5,
     bandera: "co",
@@ -197,7 +197,7 @@ const reseñasData = [
   {
     nombre: "Juan Pérez",
     comentario:
-      "Son personas serias y responsables por qué me acreditaron mis pesos en mi cuenta de forma muy rápida,recomiendo este servicio",
+      "Personas serias y responsables, todo fue muy rápido.",
     fecha: "2025-12-04T18:25:00",
     estrellas: 5,
     bandera: "co",
@@ -207,7 +207,7 @@ const reseñasData = [
   {
     nombre: "Paula Olivera",
     comentario:
-      "El servicio es excelente. No tuve ningun inconveniente durante el cambio",
+      "Excelente servicio, no tuve ningún inconveniente.",
     fecha: "2025-12-05",
     estrellas: 5,
     bandera: "ar",
@@ -217,7 +217,7 @@ const reseñasData = [
   {
     nombre: "Ana Beatriz Ferreira",
     comentario:
-      "Me atenderam pelo WhatsApp com muita cordialidade e me ajudaram em todo o processo, além de que tudo foi muito rápido.",
+      "Atendimento excelente e processo muito rápido.",
     fecha: "2025-12-04",
     estrellas: 5,
     bandera: "br",
@@ -230,7 +230,6 @@ export default function SliderReseñas() {
   const [index, setIndex] = useState(0);
   const [paisFiltro, setPaisFiltro] = useState("todos");
 
-  // Aplicar filtro
   const reseñasFiltradas =
     paisFiltro === "todos"
       ? reseñasData
@@ -245,23 +244,21 @@ export default function SliderReseñas() {
 
   const formatFecha = (fechaStr) => {
     const fecha = new Date(fechaStr);
-    const d = fecha.getDate().toString().padStart(2, "0");
-    const m = (fecha.getMonth() + 1).toString().padStart(2, "0");
-    const y = fecha.getFullYear();
-    return `${d}/${m}/${y}`;
+    return `${fecha.getDate().toString().padStart(2, "0")}/${(
+      fecha.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}/${fecha.getFullYear()}`;
   };
 
   const review = reseñasFiltradas[index] || reseñasFiltradas[0];
 
   return (
     <div className="w-full flex flex-col items-center mb-10 bg-white">
-
-      {/* Título */}
       <h2 className="text-xl italic font-medium text-center text-gray-800 mb-2">
         Opiniones de nuestros clientes
       </h2>
 
-      {/* Filtro */}
       <select
         value={paisFiltro}
         onChange={(e) => {
@@ -277,8 +274,7 @@ export default function SliderReseñas() {
         <option value="mx">México</option>
       </select>
 
-      {/* Promedio */}
-      <div className="w-14 h-14 flex items-center justify-center rounded-full border-2 border-yellow-400 bg-white">
+      <div className="w-14 h-14 flex items-center justify-center rounded-full border-2 border-yellow-400 bg-white mb-6">
         <span className="text-yellow-600 font-bold text-lg">
           {(
             reseñasData.reduce((acc, r) => acc + r.estrellas, 0) /
@@ -287,7 +283,7 @@ export default function SliderReseñas() {
         </span>
       </div>
 
-      <div className="relative w-full overflow-hidden flex justify-center items-center">
+      <div className="relative w-full overflow-hidden flex justify-center">
         <div className="w-full max-w-xl h-96 flex justify-center items-center overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -295,10 +291,9 @@ export default function SliderReseñas() {
               initial={{ x: "100%", opacity: 0 }}
               animate={{ x: "0%", opacity: 1 }}
               exit={{ x: "-100%", opacity: 0 }}
-              transition={{ duration: 1, ease: "easeInOut" }}
+              transition={{ duration: 1 }}
               className="absolute w-full text-center px-8"
             >
-              {/* Estrellas */}
               <div className="flex justify-center mb-8">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -306,54 +301,38 @@ export default function SliderReseñas() {
                     className={`w-6 h-6 ${
                       i < review.estrellas
                         ? "text-yellow-400 fill-yellow-400"
-                        : "text-gray-300 fill-transparent"
+                        : "text-gray-300"
                     }`}
                   />
                 ))}
               </div>
 
-              {/* Comentario */}
               <p className="italic text-gray-700 text-md mb-8">
                 “{review.comentario}”
               </p>
 
-              {/* Info inferior */}
-              <div className="flex flex-col mt-3 space-y-2">
-
-                {/* Nombre + fecha + bandera */}
-                <div className="flex justify-between items-center mb-6">
-                  <div className="flex flex-col text-left">
-                    <p className="font-semibold text-gray-900">
-                      {review.nombre}
-                    </p>
-                    <p className="text-xs text-gray-500">
-                      {formatFecha(review.fecha)}
-                    </p>
-                  </div>
-
-                  <img
-                    src={FLAGS[review.bandera]}
-                    alt="Bandera"
-                    className="w-9 h-6 rounded-sm object-cover"
-                  />
+              <div className="flex justify-between items-center mb-6">
+                <div className="text-left">
+                  <p className="font-semibold">{review.nombre}</p>
+                  <p className="text-xs text-gray-500">
+                    {formatFecha(review.fecha)}
+                  </p>
                 </div>
+                <img
+                  src={FLAGS[review.bandera]}
+                  className="w-9 h-6 rounded-sm"
+                />
+              </div>
 
-                <div className="flex justify-center gap-6 text-xs text-gray-500">
-
-                  {/* Ciudad */}
-                  <span className="flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
-                    {review.ciudad}
-                  </span>
-
-                  {/* Método: PayPal → ARS, ARS → PayPal, etc */}
-                  <span className="flex items-center gap-1">
-                    <Repeat className="w-3 h-3" />
-                    {review.metodo}
-                  </span>
-
-                </div>
-
+              <div className="flex justify-center gap-6 text-xs text-gray-500">
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3 h-3" />
+                  {review.ciudad}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Repeat className="w-3 h-3" />
+                  {review.metodo}
+                </span>
               </div>
             </motion.div>
           </AnimatePresence>
