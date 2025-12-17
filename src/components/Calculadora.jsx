@@ -47,8 +47,8 @@ const applyPayPalFee = (grossUSD) => {
 Spreads
 ----------------------- */
 // Spreads generales
-const SPREAD_COMPRAR = 0.05;
-const SPREAD_VENDER = 0.07;
+const SPREAD_COMPRAR = 0.06;
+const SPREAD_VENDER = 0.08;
 
 // Tipos de cambio MXN
 const MXN_RATE_VENDER = 16.00;
@@ -601,7 +601,6 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
       <>
         <LinkIcon size={14} className="text-gray-700 mr-1" />
         <span className="text-xs font-medium text-gray-700">
-          Paga con link o QR al instante
         </span>
       </>
     )}
