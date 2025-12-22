@@ -47,7 +47,7 @@ const applyPayPalFee = (grossUSD) => {
 Spreads
 ----------------------- */
 // Spreads generales
-const SPREAD_COMPRAR = 0.06;
+const SPREAD_COMPRAR = 0.07;
 const SPREAD_VENDER = 0.08;
 
 // Tipos de cambio MXN
