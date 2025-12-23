@@ -601,6 +601,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
       <>
         <LinkIcon size={14} className="text-gray-700 mr-1" />
         <span className="text-xs font-medium text-gray-700">
+          Paga con link o QR al instante
         </span>
       </>
     )}
@@ -638,6 +639,25 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
               className={`relative mt-6 p-1 rounded-lg cursor-pointer transition border border-gray-300 ${
                 selectedCurrency === "ARS" ? "bg-blue-50" : "bg-gray-50"
               }`}
+            >
+              {/* SPAN SEGÚN OPERACIÓN */}
+              {operation === "vender" ? (
+                // VENDER → cbu
+                <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
+                  <Zap size={14} className="text-gray-700 mr-1" />
+                  <span className="text-xs font-medium text-gray-700">
+                    Envío rápido por CBU / CVU
+                  </span>
+                </div>
+              ) : (
+                // COMPRAR → LINK/QR
+                <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+                  <LinkIcon size={14} className="text-gray-700" />
+                  <span className="text-xs font-medium text-gray-700">
+                    Paga con CBU / CVU al instante
+                  </span>
+                </div>
+              )}
             >
               <img
                 src="https://i.postimg.cc/0yxDfVFF/Flag-of-Argentina-svg.png"
