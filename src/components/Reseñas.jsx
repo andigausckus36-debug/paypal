@@ -13,6 +13,33 @@ const FLAGS = {
 // Reseñas
 const reseñasData = [
   {
+  nombre: " Juan Moreira",
+    comentario: " Gracias Andrés por el buen trato y la disponibilidad es usted muy responsable gracias",
+    fecha: "2025-12-20",
+    estrellas: 5,
+    bandera: "co",
+    ciudad: " Cartagena",
+    metodo: "COP → PayPal",
+  },
+  {
+    nombre: " María Lorenzi",
+    comentario: " Me guiaron en todo el proceso y pude cargar mi cuenta de PayPal sin problema y bastante rápido buen servicio",
+    fecha: "2025-12-20",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: " Ayacucho",
+    metodo: "ARS → PayPal",
+  },
+  {
+    nombre: " Andrés Olivera",
+    comentario: " Todo salió bien buen servicio lo recomiendo",
+    fecha: "2025-12-19",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: " Córdoba",
+    metodo: "ARS → PayPal",
+  },
+  {
     nombre: "Paula Liz",
     comentario: "Todo perfecto, buena atención y cotización también.",
     fecha: "2025-12-16",
