@@ -444,7 +444,8 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
           )}
 
           <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6">
-           Elige entre ARS, MXN, BRL o COP para recibir o pagar
+           Selecciona
+  entre ARS, MXN, BRL o COP para recibir o pagar
           </h3>
         </div>
 
