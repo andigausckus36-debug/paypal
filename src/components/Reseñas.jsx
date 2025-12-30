@@ -13,6 +13,25 @@ const FLAGS = {
 // Reseñas
 const reseñasData = [
   {
+    nombre: "Lucia Guisi",
+    comentario: "Pude cargar mi cuenta PayPal sin problemas",
+    fecha: "2025-12-30",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: " Bermejo",
+    metodo: "ARS → PayPal",
+  },
+  
+  {
+    nombre: "Gabriela Aguirre",
+    comentario: "Recomiendo este servicio todo salió bien",
+    fecha: "2025-12-29",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: " Córdoba",
+    metodo: "ARS → PayPal",
+  },
+  {
   nombre: " Juan Moreira",
     comentario: " Gracias Andrés por el buen trato y la disponibilidad es usted muy responsable gracias",
     fecha: "2025-12-20",
