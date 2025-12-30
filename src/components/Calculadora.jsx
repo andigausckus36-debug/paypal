@@ -47,8 +47,8 @@ const applyPayPalFee = (grossUSD) => {
 Spreads
 ----------------------- */
 // Spreads generales
-const SPREAD_COMPRAR = 0.08;
-const SPREAD_VENDER = 0.09;
+const SPREAD_COMPRAR = 0.09;
+const SPREAD_VENDER = 0.10;
 
 // Tipos de cambio MXN
 const MXN_RATE_VENDER = 16.00;
@@ -69,7 +69,8 @@ export default function Calculadora() {
   const [dolarBlue, setDolarBlue] = useState({ compra: 0, venta: 0 });
 
   const [variacion, setVariacion] = useState(null);
-  const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
+  const [ultimaActualizacion, setUltimaActualizacion] = us
+    eState(null);
 
   const [usd, setUsd] = useState(5);
   const [ars, setArs] = useState("");
