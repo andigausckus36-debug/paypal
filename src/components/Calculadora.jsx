@@ -432,10 +432,12 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
           </button>
         </div>
 
-        <div className="text-center mt-6 text-gray-600">
-          <p>
-            Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
-          </p>
+          <div className="text-center mt-6 bg-green-500 text-white p-4">
+            <p>
+              Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
+            </p>
+          </div>
+
 
           {ultimaActualizacion && (
             <p className="mt-1 mb-6 text-xs text-gray-500 italic">
