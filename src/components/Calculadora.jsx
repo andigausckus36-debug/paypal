@@ -414,42 +414,44 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
   JSX
   ----------------------- */
   return (
-    <>
-      <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <button
-            onClick={() => setOperation("vender")}
-            className={`w-full py-3 rounded-lg font-semibold text-lg ${venderBtnClasses}`}
-          >
-            Vender
-          </button>
+  <>
+    <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        <button
+          onClick={() => setOperation("vender")}
+          className={`w-full py-3 rounded-lg font-semibold text-lg ${venderBtnClasses}`}
+        >
+          Vender
+        </button>
 
-          <button
-            onClick={() => setOperation("comprar")}
-            className={`w-full py-3 rounded-lg font-semibold text-lg ${comprarBtnClasses}`}
-          >
-            Comprar
-          </button>
-        </div>
+        <button
+          onClick={() => setOperation("comprar")}
+          className={`w-full py-3 rounded-lg font-semibold text-lg ${comprarBtnClasses}`}
+        >
+          Comprar
+        </button>
+      </div>
 
-        <div className="text-center mt-6 text-green-500 underline">
-  <p>
-    Compra ${dolarBlue.compra} Venta ${dolarBlue.venta}
-  </p>
-</div>
+      <div className="text-center mt-6 text-green-500 underline">
+        <p>
+          Compra ${dolarBlue.compra} Venta ${dolarBlue.venta}
+        </p>
+      </div>
 
+      {ultimaActualizacion && (
+        <p className="mt-1 mb-6 text-xs text-gray-500 italic">
+          Última actualización {ultimaActualizacion}
+        </p>
+      )}
+    </div>
 
-          {ultimaActualizacion && (
-            <p className="mt-1 mb-6 text-xs text-gray-500 italic">
-              Última actualización {ultimaActualizacion}
-            </p>
-          )}
+    {/* TÍTULO FUERA DE LA TARJETA */}
+    <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6 text-center">
+      Selecciona entre ARS, MXN, BRL o COP para recibir o pagar
+    </h3>
+  
+);
 
-          <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6">
-           Selecciona
-  entre ARS, MXN, BRL o COP para recibir o pagar
-          </h3>
-        </div>
 
         <div className="space-y-10">
           {/* USD Input */}
