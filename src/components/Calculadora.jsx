@@ -434,7 +434,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
 
         <div className="text-center mt-6 flex justify-center gap-4">
   {/* Caja de Compra */}
-  <div className="bg-green-500 text-white p-4 rounded w-40">
+  <div className="bg-green-500 text-white p-2 rounded-3xl w-40">
     <p>Compra ${dolarBlue.compra}</p>
   </div>
 
