@@ -13,6 +13,42 @@ const FLAGS = {
 // Reseñas
 const reseñasData = [
   {
+    nombre: "Lucas",
+    comentario: "todo salió bien!",
+    fecha: "2025-12-16",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "Olavarría",
+    metodo: "ARS → PayPal",
+  },
+  {
+    nombre: "Marito Salas",
+    comentario: "Buenisimo!! los recomiendo!!",
+    fecha: "2025-12-16",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "Tandil",
+    metodo: "ARS → PayPal",
+  },
+  {
+    nombre: "Lu Gausini",
+    comentario: "me recomendó la página una amiga y decidí probarla y la verdad que me sorprendió lo rápido de la atención",
+    fecha: "2025-12-15",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "Río Cuarto",
+    metodo: "ARS → PayPal",
+  },
+  {
+    nombre: "Marcos Einis",
+    comentario: "el cambio fué rápido y seguro",
+    fecha: "2025-12-14",
+    estrellas: 5,
+    bandera: "ar",
+    ciudad: "La Plata",
+    metodo: "ARS → PayPal",
+  },
+  {
     nombre: "Lucia Guisi",
     comentario: "Pude cargar mi cuenta PayPal sin problemas",
     fecha: "2025-12-30",

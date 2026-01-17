@@ -393,7 +393,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
 }
 
     const whatsappUrl =
-      "https://api.whatsapp.com/send?phone=5493548610510&text=" +
+      "https://api.whatsapp.com/send?phone=5493548563662&text=" +
       encodeURIComponent(message.trim());
 
     window.open(whatsappUrl, "_blank");
