@@ -432,16 +432,10 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
           </button>
         </div>
 
-        <div className="text-center mt-6 flex justify-center gap-4">
-  {/* Caja de Compra */}
-  <div className="bg-green-500 text-white p-2 rounded-3xl w-40">
-    <p>Compra ${dolarBlue.compra}</p>
-  </div>
-
-  {/* Caja de Venta */}
-  <div className="bg-green-500 text-white p-4 rounded w-40">
-    <p>Venta ${dolarBlue.venta}</p>
-  </div>
+        <div className="text-center mt-6 text-green-500 underline">
+  <p>
+    Compra ${dolarBlue.compra} Venta ${dolarBlue.venta}
+  </p>
 </div>
 
 
