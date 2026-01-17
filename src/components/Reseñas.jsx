@@ -15,7 +15,7 @@ const reseñasData = [
   {
     nombre: "Lucas",
     comentario: "todo salió bien!",
-    fecha: "2025-12-16",
+    fecha: "2025-01-16",
     estrellas: 5,
     bandera: "ar",
     ciudad: "Olavarría",
@@ -24,7 +24,7 @@ const reseñasData = [
   {
     nombre: "Marito Salas",
     comentario: "Buenisimo!! los recomiendo!!",
-    fecha: "2025-12-16",
+    fecha: "2025-01-16",
     estrellas: 5,
     bandera: "ar",
     ciudad: "Tandil",
@@ -33,7 +33,7 @@ const reseñasData = [
   {
     nombre: "Lu Gausini",
     comentario: "me recomendó la página una amiga y decidí probarla y la verdad que me sorprendió lo rápido de la atención",
-    fecha: "2025-12-15",
+    fecha: "2025-01-15",
     estrellas: 5,
     bandera: "ar",
     ciudad: "Río Cuarto",
@@ -42,7 +42,7 @@ const reseñasData = [
   {
     nombre: "Marcos Einis",
     comentario: "el cambio fué rápido y seguro",
-    fecha: "2025-12-14",
+    fecha: "2025-01-14",
     estrellas: 5,
     bandera: "ar",
     ciudad: "La Plata",
