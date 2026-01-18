@@ -451,32 +451,35 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
     </h3>
 
 
-        <div className="space-y-10">
-          {/* USD Input */}
-          <div>
-            <label className="block text-sm font-medium text-left text-gray-700 mb-2">
-              {operation === "vender" ? "Tú envías" : "Tú compras"}
-            </label>
-            <div className="relative">
-              <img
-                src="https://i.postimg.cc/Dyt3zDBw/1000011533.png"
-                alt="PayPal Logo"
-                className="absolute left-2 top-1/2 -translate-y-1/2 h-18 w-28"
-              />
-              <input
-                type="number"
-                inputMode="decimal"
-                min="0"
-                step="0.01"
-                value={usd}
-                onChange={onChangeUsd}
-                className="w-full p-4 pl-16 text-3xl font-medium border border-gray-400 outline-none rounded-lg text-center"
-              />
-              <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
-                USD
-              </span>
+          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+            <div className="space-y-10">
+              {/* USD Input */}
+              <div>
+                <label className="block text-sm font-medium text-left text-gray-700 mb-2">
+                  {operation === "vender" ? "Tú envías" : "Tú compras"}
+                </label>
+                <div className="relative">
+                  <img
+                    src="https://i.postimg.cc/Dyt3zDBw/1000011533.png"
+                    alt="PayPal Logo"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 h-18 w-28"
+                  />
+                  <input
+                    type="number"
+                    inputMode="decimal"
+                    min="0"
+                    step="0.01"
+                    value={usd}
+                    onChange={onChangeUsd}
+                    className="w-full p-4 pl-16 text-3xl font-medium border border-gray-400 outline-none rounded-lg text-center"
+                  />
+                  <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
+                    USD
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>         
+         
 
           {/* MXN Input */}
           <div>
