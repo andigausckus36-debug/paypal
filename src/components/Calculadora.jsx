@@ -452,7 +452,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
 
 
           <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-            <div className="mb-6 space-y-10">
+            <div className="mb-10 space-y-10">
               {/* USD Input */}
               <div>
                 <label className="block text-sm font-medium text-left text-gray-700 mb-2">
