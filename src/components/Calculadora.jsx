@@ -434,7 +434,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
 
       <div className="text-center mt-6 text-green-500 underline">
         <p>
-          Compra ${dolarBlue.compra} Venta ${dolarBlue.venta}
+          Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
         </p>
       </div>
 
