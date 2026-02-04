@@ -33,7 +33,7 @@ const reseñasData = [
   
   {
     nombre: "Pipo Aguirre",
-    comentario: "Serios y responsables a la hora de operar",
+    comentario: "recomendables 👌",
     fecha: "2025-02-01",
     estrellas: 5,
     bandera: "ar",
