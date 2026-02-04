@@ -22,7 +22,7 @@ const reseñasData = [
     metodo: "ARS → PayPal",
   },
   {
-    nombre: "Marcelo Luna",
+    nombre: "Ricardo Oliva",
     comentario: "Serios y responsables a la hora de operar",
     fecha: "2025-02-01",
     estrellas: 5,
@@ -32,7 +32,7 @@ const reseñasData = [
   },
   
   {
-    nombre: "Marcelo Luna",
+    nombre: "Pipo Aguirre",
     comentario: "Serios y responsables a la hora de operar",
     fecha: "2025-02-01",
     estrellas: 5,
@@ -59,7 +59,7 @@ const reseñasData = [
     metodo: "ARS → PayPal",
   },
   {
-    nombre: "Lucas Lomaz",
+    nombre: "Francisco",
     comentario: "Demoraron 45 minutos en enviarme el saldo pero qun así es buen tiempo",
     fecha: "2025-01-20",
     estrellas: 4,
