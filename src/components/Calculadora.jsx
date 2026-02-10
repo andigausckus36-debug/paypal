@@ -776,7 +776,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                   onChange={handleFormChange}
                   required
                   inputMode="numeric"
-                  placeholder="Ej: +55 21 99888 7777"
+                  placeholder="Ej: +54 11 1234 5678"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
