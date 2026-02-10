@@ -11,28 +11,29 @@ const FLAGS = {
 };
 
 // Reseñas
-const reseñasData = [
-  {
-    nombre: "Agustina Luz",
-    comentario: "Recomendables!,
-    fecha: "2025-02-09",
-    estrellas: 5,
-    bandera: "ar",
-    ciudad: "Pilar",
-    metodo: "ARS → PayPal",
-  },
+  const reseñasData = [
+    {
+      nombre: "Agustina Luz",
+      comentario: "Recomendables!",
+      fecha: "2025-02-09",
+      estrellas: 5,
+      bandera: "ar",
+      ciudad: "Pilar",
+      metodo: "ARS → PayPal",
+    },
+
   {
     nombre: "Mariana",
     comentario: "podrian mejorar un poco mas la cotización, fuera de eso excelente el servicio que ofrecen para cargar paypal",
     fecha: "2025-02-08",
     estrellas: 4,
     bandera: "ar",
-    ciudad: "San Salvador de Jujuy"zj,
+    ciudad: "San Salvador de Jujuy",
     metodo: "ARS → PayPal",
   },
   {
     nombre: "Fede Rodriguez",
-    comentario: "Genial el servicio, super rapido y fácil todo"rapido y facil,
+    comentario: "Genial el servicio, super rapido y fácil todo rapido y facil",
     fecha: "2025-02-08",
     estrellas: 5,
     bandera: "ar",
