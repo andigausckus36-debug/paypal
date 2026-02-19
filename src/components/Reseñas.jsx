@@ -12,6 +12,43 @@ const FLAGS = {
 
 // Reseñas
   const reseñasData = [
+
+    {
+      nombre: "Luis Hernández",
+      comentario: "Atención inmediata y proceso claro. Todo se completó rápido y sin problemas. Muy recomendable.",
+      fecha: "2025-02-14",
+      estrellas: 5,
+      bandera: "mx",
+      ciudad: "Ciudad de México",
+    metodo: "MXN → PayPal",
+    },
+    {
+      nombre: "Andres Gomez",
+      comentario: "Atención rápida y clara. Todo el proceso fue seguro y sin demoras.",
+      fecha: "2025-02-14",
+      estrellas: 5,
+      bandera: "co",
+      ciudad: "Medellin",
+metodo: "COP → PayPal",
+    },
+    {
+      nombre: "Luis Hernández",
+      comentario: "Atención inmediata y proceso claro. Todo se completó rápido y sin problemas. Muy recomendable.",
+      fecha: "2025-02-14",
+      estrellas: 5,
+      bandera: "mx",
+      ciudad: "Ciudad de México",
+    metodo: "MXN → PayPal",
+    },
+    {
+      nombre: "Carlos Ramírez",
+      comentario: "Excelente servicio. La compra se hizo en minutos y todo fue muy claro. 100% confiable y rápido.!",
+      fecha: "2025-02-12",
+      estrellas: 5,
+      bandera: "co",
+      ciudad: "Bogotá",
+metodo: "COL → PayPal",
+    },
     {
       nombre: "Agustina Luz",
       comentario: "Recomendables!",
