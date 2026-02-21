@@ -15,8 +15,8 @@ const FLAGS = {
 
     {
       nombre: "Luis Hernández",
-      comentario: "Atención inmediata y proceso claro. Todo se completó rápido y sin problemas. Muy recomendable.",
-      fecha: "2025-02-14",
+      comentario: "Muy confiable, proceso sencillo y rápido. Lo recomiendo totalmente.",
+      fecha: "2025-02-17",
       estrellas: 5,
       bandera: "mx",
       ciudad: "Ciudad de México",
@@ -25,7 +25,7 @@ const FLAGS = {
     {
       nombre: "Andres Gomez",
       comentario: "Atención rápida y clara. Todo el proceso fue seguro y sin demoras.",
-      fecha: "2025-02-14",
+      fecha: "2025-02-16",
       estrellas: 5,
       bandera: "co",
       ciudad: "Medellin",
