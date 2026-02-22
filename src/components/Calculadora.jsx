@@ -712,7 +712,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
   className="w-full bg-green-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-600"
   disabled={!!minMessage || !selectedCurrency}
 >
-  Iniciar Operación
+  Continuar
 </button>
         </div>
       
