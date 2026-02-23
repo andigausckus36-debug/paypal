@@ -523,7 +523,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
       <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
         <LinkIcon size={14} className="text-gray-700" />
         <span className="text-xs font-medium text-gray-700">
-          Paga con link al instante
+          Paga con Link de pago
         </span>
       </div>
               )}
@@ -560,7 +560,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                 <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
                   <LinkIcon size={14} className="text-gray-700" />
                   <span className="text-xs font-medium text-gray-700">
-                    Paga con link al instante
+                    Paga con link de pago
                   </span>
                 </div>
               )}
@@ -610,7 +610,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
       <>
         <LinkIcon size={14} className="text-gray-700 mr-1" />
         <span className="text-xs font-medium text-gray-700">
-          Paga con link al instante
+          Paga con link de pago
         </span>
       </>
     )}
@@ -663,7 +663,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                 <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
                   <LinkIcon size={14} className="text-gray-700" />
                   <span className="text-xs font-medium text-gray-700">
-                  Paga con CBU / CVU al instante
+                  Paga con CBU / CVU o alias
                   </span>
                 </div>
               )}
