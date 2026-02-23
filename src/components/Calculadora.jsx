@@ -510,10 +510,10 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                   type="text"
                   value={usd ? mxn.toFixed(2) : ""}
                   readOnly
-                  className="w-full p-2 pl-6 text-3xl font-medium bg-transparent outline-none rounded-lg text-center"
+                  className="w-full p-2 pl-6 text-2xl font-medium bg-transparent outline-none rounded-lg text-center"
                 />
 
-                <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
+                <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
                   MXN
                 </span>
               </div>
@@ -579,12 +579,12 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                     : ""
                 }
                 readOnly
-                className={`w-full p-2 pl-10 text-3xl font-medium outline-none rounded-lg text-center ${
+                className={`w-full p-2 pl-10 text-2xl font-medium outline-none rounded-lg text-center ${
                   selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
                 }`}
               />
 
-              <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
+              <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
                 BRL
               </span>
             </div>
@@ -633,7 +633,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
         : ""
     }
     readOnly
-    className={`w-full p-2 pl-10 text-3xl font-medium outline-none rounded-lg text-center ${
+    className={`w-full p-2 pl-10 text-2xl font-medium outline-none rounded-lg text-center ${
       selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
     }`}
   />
@@ -680,11 +680,11 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                 inputMode="decimal"
                 value={ars ? ars : ""}
                 onChange={onChangeArs}
-                className="w-full p-4 pl-10 text-3xl font-medium bg-transparent outline-none rounded-lg text-center"
+                className="w-full p-4 pl-10 text-2xl font-medium bg-transparent outline-none rounded-lg text-center"
                 placeholder="0.00"
               />
 
-              <span className="absolute inset-y-0 right-2 flex items-center text-xl text-gray-500">
+              <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
                 ARS
               </span>
             </div>
