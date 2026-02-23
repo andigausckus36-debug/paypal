@@ -503,7 +503,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                 <img
                   src="https://i.postimg.cc/tgDtZFdj/Flag-of-Mexico-svg.png"
                   alt="MXN"
-                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-8 w-12"
                 />
 
                 <input
