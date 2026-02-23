@@ -415,6 +415,12 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
   ----------------------- */
   return (
   <>
+    {/* TÍTULO FUERA DE LA TARJETA */}
+    <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6 text-center">
+      Selecciona entre ARS, MXN, BRL o COP para recibir o pagar
+    </h3>
+
+    
     <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
       <div className="grid grid-cols-2 gap-4 mb-6">
         <button
@@ -445,10 +451,7 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
       )}
     </div>
 
-    {/* TÍTULO FUERA DE LA TARJETA */}
-    <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6 text-center">
-      Selecciona entre ARS, MXN, BRL o COP para recibir o pagar
-    </h3>
+    
 
 
           <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
