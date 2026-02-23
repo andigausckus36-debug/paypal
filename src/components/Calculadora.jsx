@@ -421,8 +421,8 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
     </h3>
 
     
-    <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md">
-      <div className="grid grid-cols-2 gap-4 mb-6">
+    <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md rounded-lg">
+      <div className="grid grid-cols-2 gap-4 mb-6 rounded-lg">
         <button
           onClick={() => setOperation("vender")}
           className={`w-full py-3 rounded-lg font-semibold text-lg ${venderBtnClasses}`}
