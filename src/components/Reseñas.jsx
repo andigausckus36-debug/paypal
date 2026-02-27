@@ -47,7 +47,7 @@ metodo: "COP → PayPal",
       estrellas: 5,
       bandera: "co",
       ciudad: "Bogotá",
-metodo: "COL → PayPal",
+metodo: "COP → PayPal",
     },
     {
       nombre: "Agustina Luz",
