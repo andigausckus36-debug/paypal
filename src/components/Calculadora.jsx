@@ -47,16 +47,16 @@ const applyPayPalFee = (grossUSD) => {
 Spreads
 ----------------------- */
 // Spreads generales
-const SPREAD_COMPRAR = 0.05;
-const SPREAD_VENDER = 0.08;
+const SPREAD_COMPRAR = 0.02;
+const SPREAD_VENDER = 0.06;
 
 // Tipos de cambio MXN
-const MXN_RATE_VENDER = 16.00;
-const MXN_RATE_COMPRAR = 16.50;
+const MXN_RATE_VENDER = 16.0;
+const MXN_RATE_COMPRAR = 16.5;
 
 // Tipos de cambio BRL
-const BRL_RATE_VENDER = 4.80;
-const BRL_RATE_COMPRAR = 4.90;
+const BRL_RATE_VENDER = 4.8;
+const BRL_RATE_COMPRAR = 4.9;
 
 // Tipos de cambio COP
 const COP_RATE_VENDER = 3340;
@@ -71,21 +71,21 @@ export default function Calculadora() {
   const [variacion, setVariacion] = useState(null);
   const [ultimaActualizacion, setUltimaActualizacion] = useState(null);
 
-  const [usd, setUsd] = useState(5);
+  const [usd, setUsd] = useState(10);
   const [ars, setArs] = useState("");
   const [lastEdited, setLastEdited] = useState("usd");
 
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-  fullName: "",
-  paypalEmail: "",
-  whatsapp: "",
-  cbu: "",
-  bankOrWallet: "",
-  clabe: "",
-  pix: "",      // ← FALTA AGREGAR
-  nequi: ""     // ← FALTA AGREGAR
-});
+    fullName: "",
+    paypalEmail: "",
+    whatsapp: "",
+    cbu: "",
+    bankOrWallet: "",
+    clabe: "",
+    pix: "", // ← FALTA AGREGAR
+    nequi: "", // ← FALTA AGREGAR
+  });
 
   const [minMessage, setMinMessage] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState(null);
@@ -179,8 +179,8 @@ export default function Calculadora() {
         ? Number(usd)
         : Number((parseFloat(ars) || 0) / tipoAplicado);
 
-    if (isNaN(currUsd) || currUsd < 5) {
-      setMinMessage("Ingresa un mínimo de 5 USD");
+    if (isNaN(currUsd) || currUsd < 10) {
+      setMinMessage("Ingresa un mínimo de 10 USD");
     } else {
       setMinMessage("");
     }
@@ -208,9 +208,7 @@ export default function Calculadora() {
   // Cálculo MXN
   // -----------------------
   const mxn =
-    operation === "vender"
-      ? usd * MXN_RATE_VENDER
-      : usd * MXN_RATE_COMPRAR;
+    operation === "vender" ? usd * MXN_RATE_VENDER : usd * MXN_RATE_COMPRAR;
 
   /* -----------------------
   Handlers
@@ -254,7 +252,7 @@ export default function Calculadora() {
     }
 
     if (Number(usd) < 5) {
-      alert("Ingresa un mínimo de 5 USD");
+      alert("Ingresa un mínimo de 10 USD");
       return;
     }
 
@@ -316,15 +314,13 @@ ${formData.clabe}
 Al enviar tu pedido, te daremos un link de AstroPay para que completes tu pago.
 `;
       }
-    }
+    } else if (selectedCurrency === "BRL") {
+      const montoBRL =
+        operation === "vender"
+          ? (usd * BRL_RATE_VENDER).toFixed(2)
+          : (usd * BRL_RATE_COMPRAR).toFixed(2);
 
-    else if (selectedCurrency === "BRL") {
-  const montoBRL =
-    operation === "vender"
-      ? (usd * BRL_RATE_VENDER).toFixed(2)
-      : (usd * BRL_RATE_COMPRAR).toFixed(2);
-
-  message += `
+      message += `
 Monto BRL
 $${montoBRL} BRL
 
@@ -340,27 +336,25 @@ WhatsApp
 ${formData.whatsapp}
 `;
 
-  if (operation === "vender") {
-    message += `
+      if (operation === "vender") {
+        message += `
 Tu clave Pix
 ${formData.pix}
 `;
-  }
+      }
 
-  if (operation === "comprar") {
-    message += `
+      if (operation === "comprar") {
+        message += `
 Al enviar tu pedido, te daremos un link para que completes tu pago.
 `;
-  }
-    }
+      }
+    } else if (selectedCurrency === "COP") {
+      const montoCOP =
+        operation === "vender"
+          ? (usd * COP_RATE_VENDER).toFixed(2)
+          : (usd * COP_RATE_COMPRAR).toFixed(2);
 
-    else if (selectedCurrency === "COP") {
-  const montoCOP =
-    operation === "vender"
-      ? (usd * COP_RATE_VENDER).toFixed(2)
-      : (usd * COP_RATE_COMPRAR).toFixed(2);
-
-  message += `
+      message += `
 Monto COP
 $${montoCOP} COP
 
@@ -376,21 +370,21 @@ WhatsApp
 ${formData.whatsapp}
 `;
 
-  // Si VENDE → debe ingresar su número Nequi
-  if (operation === "vender") {
-    message += `
+      // Si VENDE → debe ingresar su número Nequi
+      if (operation === "vender") {
+        message += `
 Número teléfono Nequi
 ${formData.nequi}
 `;
-  }
+      }
 
-  // Si COMPRA → mensaje de link de pago
-  if (operation === "comprar") {
-    message += `
+      // Si COMPRA → mensaje de link de pago
+      if (operation === "comprar") {
+        message += `
 Al enviar tu pedido, te daremos un link para que completes tu pago.
 `;
-  }
-}
+      }
+    }
 
     const whatsappUrl =
       "https://api.whatsapp.com/send?phone=5493548610510&text=" +
@@ -414,311 +408,305 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
   JSX
   ----------------------- */
   return (
-  <>
-    {/* TÍTULO FUERA DE LA TARJETA */}
-    <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6 text-center">
-      Selecciona entre ARS, MXN, BRL o COP para recibir o pagar
-    </h3>
+    <>
+      {/* TÍTULO FUERA DE LA TARJETA */}
+      <h3 className="text-3xl font-semibold text-gray-700 mt-4 mb-6 text-center">
+        Selecciona entre ARS, MXN, BRL o COP para recibir o pagar
+      </h3>
 
-    
-    <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md rounded-xl">
-      <div className="grid grid-cols-2 gap-4 mb-6 rounded-xl">
-        <button
-          onClick={() => setOperation("vender")}
-          className={`w-full py-3 rounded-lg font-semibold text-lg ${venderBtnClasses}`}
-        >
-          Vender
-        </button>
+      <div className="bg-white mb-8 p-6 md:p-8 max-w-md mx-auto w-full shadow-md rounded-xl">
+        <div className="grid grid-cols-2 gap-4 mb-6 rounded-xl">
+          <button
+            onClick={() => setOperation("vender")}
+            className={`w-full py-3 rounded-lg font-semibold text-lg ${venderBtnClasses}`}
+          >
+            Vender
+          </button>
 
-        <button
-          onClick={() => setOperation("comprar")}
-          className={`w-full py-3 rounded-lg font-semibold text-lg ${comprarBtnClasses}`}
-        >
-          Comprar
-        </button>
+          <button
+            onClick={() => setOperation("comprar")}
+            className={`w-full py-3 rounded-lg font-semibold text-lg ${comprarBtnClasses}`}
+          >
+            Comprar
+          </button>
+        </div>
+
+        <div className="text-center mt-6 text-green-500 underline">
+          <p>
+            Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
+          </p>
+        </div>
+
+        {ultimaActualizacion && (
+          <p className="mt-1 mb-6 text-xs text-gray-500 italic">
+            Última actualización {ultimaActualizacion}
+          </p>
+        )}
       </div>
 
-      <div className="text-center mt-6 text-green-500 underline">
-        <p>
-          Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}
-        </p>
-      </div>
-
-      {ultimaActualizacion && (
-        <p className="mt-1 mb-6 text-xs text-gray-500 italic">
-          Última actualización {ultimaActualizacion}
-        </p>
-      )}
-    </div>
-
-    
-
-
-          <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-            <div className="mb-10 space-y-10">
-              {/* USD Input */}
-              <div>
-                <label className="block text-sm font-medium text-left text-gray-700 mb-2">
-                  {operation === "vender" ? "Tú envías" : "Tú compras"}
-                </label>
-                <div className="relative">
-                  <img
-                    src="https://i.postimg.cc/Dyt3zDBw/1000011533.png"
-                    alt="PayPal Logo"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 h-18 w-28"
-                  />
-                  <input
-                    type="number"
-                    inputMode="decimal"
-                    min="0"
-                    step="0.01"
-                    value={usd}
-                    onChange={onChangeUsd}
-                    className="w-full p-4 pl-16 text-2xl font-medium border border-gray-400 outline-none rounded-lg text-center"
-                  />
-                  <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
-                    USD
-                  </span>
-                </div>
-              </div>
-            </div>
-         
-
-          {/* MXN Input */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+        <div className="mb-10 space-y-10">
+          {/* USD Input */}
           <div>
-            <div className="flex justify-between items-center">
-              <label className="block text-sm font-medium text-gray-700">
-                {operation === "vender" ? "Tú recibes" : "Tú pagas"}
-              </label>
+            <label className="block text-sm font-medium text-left text-gray-700 mb-2">
+              {operation === "vender" ? "Tú envías" : "Tú compras"}
+            </label>
+            <div className="relative">
+              <img
+                src="https://i.postimg.cc/Dyt3zDBw/1000011533.png"
+                alt="PayPal Logo"
+                className="absolute left-2 top-1/2 -translate-y-1/2 h-18 w-28"
+              />
+              <input
+                type="number"
+                inputMode="decimal"
+                min="0"
+                step="0.01"
+                value={usd}
+                onChange={onChangeUsd}
+                className="w-full p-4 pl-16 text-2xl font-medium border border-gray-400 outline-none rounded-lg text-center"
+              />
+              <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
+                USD
+              </span>
             </div>
+          </div>
+        </div>
 
-            <div className="mt-2 relative">           
+        {/* MXN Input */}
+        <div>
+          <div className="flex justify-between items-center">
+            <label className="block text-sm font-medium text-gray-700">
+              {operation === "vender" ? "Tú recibes" : "Tú pagas"}
+            </label>
+          </div>
 
-              <div
-                onClick={() => setSelectedCurrency("MXN")}
-                className={`mb-8 relative p-3 rounded-lg cursor-pointer transition border border-gray-400 ${
-                  selectedCurrency === "MXN" ? "bg-blue-50" : "bg-gray-50"
-                }`}
-              >
-                <img
-                  src="https://i.postimg.cc/tgDtZFdj/Flag-of-Mexico-svg.png"
-                  alt="MXN"
-                  className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
-                />
-
-                <input
-                  type="text"
-                  value={usd ? mxn.toFixed(2) : ""}
-                  readOnly
-                  className="w-full p-2 pl-6 text-2xl font-medium bg-transparent outline-none rounded-lg text-center"
-                />
-
-                <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
-                  MXN
-                </span>
-              </div>
-              
-
-              {operation === "comprar" && (
-      <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
-        <LinkIcon size={14} className="text-gray-700" />
-        <span className="text-xs font-medium text-gray-700">
-          Paga con Link de pago
-        </span>
-      </div>
-              )}
-
-              {operation === "vender" && (
-      <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
-        <Zap size={14} className="text-gray-700" />
-        <span className="text-xs font-medium text-gray-700">
-          Envío rápido por CLABE
-        </span>
-      </div>
-              )}
-            </div>
-
-            {/* BRL Input */}
+          <div className="mt-2 relative">
             <div
-              onClick={() => setSelectedCurrency("BRL")}
-              className={`mb-8 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
-                selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
+              onClick={() => setSelectedCurrency("MXN")}
+              className={`mb-8 relative p-3 rounded-lg cursor-pointer transition border border-gray-400 ${
+                selectedCurrency === "MXN" ? "bg-blue-50" : "bg-gray-50"
               }`}
             >
+              <img
+                src="https://i.postimg.cc/tgDtZFdj/Flag-of-Mexico-svg.png"
+                alt="MXN"
+                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+              />
 
-              {/* SPAN SEGÚN OPERACIÓN */}
+              <input
+                type="text"
+                value={usd ? mxn.toFixed(2) : ""}
+                readOnly
+                className="w-full p-2 pl-6 text-2xl font-medium bg-transparent outline-none rounded-lg text-center"
+              />
+
+              <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
+                MXN
+              </span>
+            </div>
+
+            {operation === "comprar" && (
+              <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+                <LinkIcon size={14} className="text-gray-700" />
+                <span className="text-xs font-medium text-gray-700">
+                  Paga con Link de pago
+                </span>
+              </div>
+            )}
+
+            {operation === "vender" && (
+              <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+                <Zap size={14} className="text-gray-700" />
+                <span className="text-xs font-medium text-gray-700">
+                  Envío rápido por CLABE
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* BRL Input */}
+          <div
+            onClick={() => setSelectedCurrency("BRL")}
+            className={`mb-8 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
+              selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
+            }`}
+          >
+            {/* SPAN SEGÚN OPERACIÓN */}
+            {operation === "vender" ? (
+              // VENDER → PIX
+              <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
+                <Zap size={14} className="text-gray-700 mr-1" />
+                <span className="text-xs font-medium text-gray-700">
+                  Envío rápido por Pix
+                </span>
+              </div>
+            ) : (
+              // COMPRAR → LINK/QR
+              <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+                <LinkIcon size={14} className="text-gray-700" />
+                <span className="text-xs font-medium text-gray-700">
+                  Paga con link de pago
+                </span>
+              </div>
+            )}
+
+            <img
+              src="https://i.postimg.cc/wBpJ6kG0/Flag-of-Brazil-svg.png"
+              alt="BRL"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+            />
+
+            <input
+              type="text"
+              value={
+                usd
+                  ? (operation === "vender"
+                      ? usd * BRL_RATE_VENDER
+                      : usd * BRL_RATE_COMPRAR
+                    ).toFixed(2)
+                  : ""
+              }
+              readOnly
+              className={`w-full p-2 pl-10 text-2xl font-medium outline-none rounded-lg text-center ${
+                selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
+              }`}
+            />
+
+            <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
+              BRL
+            </span>
+          </div>
+
+          {/* COP Input */}
+          <div
+            onClick={() => setSelectedCurrency("COP")}
+            className={`mb-8 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
+              selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
+            }`}
+          >
+            {/* BADGE ARRIBA A LA DERECHA */}
+            <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
               {operation === "vender" ? (
-                // VENDER → PIX
-                <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
+                <>
                   <Zap size={14} className="text-gray-700 mr-1" />
                   <span className="text-xs font-medium text-gray-700">
-                    Envío rápido por Pix
+                    Envío rápido por Nequi
                   </span>
-                </div>
+                </>
               ) : (
-                // COMPRAR → LINK/QR
-                <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
-                  <LinkIcon size={14} className="text-gray-700" />
+                <>
+                  <LinkIcon size={14} className="text-gray-700 mr-1" />
                   <span className="text-xs font-medium text-gray-700">
                     Paga con link de pago
                   </span>
-                </div>
+                </>
               )}
-
-              <img
-                src="https://i.postimg.cc/wBpJ6kG0/Flag-of-Brazil-svg.png"
-                alt="BRL"
-                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
-              />
-
-              <input
-                type="text"
-                value={
-                  usd
-                    ? (operation === "vender" ? usd * BRL_RATE_VENDER : usd * BRL_RATE_COMPRAR).toFixed(2)
-                    : ""
-                }
-                readOnly
-                className={`w-full p-2 pl-10 text-2xl font-medium outline-none rounded-lg text-center ${
-                  selectedCurrency === "BRL" ? "bg-blue-50" : "bg-gray-50"
-                }`}
-              />
-
-              <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
-                BRL
-              </span>
             </div>
 
-            {/* COP Input */}
-<div
-  onClick={() => setSelectedCurrency("COP")}
-  className={`mb-8 relative p-2 rounded-lg cursor-pointer transition border border-gray-400 ${
-    selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
-  }`}
->
+            <img
+              src="https://i.postimg.cc/j2y84bkZ/images.webp"
+              alt="COP"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+            />
 
-  {/* BADGE ARRIBA A LA DERECHA */}
-  <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
-    {operation === "vender" ? (
-      <>
-        <Zap size={14} className="text-gray-700 mr-1" />
-        <span className="text-xs font-medium text-gray-700">
-          Envío rápido por Nequi
-        </span>
-      </>
-    ) : (
-      <>
-        <LinkIcon size={14} className="text-gray-700 mr-1" />
-        <span className="text-xs font-medium text-gray-700">
-          Paga con link de pago
-        </span>
-      </>
-    )}
-  </div>
-
-  <img
-    src="https://i.postimg.cc/j2y84bkZ/images.webp"
-    alt="COP"
-    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
-  />
-
-  <input
-    type="text"
-    value={
-      usd
-        ? (operation === "vender"
-            ? usd * COP_RATE_VENDER
-            : usd * COP_RATE_COMPRAR
-          ).toFixed(2)
-        : ""
-    }
-    readOnly
-    className={`w-full p-2 pl-10 text-2xl font-medium outline-none rounded-lg text-center ${
-      selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
-    }`}
-  />
-
-  <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
-    COP
-  </span>
-</div>
-
-            <div
-              onClick={() => setSelectedCurrency("ARS")}
-              className={`relative mt-6 p-1 rounded-lg cursor-pointer transition border border-gray-300 ${
-                selectedCurrency === "ARS" ? "bg-blue-50" : "bg-gray-50"
+            <input
+              type="text"
+              value={
+                usd
+                  ? (operation === "vender"
+                      ? usd * COP_RATE_VENDER
+                      : usd * COP_RATE_COMPRAR
+                    ).toFixed(2)
+                  : ""
+              }
+              readOnly
+              className={`w-full p-2 pl-10 text-2xl font-medium outline-none rounded-lg text-center ${
+                selectedCurrency === "COP" ? "bg-blue-50" : "bg-gray-50"
               }`}
-            >
-              {/* SPAN SEGÚN OPERACIÓN */}
-              {operation === "vender" ? (
-                // VENDER → cbu
-                <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
-                  <Zap size={14} className="text-gray-700 mr-1" />
-                  <span className="text-xs font-medium text-gray-700">
-                    Envío rápido por CBU / CVU
-                  </span>
-                </div>
-              ) : (
-                // COMPRAR → LINK/QR
-                <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
-                  <LinkIcon size={14} className="text-gray-700" />
-                  <span className="text-xs font-medium text-gray-700">
+            />
+
+            <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
+              COP
+            </span>
+          </div>
+
+          <div
+            onClick={() => setSelectedCurrency("ARS")}
+            className={`relative mt-6 p-1 rounded-lg cursor-pointer transition border border-gray-300 ${
+              selectedCurrency === "ARS" ? "bg-blue-50" : "bg-gray-50"
+            }`}
+          >
+            {/* SPAN SEGÚN OPERACIÓN */}
+            {operation === "vender" ? (
+              // VENDER → cbu
+              <div className="absolute -top-3 right-1 flex items-center bg-white px-2 py-1 rounded-full shadow z-10">
+                <Zap size={14} className="text-gray-700 mr-1" />
+                <span className="text-xs font-medium text-gray-700">
+                  Envío rápido por CBU / CVU
+                </span>
+              </div>
+            ) : (
+              // COMPRAR → LINK/QR
+              <div className="absolute -top-3 right-1 flex items-center gap-2 bg-white px-2 py-1 rounded-full shadow z-10">
+                <LinkIcon size={14} className="text-gray-700" />
+                <span className="text-xs font-medium text-gray-700">
                   Paga con CBU / CVU o alias
-                  </span>
-                </div>
-              )}
-            
-              <img
-                src="https://i.postimg.cc/0yxDfVFF/Flag-of-Argentina-svg.png"
-                alt="ARS"
-                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
-              />
+                </span>
+              </div>
+            )}
 
-              <input
-                type="text"
-                readOnly
-                inputMode="decimal"
-                value={ars ? ars : ""}
-                onChange={onChangeArs}
-                className="w-full p-4 pl-10 text-2xl font-medium bg-transparent outline-none rounded-lg text-center"
-                placeholder="0.00"
-              />
+            <img
+              src="https://i.postimg.cc/0yxDfVFF/Flag-of-Argentina-svg.png"
+              alt="ARS"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-xl h-10 w-14"
+            />
 
-              <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
-                ARS
-              </span>
-            </div>
+            <input
+              type="text"
+              readOnly
+              inputMode="decimal"
+              value={ars ? ars : ""}
+              onChange={onChangeArs}
+              className="w-full p-4 pl-10 text-2xl font-medium bg-transparent outline-none rounded-lg text-center"
+              placeholder="0.00"
+            />
+
+            <span className="absolute inset-y-0 right-2 flex items-center text-gl text-gray-500">
+              ARS
+            </span>
           </div>
         </div>
+      </div>
 
-        {minMessage && (
-          <div className="mt-4 text-center text-sm text-red-600 font-medium">
-            {minMessage}
-          </div>
-        )}
-
-    {operation === "comprar" && (
-          <div className="mt-4 p-3 bg-yellow-50 rounded-md border border-yellow-200 text-sm">
-            <strong>USD netos a recibir en PayPal </strong>
-            <div className="text-xl font-bold mt-1">
-              {formatUSD(usdNetForBuyer)} USD
-            </div>
-            <div className="text-xs text-semibold mt-1">
-              PayPal te cobrará  una comisión de {(usdGrossForBuyer * 0.054 + 0.3).toFixed(2)} USD (5.4% + 0.30 USD)
-            </div>
-          </div>
-        )}
-
-        <div className="mt-6">
-          <button
-  onClick={() => setShowForm(true)}
-  className="w-full bg-green-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-600"
-  disabled={!!minMessage || !selectedCurrency}
->
-  Continuar
-</button>
+      {minMessage && (
+        <div className="mt-4 text-center text-sm text-red-600 font-medium">
+          {minMessage}
         </div>
-      
+      )}
+
+      {operation === "comprar" && (
+        <div className="mt-4 p-3 bg-yellow-50 rounded-md border border-yellow-200 text-sm">
+          <strong>USD netos a recibir en PayPal </strong>
+          <div className="text-xl font-bold mt-1">
+            {formatUSD(usdNetForBuyer)} USD
+          </div>
+          <div className="text-xs text-semibold mt-1">
+            PayPal te cobrará una comisión de{" "}
+            {(usdGrossForBuyer * 0.054 + 0.3).toFixed(2)} USD (5.4% + 0.30 USD)
+          </div>
+        </div>
+      )}
+
+      <div className="mt-6">
+        <button
+          onClick={() => setShowForm(true)}
+          className="w-full bg-green-500 text-white py-3 rounded-lg font-bold text-lg hover:bg-green-600"
+          disabled={!!minMessage || !selectedCurrency}
+        >
+          Continuar
+        </button>
+      </div>
 
       {/* FORM Modal */}
       {showForm && (
@@ -764,7 +752,8 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                 />
                 <p className="text-xs text-gray-500 text-left italic mt-1">
-                  La cuenta PayPal debe ser del mismo titular que realiza la operación.
+                  La cuenta PayPal debe ser del mismo titular que realiza la
+                  operación.
                 </p>
               </div>
 
@@ -785,11 +774,12 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
               </div>
 
               {/* Texto SOLO si compra y paga con BRL */}
-{selectedCurrency === "BRL" && operation === "comprar" && (
-  <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
-    Al enviar tu pedido, te daremos un link para que completes tu pago con tu método de pago preferido.
-  </p>
-)}
+              {selectedCurrency === "BRL" && operation === "comprar" && (
+                <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
+                  Al enviar tu pedido, te daremos un link para que completes tu
+                  pago con tu método de pago preferido.
+                </p>
+              )}
 
               {selectedCurrency === "MXN" && operation === "vender" && (
                 <div>
@@ -826,32 +816,34 @@ Al enviar tu pedido, te daremos un link para que completes tu pago.
               )}
 
               {/* Campo Nequi solo si el usuario VENDE y seleccionó COP */}
-{operation === "vender" && selectedCurrency === "COP" && (
-  <div>
-    <label className="block text-sm font-medium text-left text-gray-700">
-      Número teléfono Nequi
-    </label>
-    <input
-      type="text"
-      name="nequi"
-      onChange={handleFormChange}
-      required
-      placeholder="Ej: 3001234567"
-      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-    />
-  </div>
-)}
+              {operation === "vender" && selectedCurrency === "COP" && (
+                <div>
+                  <label className="block text-sm font-medium text-left text-gray-700">
+                    Número teléfono Nequi
+                  </label>
+                  <input
+                    type="text"
+                    name="nequi"
+                    onChange={handleFormChange}
+                    required
+                    placeholder="Ej: 3001234567"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+              )}
 
               {/* Texto SOLO si compra y paga con COP */}
-{selectedCurrency === "COP" && operation === "comprar" && (
-  <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
-    Al enviar tu pedido, te daremos un link para que completes tu pago con tu método de pago preferido. 
-  </p>
-)}
+              {selectedCurrency === "COP" && operation === "comprar" && (
+                <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
+                  Al enviar tu pedido, te daremos un link para que completes tu
+                  pago con tu método de pago preferido.
+                </p>
+              )}
 
               {selectedCurrency === "MXN" && operation === "comprar" && (
                 <p className="text-sm text-gray-700 bg-yellow-50 p-2 rounded-md border border-yellow-200">
-                  Al enviar tu pedido, te daremos un link para que completes tu pago con tu método de pago preferido.
+                  Al enviar tu pedido, te daremos un link para que completes tu
+                  pago con tu método de pago preferido.
                 </p>
               )}
 
